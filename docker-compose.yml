@@ -4,7 +4,7 @@ version: '3.4'
 
 services:
   todoapi:
-    image: kjtully/dotnet-distributed-otel-appd/todoapi:${TAG:-latest}
+    image: kjtully/dotnet-distributed-otel-appd-todoapi:${TAG:-latest}
     ports:
       - "5000:5000"
     build:
@@ -25,7 +25,7 @@ services:
       APPDYNAMICS_PREVIEW_FEATURE_ENABLED: "$APPDYNAMICS_PREVIEW_FEATURE_ENABLED"
 
   todomvcui:
-    image: kjtully/dotnet-distributed-otel-appd/todomvcui:${TAG:-latest}
+    image: kjtully/dotnet-distributed-otel-appd-todomvcui:${TAG:-latest}
     ports:
       - "60000:60000"
     build:
