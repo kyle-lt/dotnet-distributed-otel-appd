@@ -30,9 +30,9 @@ COPY --from=publish /app .
 # Set Hosting Environment to Development
 ENV ASPNETCORE_ENVIRONMENT=Development
 # Set listening port and wildcare hostname
-ENV ASPNETCORE_URLS=http://*:5000
+ENV ASPNETCORE_URLS=http://*:60000
 
-EXPOSE 5000
+EXPOSE 60000
 
 # Changed the startup command to set the AppD Node Name dynamically using the Container ID, AKA, $HOSTNAME of container
 #CMD export APPDYNAMICS_AGENT_NODE_NAME=dotnetcore-linux-BethanysPieShop-node-$HOSTNAME && dotnet BethanysPieShop.dll

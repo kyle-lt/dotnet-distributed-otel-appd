@@ -7,17 +7,36 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
+// Required for ActivitySource
+using System.Diagnostics;
+
+// OpenTelemetry Refs
+using OpenTelemetry;
+using OpenTelemetry.Trace;
+
 namespace TodoApi
 {
     public class Program
     {
+        // Create Otel Activity Source
+        static readonly ActivitySource activitySource = new ActivitySource("dotnet-distributed-otel-appd.TodoApi");
         public static void Main(string[] args)
         {
+            // Configure W3C Context Propagation
+            Activity.DefaultIdFormat = ActivityIdFormat.W3C;
+            Activity.ForceDefaultIdFormat = true;
+
             CreateHostBuilder(args).Build().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .ConfigureLogging(logging =>
+                {
+                    logging.ClearProviders();
+                    // For granular logging to the console for Otel o/p
+                    logging.AddConsole((options) => { options.IncludeScopes = true; });
+                })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();

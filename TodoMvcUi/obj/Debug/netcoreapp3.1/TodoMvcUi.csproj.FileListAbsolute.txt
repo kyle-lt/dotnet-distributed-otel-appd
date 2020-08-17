@@ -35,3 +35,12 @@
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoMvcUi/obj/Debug/netcoreapp3.1/TodoMvcUi.genruntimeconfig.cache
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoMvcUi/obj/Debug/netcoreapp3.1/TodoMvcUi.csproj.CopyComplete
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoMvcUi/obj/Debug/netcoreapp3.1/Razor/Views/Home/ToDo.cshtml.g.cs
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoMvcUi/bin/Debug/netcoreapp3.1/OpenTelemetry.dll
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoMvcUi/bin/Debug/netcoreapp3.1/OpenTelemetry.Api.dll
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoMvcUi/bin/Debug/netcoreapp3.1/OpenTelemetry.Exporter.Console.dll
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoMvcUi/bin/Debug/netcoreapp3.1/OpenTelemetry.Exporter.Jaeger.dll
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoMvcUi/bin/Debug/netcoreapp3.1/OpenTelemetry.Extensions.Hosting.dll
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoMvcUi/bin/Debug/netcoreapp3.1/OpenTelemetry.Instrumentation.AspNetCore.dll
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoMvcUi/bin/Debug/netcoreapp3.1/OpenTelemetry.Instrumentation.Grpc.dll
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoMvcUi/bin/Debug/netcoreapp3.1/OpenTelemetry.Instrumentation.Http.dll
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoMvcUi/bin/Debug/netcoreapp3.1/System.Diagnostics.DiagnosticSource.dll

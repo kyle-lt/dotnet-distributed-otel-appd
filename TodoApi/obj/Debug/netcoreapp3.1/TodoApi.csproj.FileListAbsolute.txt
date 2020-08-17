@@ -111,3 +111,11 @@
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp3.1/tr/Microsoft.CodeAnalysis.Workspaces.resources.dll
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp3.1/zh-Hans/Microsoft.CodeAnalysis.Workspaces.resources.dll
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp3.1/zh-Hant/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp3.1/OpenTelemetry.dll
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp3.1/OpenTelemetry.Api.dll
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp3.1/OpenTelemetry.Exporter.Console.dll
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp3.1/OpenTelemetry.Exporter.Jaeger.dll
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp3.1/OpenTelemetry.Extensions.Hosting.dll
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp3.1/OpenTelemetry.Instrumentation.AspNetCore.dll
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp3.1/OpenTelemetry.Instrumentation.Grpc.dll
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp3.1/OpenTelemetry.Instrumentation.Http.dll

@@ -4,12 +4,12 @@ version: '3.4'
 
 services:
   todoapi:
-    image: ktully/todoapi:${TAG:-latest}
+    image: kjtully/dotnet-distributed-otel-appd/todoapi:${TAG:-latest}
     ports:
       - "5000:5000"
     build:
-      context: /TodoApi
-      dockerfile: /TodoApi/docker/Dockerfile
+      context: ./TodoApi
+      dockerfile: docker/Dockerfile
     environment:
       # AppDynamics agent configs (defined in .env file)
       APPDYNAMICS_CONTROLLER_HOST_NAME: "$APPDYNAMICS_CONTROLLER_HOST_NAME"
@@ -25,12 +25,12 @@ services:
       APPDYNAMICS_PREVIEW_FEATURE_ENABLED: "$APPDYNAMICS_PREVIEW_FEATURE_ENABLED"
 
   todomvcui:
-    image: ktully/todoapi:${TAG:-latest}
+    image: kjtully/dotnet-distributed-otel-appd/todomvcui:${TAG:-latest}
     ports:
       - "60000:60000"
     build:
-      context: /TodoMvcUi
-      dockerfile: /TodoMvcUi/docker/Dockerfile
+      context: ./TodoMvcUi
+      dockerfile: docker/Dockerfile
     environment:
       # AppDynamics agent configs (defined in .env file)
       APPDYNAMICS_CONTROLLER_HOST_NAME: "$APPDYNAMICS_CONTROLLER_HOST_NAME"

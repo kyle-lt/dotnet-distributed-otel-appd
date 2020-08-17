@@ -35,6 +35,36 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "OpenTelemetry": {
+              "target": "Package",
+              "version": "[0.4.0-beta.2, )"
+            },
+            "OpenTelemetry.Exporter.Console": {
+              "target": "Package",
+              "version": "[0.4.0-beta.2, )"
+            },
+            "OpenTelemetry.Exporter.Jaeger": {
+              "target": "Package",
+              "version": "[0.4.0-beta.2, )"
+            },
+            "OpenTelemetry.Extensions.Hosting": {
+              "target": "Package",
+              "version": "[0.4.0-beta.2, )"
+            },
+            "OpenTelemetry.Instrumentation.AspNetCore": {
+              "target": "Package",
+              "version": "[0.4.0-beta.2, )"
+            },
+            "OpenTelemetry.Instrumentation.Grpc": {
+              "target": "Package",
+              "version": "[0.4.0-beta.2, )"
+            },
+            "OpenTelemetry.Instrumentation.Http": {
+              "target": "Package",
+              "version": "[0.4.0-beta.2, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

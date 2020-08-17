@@ -38,7 +38,7 @@ namespace TodoMvcUi.Controllers
         {
 
             // Grab the ToDoItems from the API and write JSON to Console Log as it comes (minified, and all lower-case)
-            var stringTask = client.GetStringAsync("http://127.0.0.1:5000/api/TodoItems");
+            var stringTask = client.GetStringAsync("http://host.docker.internal:5000/api/TodoItems");
             var msg = await stringTask;
             //Console.WriteLine("Incoming JSON from API:");
             //Console.WriteLine(msg);
@@ -101,11 +101,11 @@ namespace TodoMvcUi.Controllers
             var jsonTodoItem = JsonSerializer.Serialize(todoItemDTO);
             _logger.LogDebug($"Serialized JSON for API POST = {jsonTodoItem}");
             var httpContent = new StringContent(jsonTodoItem, Encoding.UTF8, "application/json");
-            var postResponse = client.PostAsync("http://127.0.0.1:5000/api/TodoItems", httpContent).Result;
+            var postResponse = client.PostAsync("http://host.docker.internal:5000/api/TodoItems", httpContent).Result;
             _logger.LogDebug($"postResponse = {postResponse.Content.ReadAsStringAsync().Result}");
 
-            // Grab the latest list of TodoItems
-            var stringTask = client.GetStringAsync("http://127.0.0.1:5000/api/TodoItems");
+            // Grab the latest list of TodoItems - I don't need this anymore b/c of my redirect, but keep it, who cares?!? :)
+            var stringTask = client.GetStringAsync("http://host.docker.internal:5000/api/TodoItems");
             var msg = await stringTask;
             var options = new JsonSerializerOptions
             {
@@ -129,7 +129,7 @@ namespace TodoMvcUi.Controllers
         private async Task<String> getAllTodoItemsAsyc()
         {
             // Grab the ToDoItems from the API and write JSON to Console Log as it comes (minified, and all lower-case)
-            var stringTask = client.GetStringAsync("http://127.0.0.1:5000/api/TodoItems");
+            var stringTask = client.GetStringAsync("http://host.docker.internal:5000/api/TodoItems");
             var msg = await stringTask;
             //Console.WriteLine("Incoming JSON from API:");
             //Console.WriteLine(msg);
