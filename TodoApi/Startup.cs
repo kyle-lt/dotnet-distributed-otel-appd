@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 
 using Microsoft.EntityFrameworkCore;
 using TodoApi.Models;
+using TodoApi.Helpers;
 
 // OpenTelemetry Refs
 using OpenTelemetry;
@@ -47,6 +48,9 @@ namespace TodoApi
             })
             .SetSampler(new AlwaysOnSampler())
             );
+
+            // RabbitMqReceiver
+            services.AddHostedService<RabbitMqReceiver>();
 
             services.AddControllers();
 

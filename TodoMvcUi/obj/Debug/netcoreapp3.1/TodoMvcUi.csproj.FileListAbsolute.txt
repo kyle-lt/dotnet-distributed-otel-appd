@@ -44,3 +44,5 @@
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoMvcUi/bin/Debug/netcoreapp3.1/OpenTelemetry.Instrumentation.Grpc.dll
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoMvcUi/bin/Debug/netcoreapp3.1/OpenTelemetry.Instrumentation.Http.dll
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoMvcUi/bin/Debug/netcoreapp3.1/System.Diagnostics.DiagnosticSource.dll
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoMvcUi/bin/Debug/netcoreapp3.1/RabbitMQ.Client.dll
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoMvcUi/bin/Debug/netcoreapp3.1/System.Threading.Channels.dll

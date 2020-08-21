@@ -10,6 +10,7 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Text;
 using System.Text.Json.Serialization;
+using RabbitMQ.Client;
 
 namespace TodoMvcUi.Controllers
 {
@@ -40,9 +41,6 @@ namespace TodoMvcUi.Controllers
             // Grab the ToDoItems from the API and write JSON to Console Log as it comes (minified, and all lower-case)
             var stringTask = client.GetStringAsync("http://host.docker.internal:5000/api/TodoItems");
             var msg = await stringTask;
-            //Console.WriteLine("Incoming JSON from API:");
-            //Console.WriteLine(msg);
-            //Console.WriteLine();
             _logger.LogDebug("Incoming JSON from API: " + msg);
 
             // Deserialize the json string into POCO object
@@ -52,39 +50,16 @@ namespace TodoMvcUi.Controllers
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase, // Match json since my API is sending all lower-case
                 WriteIndented = true // For Debugging, printing will print this nicely when serialized back into JSON
             };
-            //TodoItemList todoItems = JsonSerializer.Deserialize<TodoItemList>(msg, options);
+            
+            // Deserialize my json into List of TodoItems
             List<TodoItem> todoItems = JsonSerializer.Deserialize<List<TodoItem>>(msg, options);
-            //List<TodoItem> todoItems = GetJsonGenericType<List<TodoItem>>(msg);
-
-            // DEBUG - iterate through List and o/p Name to Console
-            //Console.WriteLine("Deserialized into TodoItem List Successfully!");
             _logger.LogDebug("Deserialized into TodoItem List Successfully!");
-            /*
-            todoItems.ForEach(delegate(TodoItem todoItem)
-            {
-                Console.WriteLine("Id is " + todoItem.Id);
-                Console.WriteLine("Name is " + todoItem.Name);
-                Console.WriteLine("IsComplete is " + todoItem.IsComplete);
-                Console.WriteLine();
-            });
-            */
-            // DEBUG - Re-serialize and pretty-print
+            
+            // Reserialize my List of TodoItems into json (to pretty-print, and to pass to View)
             var modelJson = JsonSerializer.Serialize(todoItems, options);
-            //Console.WriteLine("Pretty-Print JSON:");
-            //Console.WriteLine(modelJson);
             _logger.LogDebug("Re-serialized Pretty-Print JSON: " + modelJson);
-            /*
-            for (int i = 0; i < todoItems.Count; i++) {                
-                Console.WriteLine("Id is " + todoItems[i].Id);
-                Console.WriteLine("Name is " + todoItems[i].Name);
-                Console.WriteLine("IsComplete is " + todoItems[i].IsComplete);
-            }
-            */
-
-            // For a single record...
-            //TodoItem todoItem = GetJsonGenericType<TodoItem>(msg);
-
-
+            
+            // Return View with TodoItems
             ViewData["TodoItems"] = modelJson;
             return View(todoItems);
         }
@@ -115,11 +90,15 @@ namespace TodoMvcUi.Controllers
             List<TodoItem> todoItems = JsonSerializer.Deserialize<List<TodoItem>>(msg, options);
             var modelJson = JsonSerializer.Serialize(todoItems, options);
 
+            // Send a message to RabbitMQ
+            sendRabbitMqMsg();
+
             ViewData["TodoItems"] = modelJson;
             return LocalRedirect("/Home/ToDo");
 
         }
 
+        // Not used, but interesting...
         private static T GetJsonGenericType<T>(string jsonString)
         {
             var generatedType = JsonSerializer.Deserialize<T>(jsonString);
@@ -137,6 +116,31 @@ namespace TodoMvcUi.Controllers
             _logger.LogDebug("Incoming JSON from API: " + msg);
 
             return msg;
+        }
+
+        private void sendRabbitMqMsg()
+        {
+            // Create RabbitMQ connection to docker-compose service "rabbitmq"
+            var factory = new ConnectionFactory() { HostName = "rabbitmq" };
+            using(var connection = factory.CreateConnection())
+            using(var channel = connection.CreateModel())
+            {
+            channel.QueueDeclare(queue: "hello",
+                                 durable: false,
+                                 exclusive: false,
+                                 autoDelete: false,
+                                 arguments: null);
+
+            string message = "Hello World!";
+            var body = Encoding.UTF8.GetBytes(message);
+
+            channel.BasicPublish(exchange: "",
+                                 routingKey: "hello",
+                                 basicProperties: null,
+                                 body: body);
+            
+            //Console.WriteLine(" [x] Sent {0}", message);
+            }
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
