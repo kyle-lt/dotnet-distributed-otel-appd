@@ -53,6 +53,14 @@ namespace TodoApi.Controllers
             Task.Delay(2000).Wait();
             a.Stop();
             
+            
+            // This may be changing in the future to something more like
+            /*
+            using var tracerProvider = Sdk.CreateTracerProviderBuilder()
+                .AddSource("MyCompany.MyProduct.MyLibrary")
+                .AddConsoleExporter()
+                .Build();
+            */
             using var tracerProvider = Sdk.CreateTracerProvider(builder => builder
                 .AddActivitySource("KyleTestActivitySource")
                 .UseConsoleExporter()

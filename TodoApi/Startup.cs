@@ -35,6 +35,10 @@ namespace TodoApi
         public void ConfigureServices(IServiceCollection services)
         {
 
+            // This may be changing in the future to:
+            /*
+            services.AddOpenTelemetryTraceProvider...
+            */
             // Add OpenTelemetry Console Exporter & Jaeger Exporter
             services.AddOpenTelemetry((builder) => builder
             .AddAspNetCoreInstrumentation()
