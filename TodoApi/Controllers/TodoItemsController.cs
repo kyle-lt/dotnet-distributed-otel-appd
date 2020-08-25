@@ -2,10 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TodoApi.Models;
+using System.Diagnostics;
+using OpenTelemetry;
+using OpenTelemetry.Trace;
 
 namespace TodoApi.Controllers
 {
@@ -13,17 +17,75 @@ namespace TodoApi.Controllers
     [ApiController]
     public class TodoItemsController : ControllerBase
     {
+        private readonly ILogger<TodoItemsController> _logger;
         private readonly TodoContext _context;
+        private static readonly ActivitySource _activitySource = new ActivitySource("KyleTestActivitySource");
+        //private static readonly ActivitySource _activitySource = new ActivitySource(nameof(TodoItemsController));
+        //private readonly ActivitySource _activitySource;
 
-        public TodoItemsController(TodoContext context)
+        public TodoItemsController(TodoContext context, ILogger<TodoItemsController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         // GET: api/TodoItems
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TodoItem>>> GetTodoItems()
         {
+            _logger.LogInformation("**************************************");
+            _logger.LogInformation("Begin logging existing Activity Props:");
+            _logger.LogInformation("Activity.Current.TraceId = " + Activity.Current.TraceId);
+            _logger.LogInformation("Activity.Current.SpanId = " + Activity.Current.SpanId);
+            _logger.LogInformation("Activity.Current.ParentId = " + Activity.Current.ParentId);
+            _logger.LogInformation("Activity.Current.TraceStateString = " + Activity.Current.TraceStateString);
+            _logger.LogInformation("**** Done Logging existing Activity Props.");
+
+            Activity a = new Activity("ExampleActivityInTodoItemsController");
+            a.Start();
+            _logger.LogInformation("*********************************");
+            _logger.LogInformation("Begin logging new Activity Props:");
+            _logger.LogInformation("Activity.Current.TraceId = " + Activity.Current.TraceId);
+            _logger.LogInformation("Activity.Current.SpanId = " + Activity.Current.SpanId);
+            _logger.LogInformation("Activity.Current.ParentId = " + Activity.Current.ParentId);
+            _logger.LogInformation("Activity.Current.TraceStateString = " + Activity.Current.TraceStateString);
+            _logger.LogInformation("**** Done Logging new Activity Props.");
+            Task.Delay(2000).Wait();
+            a.Stop();
+            
+            using var tracerProvider = Sdk.CreateTracerProvider(builder => builder
+                .AddActivitySource("KyleTestActivitySource")
+                .UseConsoleExporter()
+                .UseJaegerExporter(jaeger =>
+                {
+                    jaeger.ServiceName = "dotnet-distrubuted-otel-appd.TodoApi";
+                    jaeger.AgentHost = "host.docker.internal";
+                    jaeger.AgentPort = 6831;
+                })
+                );
+                
+            using (var activity = _activitySource.StartActivity("KyleActivityTest", ActivityKind.Server))
+            {
+                _logger.LogInformation("Trying to manually start Child Span using ActivitySource.");
+                if (activity?.IsAllDataRequested ?? false)
+                {
+                    _logger.LogInformation("Adding Tags and Events to Activity.");
+                    activity?.AddTag("label1", "Is it working?");
+                    activity?.AddTag("label2", "Are you sure?");
+                    activity?.AddEvent(new ActivityEvent("event, equivalent of a log entry."));
+
+                    _logger.LogInformation("*********************************");
+                    _logger.LogInformation("Begin logging new Activity Props:");
+                    _logger.LogInformation("Activity.Current.TraceId = " + Activity.Current.TraceId);
+                    _logger.LogInformation("Activity.Current.SpanId = " + Activity.Current.SpanId);
+                    _logger.LogInformation("Activity.Current.ParentId = " + Activity.Current.ParentId);
+                    _logger.LogInformation("Activity.Current.TraceStateString = " + Activity.Current.TraceStateString);
+                    _logger.LogInformation("**** Done Logging new Activity Props.");
+                    Task.Delay(2000).Wait();
+                }
+                _logger.LogInformation("Ok, Activity created and properties logged, will this make it to Jaeger?.");
+            } // Activity gets stopped automatically at end of this block during dispose.
+
             return await _context.TodoItems.ToListAsync();
         }
 

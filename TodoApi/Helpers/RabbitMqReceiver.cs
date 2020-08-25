@@ -28,7 +28,7 @@ namespace TodoApi.Helpers
         {
             _logger.LogInformation("Initializing RabbitMqReceiver!");
             
-            var factory = new ConnectionFactory() { HostName = "rabbitmq" };
+            var factory = new ConnectionFactory() { HostName = "host.docker.internal" };
             _connection = factory.CreateConnection();
             _channel = _connection.CreateModel();
 

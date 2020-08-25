@@ -110,9 +110,7 @@ namespace TodoMvcUi.Controllers
             // Grab the ToDoItems from the API and write JSON to Console Log as it comes (minified, and all lower-case)
             var stringTask = client.GetStringAsync("http://host.docker.internal:5000/api/TodoItems");
             var msg = await stringTask;
-            //Console.WriteLine("Incoming JSON from API:");
-            //Console.WriteLine(msg);
-            //Console.WriteLine();
+
             _logger.LogDebug("Incoming JSON from API: " + msg);
 
             return msg;
@@ -139,7 +137,6 @@ namespace TodoMvcUi.Controllers
                                  basicProperties: null,
                                  body: body);
             
-            //Console.WriteLine(" [x] Sent {0}", message);
             }
         }
 
