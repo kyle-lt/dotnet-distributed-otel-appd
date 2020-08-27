@@ -4,6 +4,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <!--OpenTelemetry-->
   <ItemGroup>
     <PackageReference Include="OpenTelemetry" Version="0.4.0-beta.2" />
     <PackageReference Include="OpenTelemetry.Exporter.Console" Version="0.4.0-beta.2" />
@@ -12,7 +13,16 @@
     <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="0.4.0-beta.2" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Grpc" Version="0.4.0-beta.2" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="0.4.0-beta.2" />
+  </ItemGroup>
+
+  <!--RabbitMQ-->
+  <ItemGroup>
     <PackageReference Include="RabbitMQ.Client" Version="6.2.0" />
+  </ItemGroup>
+
+  <!--Messaging Utils-->
+  <ItemGroup>
+    <ProjectReference Include="..\Utils\Utils.csproj" />
   </ItemGroup>
 
 </Project>

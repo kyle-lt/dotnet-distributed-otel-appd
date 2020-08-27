@@ -75,7 +75,7 @@
           "lib/netstandard2.0/Microsoft.Extensions.Hosting.Abstractions.dll": {}
         }
       },
-      "Microsoft.Extensions.Logging.Abstractions/2.1.0": {
+      "Microsoft.Extensions.Logging.Abstractions/3.1.6": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll": {}
@@ -283,6 +283,24 @@
         "runtime": {
           "lib/netcoreapp3.0/System.Threading.Channels.dll": {}
         }
+      },
+      "Utils/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Microsoft.Extensions.Logging.Abstractions": "3.1.6",
+          "OpenTelemetry": "0.4.0-beta.2",
+          "OpenTelemetry.Api": "0.4.0-beta.2",
+          "OpenTelemetry.Exporter.Console": "0.4.0-beta.2",
+          "OpenTelemetry.Exporter.Jaeger": "0.4.0-beta.2",
+          "RabbitMQ.Client": "6.2.0"
+        },
+        "compile": {
+          "bin/placeholder/Utils.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Utils.dll": {}
+        }
       }
     }
   },
@@ -365,16 +383,17 @@
         "microsoft.extensions.hosting.abstractions.nuspec"
       ]
     },
-    "Microsoft.Extensions.Logging.Abstractions/2.1.0": {
-      "sha512": "GfD2VtvN9z1W+m6pZZe98yh9VWTSdNY2dZSxtca9uFIY6aBI6twvskMvLO/ktClBOTQmAov/7Em+IWFlHepa0A==",
+    "Microsoft.Extensions.Logging.Abstractions/3.1.6": {
+      "sha512": "o2XYIjF9UugupEPvFsc9N8SjevixoRznS0V6EtjUZcGV4EjXXWKUXlKKsIWmD3i4dSiGo82aNcyqfQTsF/8h8g==",
       "type": "package",
-      "path": "microsoft.extensions.logging.abstractions/2.1.0",
+      "path": "microsoft.extensions.logging.abstractions/3.1.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
+        "Icon.png",
         "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll",
         "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.xml",
-        "microsoft.extensions.logging.abstractions.2.1.0.nupkg.sha512",
+        "microsoft.extensions.logging.abstractions.3.1.6.nupkg.sha512",
         "microsoft.extensions.logging.abstractions.nuspec"
       ]
     },
@@ -760,6 +779,11 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "Utils/1.0.0": {
+      "type": "project",
+      "path": "../Utils/Utils.csproj",
+      "msbuildProject": "../Utils/Utils.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -771,7 +795,8 @@
       "OpenTelemetry.Instrumentation.AspNetCore >= 0.4.0-beta.2",
       "OpenTelemetry.Instrumentation.Grpc >= 0.4.0-beta.2",
       "OpenTelemetry.Instrumentation.Http >= 0.4.0-beta.2",
-      "RabbitMQ.Client >= 6.2.0"
+      "RabbitMQ.Client >= 6.2.0",
+      "Utils >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -797,7 +822,11 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/Utils/Utils.csproj": {
+              "projectPath": "/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/Utils/Utils.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

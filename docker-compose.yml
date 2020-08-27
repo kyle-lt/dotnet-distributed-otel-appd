@@ -8,8 +8,8 @@ services:
     ports:
       - "5000:5000"
     build:
-      context: ./TodoApi
-      dockerfile: docker/Dockerfile
+      context: .
+      dockerfile: TodoApi/docker/Dockerfile
     environment:
       # AppDynamics agent configs (defined in .env file)
       APPDYNAMICS_CONTROLLER_HOST_NAME: "$APPDYNAMICS_CONTROLLER_HOST_NAME"
@@ -29,8 +29,8 @@ services:
     ports:
       - "60000:60000"
     build:
-      context: ./TodoMvcUi
-      dockerfile: docker/Dockerfile
+      context: .
+      dockerfile: TodoMvcUi/docker/Dockerfile
     environment:
       # AppDynamics agent configs (defined in .env file)
       APPDYNAMICS_CONTROLLER_HOST_NAME: "$APPDYNAMICS_CONTROLLER_HOST_NAME"

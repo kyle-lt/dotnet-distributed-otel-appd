@@ -46,3 +46,6 @@
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoMvcUi/bin/Debug/netcoreapp3.1/System.Diagnostics.DiagnosticSource.dll
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoMvcUi/bin/Debug/netcoreapp3.1/RabbitMQ.Client.dll
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoMvcUi/bin/Debug/netcoreapp3.1/System.Threading.Channels.dll
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoMvcUi/bin/Debug/netcoreapp3.1/Microsoft.Extensions.Logging.Abstractions.dll
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoMvcUi/bin/Debug/netcoreapp3.1/Utils.dll
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoMvcUi/bin/Debug/netcoreapp3.1/Utils.pdb

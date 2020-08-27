@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "mFrEfB0427zJB7cbcZkJSefLh2fyM7Bu8G4VbxNFqg8qsLWAqW9xwLU4GmW4XNlkFi5rk26LsgiK48MVW5DOig==",
+  "dgSpecHash": "gMq8DwwbKOJIXbDNCk7qL1iRESJzUyxcDc/r3g/YSs0fxMmuqEfnk4emJkyBkLg2TnWWRKTseFWnP6u1zEEtuw==",
   "success": true,
   "projectFilePath": "/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoMvcUi/TodoMvcUi.csproj",
   "expectedPackageFiles": [
@@ -10,7 +10,7 @@
     "/Users/kjt/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/2.1.0/microsoft.extensions.dependencyinjection.abstractions.2.1.0.nupkg.sha512",
     "/Users/kjt/.nuget/packages/microsoft.extensions.fileproviders.abstractions/2.1.0/microsoft.extensions.fileproviders.abstractions.2.1.0.nupkg.sha512",
     "/Users/kjt/.nuget/packages/microsoft.extensions.hosting.abstractions/2.1.0/microsoft.extensions.hosting.abstractions.2.1.0.nupkg.sha512",
-    "/Users/kjt/.nuget/packages/microsoft.extensions.logging.abstractions/2.1.0/microsoft.extensions.logging.abstractions.2.1.0.nupkg.sha512",
+    "/Users/kjt/.nuget/packages/microsoft.extensions.logging.abstractions/3.1.6/microsoft.extensions.logging.abstractions.3.1.6.nupkg.sha512",
     "/Users/kjt/.nuget/packages/microsoft.extensions.primitives/2.1.0/microsoft.extensions.primitives.2.1.0.nupkg.sha512",
     "/Users/kjt/.nuget/packages/opentelemetry/0.4.0-beta.2/opentelemetry.0.4.0-beta.2.nupkg.sha512",
     "/Users/kjt/.nuget/packages/opentelemetry.api/0.4.0-beta.2/opentelemetry.api.0.4.0-beta.2.nupkg.sha512",

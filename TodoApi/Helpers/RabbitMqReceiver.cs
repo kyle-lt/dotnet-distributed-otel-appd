@@ -15,24 +15,47 @@ using RabbitMQ.Client.Events;
 using OpenTelemetry;
 using OpenTelemetry.Trace;
 
+using Utils.Messaging;
+
 namespace TodoApi.Helpers
 {
     public class RabbitMqReceiver : BackgroundService
     {
         private readonly ILogger<RabbitMqReceiver> _logger;
-        private IConnection _connection;  
-        private IModel _channel;
+        //private IConnection _connection;  
+        //private IModel _channel;
+        private readonly MessageReceiver _messageReceiver;
         
         // Create ActivitySource to capture my manual Spans - this ActivitySource is Added to the OpenTelemetry
         // Service declaration in Startup.cs
-        private static readonly ActivitySource _activitySource = new ActivitySource("ManualActivitySource");
+        //private static readonly ActivitySource _activitySource = new ActivitySource("ManualActivitySource");
 
-        public RabbitMqReceiver(ILogger<RabbitMqReceiver> logger)
+        public RabbitMqReceiver(ILogger<RabbitMqReceiver> logger, MessageReceiver messageReceiver)
         {
             _logger = logger;
-            InitRabbitMQ();
+            _messageReceiver = messageReceiver;
+            //InitRabbitMQ();
         }
 
+        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        {
+            stoppingToken.ThrowIfCancellationRequested();
+
+            _messageReceiver.StartConsumer();
+
+            await Task.CompletedTask;
+        }
+        public override Task StartAsync(CancellationToken cancellationToken)
+        {
+            return base.StartAsync(cancellationToken);
+        }
+
+        public override async Task StopAsync(CancellationToken cancellationToken)
+        {
+            await base.StopAsync(cancellationToken);
+        }
+
+        /*
         private void InitRabbitMQ()
         {
             _logger.LogInformation("Waiting 5 seconds for RabbitMQ to boot...");
@@ -51,7 +74,9 @@ namespace TodoApi.Helpers
 
             _connection.ConnectionShutdown += RabbitMQ_ConnectionShutdown;
         }
+        */
 
+        /* OLD - replaced by Utils.Messaging
         protected override Task ExecuteAsync(CancellationToken stoppingToken)
         {
             stoppingToken.ThrowIfCancellationRequested();
@@ -77,12 +102,11 @@ namespace TodoApi.Helpers
                 // Manually create Trace Provider using SDK - I am trying this becuase the dependency injection method
                 // isn't grabbing my RabbitMQ Consumer traces...
                 // Note, the syntax for this may be changing in the future to something more like
-                /*
-                using var tracerProvider = Sdk.CreateTracerProviderBuilder()
-                    .AddSource("MyCompany.MyProduct.MyLibrary")
-                    .AddConsoleExporter()
-                    .Build();
-                */
+                
+                //using var tracerProvider = Sdk.CreateTracerProviderBuilder()
+                //    .AddSource("MyCompany.MyProduct.MyLibrary")
+                //    .AddConsoleExporter()
+                //    .Build();
                 
                 using var tracerProvider = Sdk.CreateTracerProvider(builder => builder
                     .AddActivitySource("ManualActivitySource")
@@ -136,6 +160,7 @@ namespace TodoApi.Helpers
             return Task.CompletedTask;
 
         }
+        */
         // Stubs
         private void OnConsumerConsumerCancelled(object sender, ConsumerEventArgs e)  {  }  
         private void OnConsumerUnregistered(object sender, ConsumerEventArgs e) {  }  
@@ -145,8 +170,8 @@ namespace TodoApi.Helpers
     
         public override void Dispose()  
         {  
-            _channel.Close();  
-            _connection.Close();  
+            //_channel.Close();  
+            //_connection.Close();  
             base.Dispose();  
         }
     }

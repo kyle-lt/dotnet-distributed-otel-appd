@@ -19,22 +19,27 @@ namespace TodoApi.Controllers
     {
         private readonly ILogger<TodoItemsController> _logger;
         private readonly TodoContext _context;
+        //private readonly MessageReceiver _messageReceiver;
         
         // Create ActivitySource to capture my manual Spans - this ActivitySource is Added to the OpenTelemetry
         // Service declaration in Startup.cs
-        private static readonly ActivitySource _activitySource = new ActivitySource("ManualActivitySource");
+        //private static readonly ActivitySource _activitySource = new ActivitySource("ManualActivitySource");
         //private static readonly ActivitySource _activitySource = new ActivitySource(nameof(TodoItemsController));
 
         public TodoItemsController(TodoContext context, ILogger<TodoItemsController> logger)
         {
             _context = context;
             _logger = logger;
+
         }
 
         // GET: api/TodoItems
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TodoItem>>> GetTodoItems()
         {
+            return await _context.TodoItems.ToListAsync();
+
+            /* DEBUGGING
             // Create Child Span - it will automatically detect Activity.Current as its parent
             using (var activity = _activitySource.StartActivity("ChildActivityTest", ActivityKind.Server))
             {
@@ -46,19 +51,18 @@ namespace TodoApi.Controllers
                     activity?.AddEvent(new ActivityEvent("This is the event body - kinda equivalent to a log entry."));
 
                     // Debug Logging
-                    /*
+                    
                     _logger.LogInformation("----- Begin logging new Activity Props -----");
                     _logger.LogInformation($"Activity.Current.TraceId = {Activity.Current.TraceId}");
                     _logger.LogInformation($"Activity.Current.SpanId = {Activity.Current.SpanId}");
                     _logger.LogInformation($"Activity.Current.ParentId = {Activity.Current.ParentId}");
                     _logger.LogInformation("----- Done Logging new Activity Props -----");
-                    */
+                    
                     // Simulate Work Being Done
                     Task.Delay(2000).Wait();
                 }
             } // Activity gets stopped automatically at end of this block during dispose.
-
-            return await _context.TodoItems.ToListAsync();
+            */
 
             // -- Moved to the bottom, after return since just comments --
             // Manually create Trace Provider using SDK - don't need this since I'm using the

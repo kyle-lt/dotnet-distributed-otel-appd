@@ -1,0 +1,9 @@
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/Utils/obj/Debug/netcoreapp3.1/Utils.csprojAssemblyReference.cache
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/Utils/obj/Debug/netcoreapp3.1/Utils.AssemblyInfoInputs.cache
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/Utils/obj/Debug/netcoreapp3.1/Utils.AssemblyInfo.cs
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/Utils/obj/Debug/netcoreapp3.1/Utils.csproj.CoreCompileInputs.cache
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/Utils/bin/Debug/netcoreapp3.1/Utils.deps.json
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/Utils/bin/Debug/netcoreapp3.1/Utils.dll
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/Utils/bin/Debug/netcoreapp3.1/Utils.pdb
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/Utils/obj/Debug/netcoreapp3.1/Utils.dll
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/Utils/obj/Debug/netcoreapp3.1/Utils.pdb

@@ -20,6 +20,9 @@ using OpenTelemetry;
 using OpenTelemetry.Trace;
 using OpenTelemetry.Trace.Samplers;
 
+// Messaging Utils
+using Utils.Messaging;
+
 namespace TodoApi
 {
     public class Startup
@@ -34,6 +37,8 @@ namespace TodoApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add instance of Messaging Utils' MessageReceiver
+            services.AddSingleton<MessageReceiver>();
 
             // This may be changing in the future to:
             /*
@@ -41,7 +46,7 @@ namespace TodoApi
             */
             // Add OpenTelemetry Console Exporter & Jaeger Exporter
             services.AddOpenTelemetry((builder) => builder
-            .AddActivitySource("ManualActivitySource")
+            .AddActivitySource(nameof(MessageReceiver))
             .AddAspNetCoreInstrumentation()
             .AddHttpClientInstrumentation()
             .UseConsoleExporter()

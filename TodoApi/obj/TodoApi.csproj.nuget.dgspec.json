@@ -24,7 +24,11 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "projectReferences": {}
+            "projectReferences": {
+              "/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/Utils/Utils.csproj": {
+                "projectPath": "/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/Utils/Utils.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -51,6 +55,10 @@
               "version": "[3.1.4, )"
             },
             "OpenTelemetry": {
+              "target": "Package",
+              "version": "[0.4.0-beta.2, )"
+            },
+            "OpenTelemetry.Api": {
               "target": "Package",
               "version": "[0.4.0-beta.2, )"
             },
@@ -81,10 +89,6 @@
             "RabbitMQ.Client": {
               "target": "Package",
               "version": "[6.2.0, )"
-            },
-            "System.Diagnostics.DiagnosticSource": {
-              "target": "Package",
-              "version": "[5.0.0-preview.7.20364.11, )"
             }
           },
           "imports": [
@@ -101,6 +105,82 @@
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
             },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.302/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/Utils/Utils.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/Utils/Utils.csproj",
+        "projectName": "Utils",
+        "projectPath": "/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/Utils/Utils.csproj",
+        "packagesPath": "/Users/kjt/.nuget/packages/",
+        "outputPath": "/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/Utils/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/kjt/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.Extensions.Logging.Abstractions": {
+              "target": "Package",
+              "version": "[3.1.6, )"
+            },
+            "OpenTelemetry": {
+              "target": "Package",
+              "version": "[0.4.0-beta.2, )"
+            },
+            "OpenTelemetry.Api": {
+              "target": "Package",
+              "version": "[0.4.0-beta.2, )"
+            },
+            "OpenTelemetry.Exporter.Console": {
+              "target": "Package",
+              "version": "[0.4.0-beta.2, )"
+            },
+            "OpenTelemetry.Exporter.Jaeger": {
+              "target": "Package",
+              "version": "[0.4.0-beta.2, )"
+            },
+            "RabbitMQ.Client": {
+              "target": "Package",
+              "version": "[6.2.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }

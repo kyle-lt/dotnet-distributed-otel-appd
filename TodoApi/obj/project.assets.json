@@ -2193,6 +2193,24 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
+      },
+      "Utils/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Microsoft.Extensions.Logging.Abstractions": "3.1.6",
+          "OpenTelemetry": "0.4.0-beta.2",
+          "OpenTelemetry.Api": "0.4.0-beta.2",
+          "OpenTelemetry.Exporter.Console": "0.4.0-beta.2",
+          "OpenTelemetry.Exporter.Jaeger": "0.4.0-beta.2",
+          "RabbitMQ.Client": "6.2.0"
+        },
+        "compile": {
+          "bin/placeholder/Utils.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Utils.dll": {}
+        }
       }
     }
   },
@@ -7164,6 +7182,11 @@
         "system.xml.xdocument.4.3.0.nupkg.sha512",
         "system.xml.xdocument.nuspec"
       ]
+    },
+    "Utils/1.0.0": {
+      "type": "project",
+      "path": "../Utils/Utils.csproj",
+      "msbuildProject": "../Utils/Utils.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -7172,6 +7195,7 @@
       "Microsoft.EntityFrameworkCore.InMemory >= 3.1.6",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 3.1.4",
       "OpenTelemetry >= 0.4.0-beta.2",
+      "OpenTelemetry.Api >= 0.4.0-beta.2",
       "OpenTelemetry.Exporter.Console >= 0.4.0-beta.2",
       "OpenTelemetry.Exporter.Jaeger >= 0.4.0-beta.2",
       "OpenTelemetry.Extensions.Hosting >= 0.4.0-beta.2",
@@ -7179,7 +7203,7 @@
       "OpenTelemetry.Instrumentation.Grpc >= 0.4.0-beta.2",
       "OpenTelemetry.Instrumentation.Http >= 0.4.0-beta.2",
       "RabbitMQ.Client >= 6.2.0",
-      "System.Diagnostics.DiagnosticSource >= 5.0.0-preview.7.20364.11"
+      "Utils >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -7205,7 +7229,11 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/Utils/Utils.csproj": {
+              "projectPath": "/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/Utils/Utils.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -7232,6 +7260,10 @@
             "version": "[3.1.4, )"
           },
           "OpenTelemetry": {
+            "target": "Package",
+            "version": "[0.4.0-beta.2, )"
+          },
+          "OpenTelemetry.Api": {
             "target": "Package",
             "version": "[0.4.0-beta.2, )"
           },
@@ -7262,10 +7294,6 @@
           "RabbitMQ.Client": {
             "target": "Package",
             "version": "[6.2.0, )"
-          },
-          "System.Diagnostics.DiagnosticSource": {
-            "target": "Package",
-            "version": "[5.0.0-preview.7.20364.11, )"
           }
         },
         "imports": [

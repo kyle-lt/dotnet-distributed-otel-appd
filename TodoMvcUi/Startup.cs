@@ -14,6 +14,9 @@ using OpenTelemetry;
 using OpenTelemetry.Trace;
 using OpenTelemetry.Trace.Samplers;
 
+// Messaging Utils
+using Utils.Messaging;
+
 namespace TodoMvcUi
 {
     public class Startup
@@ -30,9 +33,12 @@ namespace TodoMvcUi
         {
             services.AddControllersWithViews();
 
+            // Add instance of Messaging Utils' MessageSender
+            services.AddSingleton<MessageSender>();
+
             // Add OpenTelemetry Console Exporter & Jaeger Exporter
             services.AddOpenTelemetry((builder) => builder
-                .AddActivitySource("RabbitMQ")
+                .AddActivitySource(nameof(MessageSender))
                 .AddAspNetCoreInstrumentation()
                 .AddHttpClientInstrumentation()
                 .UseConsoleExporter()
@@ -42,6 +48,8 @@ namespace TodoMvcUi
                     //jaeger.AgentHost = this.Configuration.GetValue<string>("Jaeger:Host");
                     //jaeger.AgentPort = this.Configuration.GetValue<int>("Jaeger:Port");
                     jaeger.ServiceName = "dotnet-distrubuted-otel-appd.TodoMvcUi";
+                    // When I move to env vars, it'll look something like this:
+                    //jaeger.ServiceName = Environment.GetEnvironmentVariable("JAEGER_HOSTNAME") ?? "localhost";
                     jaeger.AgentHost = "host.docker.internal";
                     jaeger.AgentPort = 6831;
                 })

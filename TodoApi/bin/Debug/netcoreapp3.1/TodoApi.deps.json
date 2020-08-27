@@ -28,6 +28,7 @@
           "Microsoft.EntityFrameworkCore.InMemory": "3.1.6",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "3.1.4",
           "OpenTelemetry": "0.4.0-beta.2",
+          "OpenTelemetry.Api": "0.4.0-beta.2",
           "OpenTelemetry.Exporter.Console": "0.4.0-beta.2",
           "OpenTelemetry.Exporter.Jaeger": "0.4.0-beta.2",
           "OpenTelemetry.Extensions.Hosting": "0.4.0-beta.2",
@@ -35,7 +36,7 @@
           "OpenTelemetry.Instrumentation.Grpc": "0.4.0-beta.2",
           "OpenTelemetry.Instrumentation.Http": "0.4.0-beta.2",
           "RabbitMQ.Client": "6.2.0",
-          "System.Diagnostics.DiagnosticSource": "5.0.0-preview.7.20364.11",
+          "Utils": "1.0.0",
           "Microsoft.AspNetCore.Antiforgery": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies": "3.1.0.0",
@@ -1954,6 +1955,22 @@
           "System.Text.Encoding": "4.3.0",
           "System.Threading": "4.3.0",
           "System.Xml.ReaderWriter": "4.3.0"
+        }
+      },
+      "Utils/1.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Logging.Abstractions": "3.1.6",
+          "OpenTelemetry": "0.4.0-beta.2",
+          "OpenTelemetry.Api": "0.4.0-beta.2",
+          "OpenTelemetry.Exporter.Console": "0.4.0-beta.2",
+          "OpenTelemetry.Exporter.Jaeger": "0.4.0-beta.2",
+          "RabbitMQ.Client": "6.2.0"
+        },
+        "runtime": {
+          "Utils.dll": {}
+        },
+        "compile": {
+          "Utils.dll": {}
         }
       },
       "Microsoft.AspNetCore.Antiforgery/3.1.0.0": {
@@ -4558,6 +4575,11 @@
       "sha512": "sha512-5zJ0XDxAIg8iy+t4aMnQAu0MqVbqyvfoUVl1yDV61xdo3Vth45oA2FoY4pPkxYAH5f8ixpmTqXeEIya95x0aCQ==",
       "path": "system.xml.xdocument/4.3.0",
       "hashPath": "system.xml.xdocument.4.3.0.nupkg.sha512"
+    },
+    "Utils/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "Microsoft.AspNetCore.Antiforgery/3.1.0.0": {
       "type": "referenceassembly",

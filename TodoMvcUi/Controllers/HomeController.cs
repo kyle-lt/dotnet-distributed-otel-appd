@@ -10,7 +10,12 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Text;
 using System.Text.Json.Serialization;
+
+// RabbitMQ
 using RabbitMQ.Client;
+
+// Messaging Utils
+using Utils.Messaging;
 
 namespace TodoMvcUi.Controllers
 {
@@ -18,15 +23,18 @@ namespace TodoMvcUi.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
+        private readonly MessageSender _messageSender;
+
         private static readonly HttpClient client = new HttpClient();
 
         // Create ActivitySource to capture my manual Spans - this ActivitySource is Added to the OpenTelemetry
         // Service declaration in Startup.cs
-        private static readonly ActivitySource _activitySource = new ActivitySource("RabbitMQ");
+        //private static readonly ActivitySource _activitySource = new ActivitySource("RabbitMQ");
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, MessageSender messageSender)
         {
             _logger = logger;
+            _messageSender = messageSender;
         }
 
         public IActionResult Index()
@@ -94,8 +102,13 @@ namespace TodoMvcUi.Controllers
             List<TodoItem> todoItems = JsonSerializer.Deserialize<List<TodoItem>>(msg, options);
             var modelJson = JsonSerializer.Serialize(todoItems, options);
 
+            // Send Message using RabbitMQ
+            _messageSender.SendMessage();
+            
+            // OLD - this is all wrapped in the Utils.Messaging.MessageSender Class
             // Send a message to RabbitMQ, and wrap it in a Span
             // Create Child Span - it will automatically detect Activity.Current as its parent
+            /*
             using (var activity = _activitySource.StartActivity("RabbitMQ Publish", ActivityKind.Producer))
             {
                 if (activity?.IsAllDataRequested ?? false)
@@ -106,18 +119,19 @@ namespace TodoMvcUi.Controllers
                     activity?.AddEvent(new ActivityEvent("This is the event body - kinda equivalent to a log entry."));
 
                     // Debug Logging
-                    /*
+                    
                     _logger.LogInformation("----- Begin logging new Activity Props -----");
                     _logger.LogInformation($"Activity.Current.TraceId = {Activity.Current.TraceId}");
                     _logger.LogInformation($"Activity.Current.SpanId = {Activity.Current.SpanId}");
                     _logger.LogInformation($"Activity.Current.ParentId = {Activity.Current.ParentId}");
                     _logger.LogInformation("----- Done Logging new Activity Props -----");
-                    */
+                    
 
                     // Do Work
                     sendRabbitMqMsg();
                 }
-            } 
+            }
+            */
             
             ViewData["TodoItems"] = modelJson;
             return LocalRedirect("/Home/ToDo");
@@ -141,6 +155,14 @@ namespace TodoMvcUi.Controllers
             return msg;
         }
 
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        // OLD - this is all wrapped in the Utils.Messaging.MessageSender Class
+        /*
         private void sendRabbitMqMsg()
         {
             // Create RabbitMQ connection to docker-compose service "rabbitmq"
@@ -169,11 +191,6 @@ namespace TodoMvcUi.Controllers
                 
             }
         }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        */
     }
 }
