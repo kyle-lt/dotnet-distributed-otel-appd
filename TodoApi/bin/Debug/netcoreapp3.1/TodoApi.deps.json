@@ -28,7 +28,6 @@
           "Microsoft.EntityFrameworkCore.InMemory": "3.1.6",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "3.1.4",
           "OpenTelemetry": "0.4.0-beta.2",
-          "OpenTelemetry.Api": "0.4.0-beta.2",
           "OpenTelemetry.Exporter.Console": "0.4.0-beta.2",
           "OpenTelemetry.Exporter.Jaeger": "0.4.0-beta.2",
           "OpenTelemetry.Extensions.Hosting": "0.4.0-beta.2",

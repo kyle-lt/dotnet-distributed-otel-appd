@@ -23,29 +23,11 @@ namespace TodoApi
 {
     public class Program
     {
-        // Create Otel Activity Source - this isn't necessary
-        //static readonly ActivitySource activitySource = new ActivitySource("dotnet-distributed-otel-appd.TodoApi");
         public static void Main(string[] args)
         {
             // Configure W3C Context Propagation
             Activity.DefaultIdFormat = ActivityIdFormat.W3C;
             Activity.ForceDefaultIdFormat = true;
-
-            ActivitySource.AddActivityListener(new ActivityListener()
-            {
-                // This controls which ActivitySources we want to listen to. We'd like all of them
-                ShouldListenTo = (activitySource) => true,
-
-                // These callbacks get invoked whenever an activity created by a source we are listening
-                // to starts or stops
-                ActivityStarted = (activity) => Console.WriteLine($"Start: {activity.OperationName,-30} {activity.Id}"),
-                ActivityStopped = (activity) => Console.WriteLine($"Stop:  {activity.OperationName,-30} {activity.Id}")
-            });
-
-            Activity a = new Activity("ExampleActivityInMain");
-            a.Start();
-            Task.Delay(2000).Wait();
-            a.Stop();
 
             CreateHostBuilder(args).Build().Run();
         }

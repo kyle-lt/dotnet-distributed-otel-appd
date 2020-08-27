@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "+T9eYuG912mqMXfj1D326mSQSj9/d+mfycjUAgWEY9uwq/14PqeVhVSGJQMngChYEWXlRKeCOpzCmENqV34SYQ==",
+  "dgSpecHash": "n/tUuaCaioQIaulwldGbh1OYzY4IuFDRe6HJjfVQMJyBVQj0kCJ/aoOQELB0Z/M/Za//59rN7ALjaYGd7wQD/Q==",
   "success": true,
   "projectFilePath": "/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/TodoApi.csproj",
   "expectedPackageFiles": [

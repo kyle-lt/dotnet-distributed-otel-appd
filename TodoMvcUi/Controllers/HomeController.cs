@@ -20,6 +20,10 @@ namespace TodoMvcUi.Controllers
 
         private static readonly HttpClient client = new HttpClient();
 
+        // Create ActivitySource to capture my manual Spans - this ActivitySource is Added to the OpenTelemetry
+        // Service declaration in Startup.cs
+        private static readonly ActivitySource _activitySource = new ActivitySource("RabbitMQ");
+
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -90,12 +94,33 @@ namespace TodoMvcUi.Controllers
             List<TodoItem> todoItems = JsonSerializer.Deserialize<List<TodoItem>>(msg, options);
             var modelJson = JsonSerializer.Serialize(todoItems, options);
 
-            // Send a message to RabbitMQ
-            sendRabbitMqMsg();
+            // Send a message to RabbitMQ, and wrap it in a Span
+            // Create Child Span - it will automatically detect Activity.Current as its parent
+            using (var activity = _activitySource.StartActivity("RabbitMQ Publish", ActivityKind.Producer))
+            {
+                if (activity?.IsAllDataRequested ?? false)
+                {
+                    // Adding Tags and Events to new Child Activity
+                    activity?.AddTag("rabbit.producer.tag.1", "Is it working?");
+                    activity?.AddTag("rabbit.producer.tag.2", "Yes");
+                    activity?.AddEvent(new ActivityEvent("This is the event body - kinda equivalent to a log entry."));
 
+                    // Debug Logging
+                    /*
+                    _logger.LogInformation("----- Begin logging new Activity Props -----");
+                    _logger.LogInformation($"Activity.Current.TraceId = {Activity.Current.TraceId}");
+                    _logger.LogInformation($"Activity.Current.SpanId = {Activity.Current.SpanId}");
+                    _logger.LogInformation($"Activity.Current.ParentId = {Activity.Current.ParentId}");
+                    _logger.LogInformation("----- Done Logging new Activity Props -----");
+                    */
+
+                    // Do Work
+                    sendRabbitMqMsg();
+                }
+            } 
+            
             ViewData["TodoItems"] = modelJson;
             return LocalRedirect("/Home/ToDo");
-
         }
 
         // Not used, but interesting...
@@ -123,20 +148,25 @@ namespace TodoMvcUi.Controllers
             using(var connection = factory.CreateConnection())
             using(var channel = connection.CreateModel())
             {
-            channel.QueueDeclare(queue: "hello",
-                                 durable: false,
-                                 exclusive: false,
-                                 autoDelete: false,
-                                 arguments: null);
+                channel.QueueDeclare(queue: "hello",
+                                    durable: false,
+                                    exclusive: false,
+                                    autoDelete: false,
+                                    arguments: null);
 
-            string message = "Hello World!";
-            var body = Encoding.UTF8.GetBytes(message);
+                string message = "Hello World!";
+                var body = Encoding.UTF8.GetBytes(message);
 
-            channel.BasicPublish(exchange: "",
-                                 routingKey: "hello",
-                                 basicProperties: null,
-                                 body: body);
-            
+                // Create traceparent header
+                IBasicProperties props = channel.CreateBasicProperties();
+                props.Headers = new Dictionary<string, object>();
+                props.Headers.Add("traceparent", Activity.Current.Id);
+
+                channel.BasicPublish(exchange: "",
+                                    routingKey: "hello",
+                                    basicProperties: props,
+                                    body: body);
+                
             }
         }
 

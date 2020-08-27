@@ -32,6 +32,7 @@ namespace TodoMvcUi
 
             // Add OpenTelemetry Console Exporter & Jaeger Exporter
             services.AddOpenTelemetry((builder) => builder
+                .AddActivitySource("RabbitMQ")
                 .AddAspNetCoreInstrumentation()
                 .AddHttpClientInstrumentation()
                 .UseConsoleExporter()

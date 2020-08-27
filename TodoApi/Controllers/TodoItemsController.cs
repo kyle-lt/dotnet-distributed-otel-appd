@@ -19,9 +19,11 @@ namespace TodoApi.Controllers
     {
         private readonly ILogger<TodoItemsController> _logger;
         private readonly TodoContext _context;
-        private static readonly ActivitySource _activitySource = new ActivitySource("KyleTestActivitySource");
+        
+        // Create ActivitySource to capture my manual Spans - this ActivitySource is Added to the OpenTelemetry
+        // Service declaration in Startup.cs
+        private static readonly ActivitySource _activitySource = new ActivitySource("ManualActivitySource");
         //private static readonly ActivitySource _activitySource = new ActivitySource(nameof(TodoItemsController));
-        //private readonly ActivitySource _activitySource;
 
         public TodoItemsController(TodoContext context, ILogger<TodoItemsController> logger)
         {
@@ -33,34 +35,42 @@ namespace TodoApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TodoItem>>> GetTodoItems()
         {
-            _logger.LogInformation("**************************************");
-            _logger.LogInformation("Begin logging existing Activity Props:");
-            _logger.LogInformation("Activity.Current.TraceId = " + Activity.Current.TraceId);
-            _logger.LogInformation("Activity.Current.SpanId = " + Activity.Current.SpanId);
-            _logger.LogInformation("Activity.Current.ParentId = " + Activity.Current.ParentId);
-            _logger.LogInformation("Activity.Current.TraceStateString = " + Activity.Current.TraceStateString);
-            _logger.LogInformation("**** Done Logging existing Activity Props.");
+            // Create Child Span - it will automatically detect Activity.Current as its parent
+            using (var activity = _activitySource.StartActivity("ChildActivityTest", ActivityKind.Server))
+            {
+                if (activity?.IsAllDataRequested ?? false)
+                {
+                    // Adding Tags and Events to new Child Activity
+                    activity?.AddTag("child.tag.1", "Is it working?");
+                    activity?.AddTag("child.tag.2", "Yes");
+                    activity?.AddEvent(new ActivityEvent("This is the event body - kinda equivalent to a log entry."));
 
-            Activity a = new Activity("ExampleActivityInTodoItemsController");
-            a.Start();
-            _logger.LogInformation("*********************************");
-            _logger.LogInformation("Begin logging new Activity Props:");
-            _logger.LogInformation("Activity.Current.TraceId = " + Activity.Current.TraceId);
-            _logger.LogInformation("Activity.Current.SpanId = " + Activity.Current.SpanId);
-            _logger.LogInformation("Activity.Current.ParentId = " + Activity.Current.ParentId);
-            _logger.LogInformation("Activity.Current.TraceStateString = " + Activity.Current.TraceStateString);
-            _logger.LogInformation("**** Done Logging new Activity Props.");
-            Task.Delay(2000).Wait();
-            a.Stop();
-            
-            
-            // This may be changing in the future to something more like
+                    // Debug Logging
+                    /*
+                    _logger.LogInformation("----- Begin logging new Activity Props -----");
+                    _logger.LogInformation($"Activity.Current.TraceId = {Activity.Current.TraceId}");
+                    _logger.LogInformation($"Activity.Current.SpanId = {Activity.Current.SpanId}");
+                    _logger.LogInformation($"Activity.Current.ParentId = {Activity.Current.ParentId}");
+                    _logger.LogInformation("----- Done Logging new Activity Props -----");
+                    */
+                    // Simulate Work Being Done
+                    Task.Delay(2000).Wait();
+                }
+            } // Activity gets stopped automatically at end of this block during dispose.
+
+            return await _context.TodoItems.ToListAsync();
+
+            // -- Moved to the bottom, after return since just comments --
+            // Manually create Trace Provider using SDK - don't need this since I'm using the
+            // Dependency Injection method in Startup.cs, but good to know anyway...
+            // Note, the syntax for this may be changing in the future to something more like
             /*
             using var tracerProvider = Sdk.CreateTracerProviderBuilder()
                 .AddSource("MyCompany.MyProduct.MyLibrary")
                 .AddConsoleExporter()
                 .Build();
             */
+            /*
             using var tracerProvider = Sdk.CreateTracerProvider(builder => builder
                 .AddActivitySource("KyleTestActivitySource")
                 .UseConsoleExporter()
@@ -70,31 +80,8 @@ namespace TodoApi.Controllers
                     jaeger.AgentHost = "host.docker.internal";
                     jaeger.AgentPort = 6831;
                 })
-                );
-                
-            using (var activity = _activitySource.StartActivity("KyleActivityTest", ActivityKind.Server))
-            {
-                _logger.LogInformation("Trying to manually start Child Span using ActivitySource.");
-                if (activity?.IsAllDataRequested ?? false)
-                {
-                    _logger.LogInformation("Adding Tags and Events to Activity.");
-                    activity?.AddTag("label1", "Is it working?");
-                    activity?.AddTag("label2", "Are you sure?");
-                    activity?.AddEvent(new ActivityEvent("event, equivalent of a log entry."));
-
-                    _logger.LogInformation("*********************************");
-                    _logger.LogInformation("Begin logging new Activity Props:");
-                    _logger.LogInformation("Activity.Current.TraceId = " + Activity.Current.TraceId);
-                    _logger.LogInformation("Activity.Current.SpanId = " + Activity.Current.SpanId);
-                    _logger.LogInformation("Activity.Current.ParentId = " + Activity.Current.ParentId);
-                    _logger.LogInformation("Activity.Current.TraceStateString = " + Activity.Current.TraceStateString);
-                    _logger.LogInformation("**** Done Logging new Activity Props.");
-                    Task.Delay(2000).Wait();
-                }
-                _logger.LogInformation("Ok, Activity created and properties logged, will this make it to Jaeger?.");
-            } // Activity gets stopped automatically at end of this block during dispose.
-
-            return await _context.TodoItems.ToListAsync();
+            );
+            */            
         }
 
         // GET: api/TodoItems/5
