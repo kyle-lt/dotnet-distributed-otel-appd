@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Threading;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using TodoMvcUi.Models;
@@ -27,9 +28,9 @@ namespace TodoMvcUi.Controllers
 
         private static readonly HttpClient client = new HttpClient();
 
-        // Create ActivitySource to capture my manual Spans - this ActivitySource is Added to the OpenTelemetry
+        // Create ActivitySource to capture my arbitrary manual Spans - this ActivitySource is Added to the OpenTelemetry
         // Service declaration in Startup.cs
-        //private static readonly ActivitySource _activitySource = new ActivitySource("RabbitMQ");
+        private static readonly ActivitySource _activitySource = new ActivitySource("ArbitraryManualSpans");
 
         public HomeController(ILogger<HomeController> logger, MessageSender messageSender)
         {
@@ -70,6 +71,9 @@ namespace TodoMvcUi.Controllers
             // Reserialize my List of TodoItems into json (to pretty-print, and to pass to View)
             var modelJson = JsonSerializer.Serialize(todoItems, options);
             _logger.LogDebug("Re-serialized Pretty-Print JSON: " + modelJson);
+
+            // Create Arbitrary Child Span - it will automatically detect Activity.Current as its parent
+            //createArbitraryChildSpan();
             
             // Return View with TodoItems
             ViewData["TodoItems"] = modelJson;
@@ -105,36 +109,35 @@ namespace TodoMvcUi.Controllers
             // Send Message using RabbitMQ
             _messageSender.SendMessage();
             
-            // OLD - this is all wrapped in the Utils.Messaging.MessageSender Class
-            // Send a message to RabbitMQ, and wrap it in a Span
-            // Create Child Span - it will automatically detect Activity.Current as its parent
-            /*
-            using (var activity = _activitySource.StartActivity("RabbitMQ Publish", ActivityKind.Producer))
+            // Create Arbitrary Child Span
+            //createArbitraryChildSpan();
+            
+            ViewData["TodoItems"] = modelJson;
+            return LocalRedirect("/Home/ToDo");
+        }
+
+        private void createArbitraryChildSpan()
+        {
+            using (var activity = _activitySource.StartActivity("Arbitrary.Child.Span", ActivityKind.Client))
             {
                 if (activity?.IsAllDataRequested ?? false)
                 {
                     // Adding Tags and Events to new Child Activity
-                    activity?.AddTag("rabbit.producer.tag.1", "Is it working?");
-                    activity?.AddTag("rabbit.producer.tag.2", "Yes");
+                    activity?.AddTag("arbitrary.child.span.tag.1", "Is it working?");
+                    activity?.AddTag("arbitrary.child.span.tag.2", "Yes");
                     activity?.AddEvent(new ActivityEvent("This is the event body - kinda equivalent to a log entry."));
 
                     // Debug Logging
+                    //_logger.LogInformation("----- Begin logging new Activity Props -----");
+                    //_logger.LogInformation($"Activity.Current.TraceId = {Activity.Current.TraceId}");
+                    //_logger.LogInformation($"Activity.Current.SpanId = {Activity.Current.SpanId}");
+                    //_logger.LogInformation($"Activity.Current.ParentId = {Activity.Current.ParentId}");
+                    //_logger.LogInformation("----- Done Logging new Activity Props -----");
                     
-                    _logger.LogInformation("----- Begin logging new Activity Props -----");
-                    _logger.LogInformation($"Activity.Current.TraceId = {Activity.Current.TraceId}");
-                    _logger.LogInformation($"Activity.Current.SpanId = {Activity.Current.SpanId}");
-                    _logger.LogInformation($"Activity.Current.ParentId = {Activity.Current.ParentId}");
-                    _logger.LogInformation("----- Done Logging new Activity Props -----");
-                    
-
                     // Do Work
-                    sendRabbitMqMsg();
+                    Thread.Sleep(1000);
                 }
             }
-            */
-            
-            ViewData["TodoItems"] = modelJson;
-            return LocalRedirect("/Home/ToDo");
         }
 
         // Not used, but interesting...

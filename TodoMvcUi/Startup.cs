@@ -39,6 +39,7 @@ namespace TodoMvcUi
             // Add OpenTelemetry Console Exporter & Jaeger Exporter
             services.AddOpenTelemetry((builder) => builder
                 .AddActivitySource(nameof(MessageSender))
+                .AddActivitySource("ArbitraryManualSpans")
                 .AddAspNetCoreInstrumentation()
                 .AddHttpClientInstrumentation()
                 .UseConsoleExporter()

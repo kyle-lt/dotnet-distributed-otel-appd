@@ -23,6 +23,12 @@ namespace Utils.Messaging
         public MessageReceiver(ILogger<MessageReceiver> logger)
         {
             this.logger = logger;
+            
+            this.logger.LogInformation("Waiting 10 seconds for RabbitMQ to boot...");
+            //Task.Delay(5000).Wait();
+            Thread.Sleep(10000);
+            this.logger.LogInformation("10 seconds elapsed, initializing RabbitMqReceiver!");
+
             this.connection = RabbitMqHelper.CreateConnection();
             this.channel = RabbitMqHelper.CreateModelAndDeclareTestQueue(this.connection);
         }

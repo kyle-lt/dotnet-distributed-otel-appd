@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Threading;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -19,12 +20,10 @@ namespace TodoApi.Controllers
     {
         private readonly ILogger<TodoItemsController> _logger;
         private readonly TodoContext _context;
-        //private readonly MessageReceiver _messageReceiver;
         
-        // Create ActivitySource to capture my manual Spans - this ActivitySource is Added to the OpenTelemetry
+        // Create ActivitySource to capture my arbitrary manual Spans - this ActivitySource is Added to the OpenTelemetry
         // Service declaration in Startup.cs
-        //private static readonly ActivitySource _activitySource = new ActivitySource("ManualActivitySource");
-        //private static readonly ActivitySource _activitySource = new ActivitySource(nameof(TodoItemsController));
+        private static readonly ActivitySource _activitySource = new ActivitySource("ArbitraryManualSpans");
 
         public TodoItemsController(TodoContext context, ILogger<TodoItemsController> logger)
         {
@@ -37,6 +36,10 @@ namespace TodoApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TodoItem>>> GetTodoItems()
         {
+
+            // Create Arbitrary Child Span - it will automatically detect Activity.Current as its parent
+            //createArbitraryChildSpan();
+
             return await _context.TodoItems.ToListAsync();
 
             /* DEBUGGING
@@ -143,6 +146,9 @@ namespace TodoApi.Controllers
             _context.TodoItems.Add(todoItem);
             await _context.SaveChangesAsync();
 
+            // Create Arbitrary Child Span - it will automatically detect Activity.Current as its parent
+            //createArbitraryChildSpan();
+
             //return CreatedAtAction("GetTodoItem", new { id = todoItem.Id }, todoItem);
             return CreatedAtAction(nameof(GetTodoItem), new { id = todoItem.Id }, todoItem);
         }
@@ -163,6 +169,30 @@ namespace TodoApi.Controllers
             return todoItem;
         }
 
+        private void createArbitraryChildSpan()
+        {
+            using (var activity = _activitySource.StartActivity("Arbitrary.Child.Span", ActivityKind.Server))
+            {
+                if (activity?.IsAllDataRequested ?? false)
+                {
+                    // Adding Tags and Events to new Child Activity
+                    activity?.AddTag("arbitrary.child.span.tag.1", "Is it working?");
+                    activity?.AddTag("arbitrary.child.span.tag.2", "Yes");
+                    activity?.AddEvent(new ActivityEvent("This is the event body - kinda equivalent to a log entry."));
+
+                    // Debug Logging
+                    //_logger.LogInformation("----- Begin logging new Activity Props -----");
+                    //_logger.LogInformation($"Activity.Current.TraceId = {Activity.Current.TraceId}");
+                    //_logger.LogInformation($"Activity.Current.SpanId = {Activity.Current.SpanId}");
+                    //_logger.LogInformation($"Activity.Current.ParentId = {Activity.Current.ParentId}");
+                    //_logger.LogInformation("----- Done Logging new Activity Props -----");
+                    
+                    // Do Work
+                    Thread.Sleep(1000);
+                }
+            }
+
+        }
         private bool TodoItemExists(long id)
         {
             return _context.TodoItems.Any(e => e.Id == id);

@@ -47,6 +47,7 @@ namespace TodoApi
             // Add OpenTelemetry Console Exporter & Jaeger Exporter
             services.AddOpenTelemetry((builder) => builder
             .AddActivitySource(nameof(MessageReceiver))
+            .AddActivitySource("ArbitraryManualSpans")
             .AddAspNetCoreInstrumentation()
             .AddHttpClientInstrumentation()
             .UseConsoleExporter()

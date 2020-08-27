@@ -34,7 +34,6 @@ namespace TodoApi.Helpers
         {
             _logger = logger;
             _messageReceiver = messageReceiver;
-            //InitRabbitMQ();
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
