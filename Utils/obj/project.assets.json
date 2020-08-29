@@ -11,12 +11,12 @@
           "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll": {}
         }
       },
-      "OpenTelemetry/0.4.0-beta.2": {
+      "OpenTelemetry/0.5.0-beta.2": {
         "type": "package",
         "dependencies": {
-          "OpenTelemetry.Api": "0.4.0-beta.2",
-          "System.Collections.Immutable": "1.4.0",
-          "System.Reflection.Emit.Lightweight": "4.7.0"
+          "OpenTelemetry.Api": "0.5.0-beta.2",
+          "System.Collections.Immutable": "[1.4.0, 2.0.0)",
+          "System.Reflection.Emit.Lightweight": "[4.7.0, 5.0.0)"
         },
         "compile": {
           "lib/netstandard2.0/OpenTelemetry.dll": {}
@@ -25,10 +25,10 @@
           "lib/netstandard2.0/OpenTelemetry.dll": {}
         }
       },
-      "OpenTelemetry.Api/0.4.0-beta.2": {
+      "OpenTelemetry.Api/0.5.0-beta.2": {
         "type": "package",
         "dependencies": {
-          "System.Diagnostics.DiagnosticSource": "5.0.0-preview.7.20364.11"
+          "System.Diagnostics.DiagnosticSource": "[5.0.0-preview.8.20407.11]"
         },
         "compile": {
           "lib/netstandard2.0/OpenTelemetry.Api.dll": {}
@@ -37,11 +37,11 @@
           "lib/netstandard2.0/OpenTelemetry.Api.dll": {}
         }
       },
-      "OpenTelemetry.Exporter.Console/0.4.0-beta.2": {
+      "OpenTelemetry.Exporter.Console/0.5.0-beta.2": {
         "type": "package",
         "dependencies": {
-          "OpenTelemetry": "0.4.0-beta.2",
-          "System.Text.Json": "4.7.0"
+          "OpenTelemetry": "0.5.0-beta.2",
+          "System.Text.Json": "[4.7.0, 5.0.0)"
         },
         "compile": {
           "lib/netstandard2.0/OpenTelemetry.Exporter.Console.dll": {}
@@ -50,10 +50,10 @@
           "lib/netstandard2.0/OpenTelemetry.Exporter.Console.dll": {}
         }
       },
-      "OpenTelemetry.Exporter.Jaeger/0.4.0-beta.2": {
+      "OpenTelemetry.Exporter.Jaeger/0.5.0-beta.2": {
         "type": "package",
         "dependencies": {
-          "OpenTelemetry": "0.4.0-beta.2"
+          "OpenTelemetry": "0.5.0-beta.2"
         },
         "compile": {
           "lib/netstandard2.1/OpenTelemetry.Exporter.Jaeger.dll": {}
@@ -84,8 +84,11 @@
           "lib/netcoreapp2.0/_._": {}
         }
       },
-      "System.Diagnostics.DiagnosticSource/5.0.0-preview.7.20364.11": {
+      "System.Diagnostics.DiagnosticSource/5.0.0-preview.8.20407.11": {
         "type": "package",
+        "dependencies": {
+          "System.Runtime.CompilerServices.Unsafe": "5.0.0-preview.8.20407.11"
+        },
         "compile": {
           "lib/netstandard1.3/System.Diagnostics.DiagnosticSource.dll": {}
         },
@@ -109,6 +112,15 @@
         },
         "runtime": {
           "lib/netcoreapp2.0/_._": {}
+        }
+      },
+      "System.Runtime.CompilerServices.Unsafe/5.0.0-preview.8.20407.11": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard2.1/System.Runtime.CompilerServices.Unsafe.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
         }
       },
       "System.Text.Json/4.7.0": {
@@ -146,10 +158,10 @@
         "microsoft.extensions.logging.abstractions.nuspec"
       ]
     },
-    "OpenTelemetry/0.4.0-beta.2": {
-      "sha512": "AICu5Q+DX8zedotKHhBx6gsNHVYVUIFGxF2jJ7q+weR7Md7tirJsIGsMFQ1ugEnUf2MKIPhyxiZaKqrebuUUKg==",
+    "OpenTelemetry/0.5.0-beta.2": {
+      "sha512": "vAQ9V8hjBZSyHe3WakMZJDExD8rmOAySGgurPQ+p/vvdam6HE4g5Zi1LtLj+QIZXsdiX6UzKuLjTIY9KJB4RcQ==",
       "type": "package",
-      "path": "opentelemetry/0.4.0-beta.2",
+      "path": "opentelemetry/0.5.0-beta.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -160,14 +172,14 @@
         "lib/netstandard2.0/OpenTelemetry.dll",
         "lib/netstandard2.0/OpenTelemetry.xml",
         "opentelemetry-icon-color.png",
-        "opentelemetry.0.4.0-beta.2.nupkg.sha512",
+        "opentelemetry.0.5.0-beta.2.nupkg.sha512",
         "opentelemetry.nuspec"
       ]
     },
-    "OpenTelemetry.Api/0.4.0-beta.2": {
-      "sha512": "E/aOESkJN4OoAhYUtWGsLKCi4ERKR4x7xZTg9RqGM9yBqhaUgyx7FOVnOEnsuMxOJO78HMfe3I8OFfx3RhCBcQ==",
+    "OpenTelemetry.Api/0.5.0-beta.2": {
+      "sha512": "t88PLdzVYUbUzvTBuLhHUyLZvTBo45eCGHV9/Q2mxhsyZwRc8rLDe6+YUXc6SOZrDwveUREzMJSb70CEjHwGSA==",
       "type": "package",
-      "path": "opentelemetry.api/0.4.0-beta.2",
+      "path": "opentelemetry.api/0.5.0-beta.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -176,14 +188,14 @@
         "lib/netstandard2.0/OpenTelemetry.Api.dll",
         "lib/netstandard2.0/OpenTelemetry.Api.xml",
         "opentelemetry-icon-color.png",
-        "opentelemetry.api.0.4.0-beta.2.nupkg.sha512",
+        "opentelemetry.api.0.5.0-beta.2.nupkg.sha512",
         "opentelemetry.api.nuspec"
       ]
     },
-    "OpenTelemetry.Exporter.Console/0.4.0-beta.2": {
-      "sha512": "fxtMgXpnFw3tqDmW0yUJfQfrLhTpZZRmV22obyFovm8geLUQ5x4eGVP8E6LfVvMdcyiDsq4QZe2/Aqtfz6CqCg==",
+    "OpenTelemetry.Exporter.Console/0.5.0-beta.2": {
+      "sha512": "yj/1I+jpO2N9vwSyfcakIkTjadKslMW3hcONfaL4pbadgFhSvhMnkqPb3yDq/wBh8cWYQxK9K/jh+JRCLamQoQ==",
       "type": "package",
-      "path": "opentelemetry.exporter.console/0.4.0-beta.2",
+      "path": "opentelemetry.exporter.console/0.5.0-beta.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -192,14 +204,14 @@
         "lib/netstandard2.0/OpenTelemetry.Exporter.Console.dll",
         "lib/netstandard2.0/OpenTelemetry.Exporter.Console.xml",
         "opentelemetry-icon-color.png",
-        "opentelemetry.exporter.console.0.4.0-beta.2.nupkg.sha512",
+        "opentelemetry.exporter.console.0.5.0-beta.2.nupkg.sha512",
         "opentelemetry.exporter.console.nuspec"
       ]
     },
-    "OpenTelemetry.Exporter.Jaeger/0.4.0-beta.2": {
-      "sha512": "lwmrLlY1Gh6Bp1gpMEB4cjauXcRsfPfMd0V820RQaKCsMyzQgwhp6MSvCVHeNR8369RvK8KsJ4aHklqjq2Mf5Q==",
+    "OpenTelemetry.Exporter.Jaeger/0.5.0-beta.2": {
+      "sha512": "pMr8UUBApBveW89VXi6w3AJlEfNkEV1JCeauqVfxhwIqvv3PLOx/jv92ClaigoOrJ7XQYKdZ3oEPVOUPoW5L8Q==",
       "type": "package",
-      "path": "opentelemetry.exporter.jaeger/0.4.0-beta.2",
+      "path": "opentelemetry.exporter.jaeger/0.5.0-beta.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -210,7 +222,7 @@
         "lib/netstandard2.1/OpenTelemetry.Exporter.Jaeger.dll",
         "lib/netstandard2.1/OpenTelemetry.Exporter.Jaeger.xml",
         "opentelemetry-icon-color.png",
-        "opentelemetry.exporter.jaeger.0.4.0-beta.2.nupkg.sha512",
+        "opentelemetry.exporter.jaeger.0.5.0-beta.2.nupkg.sha512",
         "opentelemetry.exporter.jaeger.nuspec"
       ]
     },
@@ -256,10 +268,10 @@
         "version.txt"
       ]
     },
-    "System.Diagnostics.DiagnosticSource/5.0.0-preview.7.20364.11": {
-      "sha512": "yMajcuiFLT3pBGJtpH7iEenOwLvodzwPl/OXnGFHW3U277qWSXvnKs8g8ie+9AO3+GAMYto0eCXsiscSoEAutQ==",
+    "System.Diagnostics.DiagnosticSource/5.0.0-preview.8.20407.11": {
+      "sha512": "d+b4LlOj2AkqhV8LzTkhJKB3SWd5Ueya9At1nLuTlS/jgBkVcTCkNclL9f6l5v2SJ+SLVW43ADT9qX7L76Dthw==",
       "type": "package",
-      "path": "system.diagnostics.diagnosticsource/5.0.0-preview.7.20364.11",
+      "path": "system.diagnostics.diagnosticsource/5.0.0-preview.8.20407.11",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -278,7 +290,7 @@
         "lib/netstandard1.3/System.Diagnostics.DiagnosticSource.xml",
         "lib/portable-net45+win8+wpa81/System.Diagnostics.DiagnosticSource.dll",
         "lib/portable-net45+win8+wpa81/System.Diagnostics.DiagnosticSource.xml",
-        "system.diagnostics.diagnosticsource.5.0.0-preview.7.20364.11.nupkg.sha512",
+        "system.diagnostics.diagnosticsource.5.0.0-preview.8.20407.11.nupkg.sha512",
         "system.diagnostics.diagnosticsource.nuspec",
         "useSharedDesignerContext.txt",
         "version.txt"
@@ -365,6 +377,38 @@
         "version.txt"
       ]
     },
+    "System.Runtime.CompilerServices.Unsafe/5.0.0-preview.8.20407.11": {
+      "sha512": "8aAEu1T6IQnzwcDwdPaaTha5lBBI2yefJqaThcmMl74829S+ZB3eFkEX7dTeZKZ/k3Lftr8AdprqI34gHPTm2w==",
+      "type": "package",
+      "path": "system.runtime.compilerservices.unsafe/5.0.0-preview.8.20407.11",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net45/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/net45/System.Runtime.CompilerServices.Unsafe.xml",
+        "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "ref/net461/System.Runtime.CompilerServices.Unsafe.dll",
+        "ref/net461/System.Runtime.CompilerServices.Unsafe.xml",
+        "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "ref/netstandard2.1/System.Runtime.CompilerServices.Unsafe.dll",
+        "ref/netstandard2.1/System.Runtime.CompilerServices.Unsafe.xml",
+        "system.runtime.compilerservices.unsafe.5.0.0-preview.8.20407.11.nupkg.sha512",
+        "system.runtime.compilerservices.unsafe.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
     "System.Text.Json/4.7.0": {
       "sha512": "IPq/x/d5nAcnD3vIyM3AbPOaTgcqrh0AqPSx7U53UFu3M6k1TH1u/eXc9/h4jm/3mpP1WRUpevlPY4PACd7AWw==",
       "type": "package",
@@ -414,10 +458,10 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "Microsoft.Extensions.Logging.Abstractions >= 3.1.6",
-      "OpenTelemetry >= 0.4.0-beta.2",
-      "OpenTelemetry.Api >= 0.4.0-beta.2",
-      "OpenTelemetry.Exporter.Console >= 0.4.0-beta.2",
-      "OpenTelemetry.Exporter.Jaeger >= 0.4.0-beta.2",
+      "OpenTelemetry >= 0.5.0-beta.2",
+      "OpenTelemetry.Api >= 0.5.0-beta.2",
+      "OpenTelemetry.Exporter.Console >= 0.5.0-beta.2",
+      "OpenTelemetry.Exporter.Jaeger >= 0.5.0-beta.2",
       "RabbitMQ.Client >= 6.2.0"
     ]
   },
@@ -462,19 +506,19 @@
           },
           "OpenTelemetry": {
             "target": "Package",
-            "version": "[0.4.0-beta.2, )"
+            "version": "[0.5.0-beta.2, )"
           },
           "OpenTelemetry.Api": {
             "target": "Package",
-            "version": "[0.4.0-beta.2, )"
+            "version": "[0.5.0-beta.2, )"
           },
           "OpenTelemetry.Exporter.Console": {
             "target": "Package",
-            "version": "[0.4.0-beta.2, )"
+            "version": "[0.5.0-beta.2, )"
           },
           "OpenTelemetry.Exporter.Jaeger": {
             "target": "Package",
-            "version": "[0.4.0-beta.2, )"
+            "version": "[0.5.0-beta.2, )"
           },
           "RabbitMQ.Client": {
             "target": "Package",

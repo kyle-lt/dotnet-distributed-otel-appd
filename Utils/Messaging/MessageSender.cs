@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using Microsoft.Extensions.Logging;
+using OpenTelemetry;
 using OpenTelemetry.Context.Propagation;
 using RabbitMQ.Client;
 
@@ -11,7 +12,10 @@ namespace Utils.Messaging
     public class MessageSender : IDisposable
     {
         private static readonly ActivitySource ActivitySource = new ActivitySource(nameof(MessageSender));
-        private static readonly ITextFormat TextFormat = new TraceContextFormat();
+        
+        // Changed from ITextFormat to IPropagator for 0.4.0-beta2 to 0.5.0-beta2
+        private static readonly IPropagator Propagator = new TextMapPropagator();
+        //private static readonly ITextFormat TextFormat = new TraceContextFormat(); 
 
         private readonly ILogger<MessageSender> logger;
         private readonly IConnection connection;
@@ -46,11 +50,12 @@ namespace Utils.Messaging
                     {
                         // Inject the ActivityContext into the message headers to propagate trace context to the receiving service.
                         //TextFormat.Inject(new PropagationContext(activity.Context, activity.Baggage), props, this.InjectTraceContextIntoBasicProperties);
+                        Propagator.Inject(new PropagationContext(activity.Context, Baggage.Current), props, this.InjectTraceContextIntoBasicProperties);
                         /* ktully
-                            * Back-porting my code to support latest nuget 0.4.0-beta2
-                            * The above will be the way to do it upon next release!!
+                            * The code below is a back-port to support nuget 0.4.0-beta2
+                            * The above code is the way to do it for the currentrelease (0.5.0-beta2)!!
                         */
-                        TextFormat.Inject(activity.Context, props, this.InjectTraceContextIntoBasicProperties);
+                        //TextFormat.Inject(activity.Context, props, this.InjectTraceContextIntoBasicProperties);
                     
                         // The OpenTelemetry messaging specification defines a number of attributes. These attributes are added here.
                         RabbitMqHelper.AddMessagingTags(activity);

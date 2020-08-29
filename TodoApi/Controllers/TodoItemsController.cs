@@ -23,7 +23,7 @@ namespace TodoApi.Controllers
         
         // Create ActivitySource to capture my arbitrary manual Spans - this ActivitySource is Added to the OpenTelemetry
         // Service declaration in Startup.cs
-        private static readonly ActivitySource _activitySource = new ActivitySource("ArbitraryManualSpans");
+        private static readonly ActivitySource _activitySource = new ActivitySource(nameof(TodoItemsController));
 
         public TodoItemsController(TodoContext context, ILogger<TodoItemsController> logger)
         {
@@ -37,8 +37,16 @@ namespace TodoApi.Controllers
         public async Task<ActionResult<IEnumerable<TodoItem>>> GetTodoItems()
         {
 
+            //_logger.LogInformation("----- Begin logging Existing Activity Props -----");
+            //_logger.LogInformation($"Activity.Current.TraceId = {Activity.Current.TraceId}");
+            //_logger.LogInformation($"Activity.Current.SpanId = {Activity.Current.SpanId}");
+            //_logger.LogInformation($"Activity.Current.ParentId = {Activity.Current.ParentId}");
+            //_logger.LogInformation("----- Done Logging new Activity Props -----");        
+
             // Create Arbitrary Child Span - it will automatically detect Activity.Current as its parent
+            //_logger.LogInformation("##### Starting Child Span #####");
             //createArbitraryChildSpan();
+            //_logger.LogInformation("##### Ending Child Span #####");
 
             return await _context.TodoItems.ToListAsync();
 
@@ -181,11 +189,11 @@ namespace TodoApi.Controllers
                     activity?.AddEvent(new ActivityEvent("This is the event body - kinda equivalent to a log entry."));
 
                     // Debug Logging
-                    //_logger.LogInformation("----- Begin logging new Activity Props -----");
-                    //_logger.LogInformation($"Activity.Current.TraceId = {Activity.Current.TraceId}");
-                    //_logger.LogInformation($"Activity.Current.SpanId = {Activity.Current.SpanId}");
-                    //_logger.LogInformation($"Activity.Current.ParentId = {Activity.Current.ParentId}");
-                    //_logger.LogInformation("----- Done Logging new Activity Props -----");
+                    _logger.LogInformation("----- Begin logging new Activity Props -----");
+                    _logger.LogInformation($"Activity.Current.TraceId = {Activity.Current.TraceId}");
+                    _logger.LogInformation($"Activity.Current.SpanId = {Activity.Current.SpanId}");
+                    _logger.LogInformation($"Activity.Current.ParentId = {Activity.Current.ParentId}");
+                    _logger.LogInformation("----- Done Logging new Activity Props -----");
                     
                     // Do Work
                     Thread.Sleep(1000);

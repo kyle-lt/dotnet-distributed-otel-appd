@@ -23,6 +23,9 @@ services:
       APPDYNAMICS_AGENT_REUSE_NODE_NAME: "$APPDYNAMICS_AGENT_REUSE_NODE_NAME"
       #APPDYNAMICS_AGENT_NODE_NAME: "$APPDYNAMICS_AGENT_NODE_NAME"
       APPDYNAMICS_PREVIEW_FEATURE_ENABLED: "$APPDYNAMICS_PREVIEW_FEATURE_ENABLED"
+    depends_on:
+      - jaeger
+      - rabbitmq
 
   todomvcui:
     image: kjtully/dotnet-distributed-otel-appd-todomvcui:${TAG:-latest}
@@ -44,6 +47,9 @@ services:
       APPDYNAMICS_AGENT_REUSE_NODE_NAME: "$APPDYNAMICS_AGENT_REUSE_NODE_NAME"
       #APPDYNAMICS_AGENT_NODE_NAME: "$APPDYNAMICS_AGENT_NODE_NAME"
       APPDYNAMICS_PREVIEW_FEATURE_ENABLED: "$APPDYNAMICS_PREVIEW_FEATURE_ENABLED"
+    depends_on:
+      - jaeger
+      - rabbitmq
 
   jaeger:
     image: jaegertracing/all-in-one:latest

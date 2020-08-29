@@ -10,11 +10,16 @@ namespace Utils.Messaging
         public const string DefaultExchangeName = "";
         public const string TestQueueName = "TestQueue";
 
-        private static readonly ConnectionFactory ConnectionFactory;
+        //private static readonly ConnectionFactory ConnectionFactory;
 
         static RabbitMqHelper()
         {
-            ConnectionFactory = new ConnectionFactory()
+
+        }
+
+        public static IConnection CreateConnection()
+        {
+            var connectionFactory = new ConnectionFactory()
             {
                 HostName = Environment.GetEnvironmentVariable("RABBITMQ_HOSTNAME") ?? "host.docker.internal",
                 UserName = Environment.GetEnvironmentVariable("RABBITMQ_DEFAULT_USER") ?? "guest",
@@ -22,11 +27,8 @@ namespace Utils.Messaging
                 Port = 5672,
                 RequestedConnectionTimeout = TimeSpan.FromMilliseconds(3000),
             };
-        }
 
-        public static IConnection CreateConnection()
-        {
-            return ConnectionFactory.CreateConnection();
+            return connectionFactory.CreateConnection();
         }
 
         public static IModel CreateModelAndDeclareTestQueue(IConnection connection)

@@ -10,15 +10,16 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-
 using Microsoft.EntityFrameworkCore;
+
+// TodoApi Refs
 using TodoApi.Models;
 using TodoApi.Helpers;
+using TodoApi.Controllers;
 
 // OpenTelemetry Refs
 using OpenTelemetry;
 using OpenTelemetry.Trace;
-using OpenTelemetry.Trace.Samplers;
 
 // Messaging Utils
 using Utils.Messaging;
@@ -37,31 +38,24 @@ namespace TodoApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add instance of Messaging Utils' MessageReceiver
-            services.AddSingleton<MessageReceiver>();
-
-            // This may be changing in the future to:
-            /*
-            services.AddOpenTelemetryTraceProvider...
-            */
             // Add OpenTelemetry Console Exporter & Jaeger Exporter
-            services.AddOpenTelemetry((builder) => builder
-            .AddActivitySource(nameof(MessageReceiver))
-            .AddActivitySource("ArbitraryManualSpans")
+            services.AddOpenTelemetryTracerProvider((builder) => builder
+            .AddSource(nameof(MessageReceiver), nameof(TodoItemsController))
             .AddAspNetCoreInstrumentation()
             .AddHttpClientInstrumentation()
-            .UseConsoleExporter()
-            .UseJaegerExporter(jaeger =>
+            .AddConsoleExporter()
+            .AddJaegerExporter(jaeger =>
             {
                 jaeger.ServiceName = "dotnet-distrubuted-otel-appd.TodoApi";
                 jaeger.AgentHost = "host.docker.internal";
                 jaeger.AgentPort = 6831;
-            })
-            .SetSampler(new AlwaysOnSampler())
-            );
+            }));
 
             // RabbitMqReceiver
             services.AddHostedService<RabbitMqReceiver>();
+
+            // Add instance of Messaging Utils' MessageReceiver
+            services.AddSingleton<MessageReceiver>();
 
             services.AddControllers();
 

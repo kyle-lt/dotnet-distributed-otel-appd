@@ -14,7 +14,10 @@ namespace Utils.Messaging
     public class MessageReceiver : IDisposable
     {
         private static readonly ActivitySource ActivitySource = new ActivitySource(nameof(MessageReceiver));
-        private static readonly ITextFormat TextFormat = new TraceContextFormat();
+        
+        // Changed from ITextFormat to IPropagator for 0.4.0-beta2 to 0.5.0-beta2
+        private static readonly IPropagator Propagator = new TextMapPropagator();
+        //private static readonly ITextFormat TextFormat = new TraceContextFormat();
 
         private readonly ILogger<MessageReceiver> logger;
         private readonly IConnection connection;
@@ -24,10 +27,10 @@ namespace Utils.Messaging
         {
             this.logger = logger;
             
-            this.logger.LogInformation("Waiting 10 seconds for RabbitMQ to boot...");
+            this.logger.LogInformation("Waiting 5 seconds for RabbitMQ to boot...");
             //Task.Delay(5000).Wait();
-            Thread.Sleep(10000);
-            this.logger.LogInformation("10 seconds elapsed, initializing RabbitMqReceiver!");
+            Thread.Sleep(5000);
+            this.logger.LogInformation("5 seconds elapsed, initializing RabbitMqReceiver!");
 
             this.connection = RabbitMqHelper.CreateConnection();
             this.channel = RabbitMqHelper.CreateModelAndDeclareTestQueue(this.connection);
@@ -48,22 +51,24 @@ namespace Utils.Messaging
         {
             // Extract the ActivityContext of the upstream parent from the message headers.
             //var parentContext = TextFormat.Extract(default, ea.BasicProperties, this.ExtractTraceContextFromBasicProperties);
+            var parentContext = Propagator.Extract(default, ea.BasicProperties, this.ExtractTraceContextFromBasicProperties);
             /* ktully
-                * Back-porting my code to support latest nuget 0.4.0-beta2
-                * The above will be the way to do it upon next release!!
+                * The code below is a back-port to support nuget 0.4.0-beta2
+                * The above code is the way to do it for the current release (0.5.0-beta2)!!
             */
-            var parentContext = TextFormat.Extract(ea.BasicProperties, ExtractTraceContextFromBasicProperties);
+            //var parentContext = TextFormat.Extract(ea.BasicProperties, ExtractTraceContextFromBasicProperties);
 
             // Start an activity with a name following the semantic convention of the OpenTelemetry messaging specification.
             // https://github.com/open-telemetry/opentelemetry-specification/blob/master/specification/trace/semantic_conventions/messaging.md#span-name
             var activityName = $"{ea.RoutingKey} receive";
 
-            //using (var activity = ActivitySource.StartActivity(activityName, ActivityKind.Consumer, parentContext.ActivityContext))
+            
             /* ktully
-                * Back-porting my code to support latest nuget 0.4.0-beta2
-                * The above will be the way to do it upon next release!!
+                * The commented code below is a back-port to support nuget 0.4.0-beta2
+                * The code below is the way to do it for the current release (0.5.0-beta2)!!
             */
-            using (var activity = ActivitySource.StartActivity(activityName, ActivityKind.Consumer, parentContext))
+            //using (var activity = ActivitySource.StartActivity(activityName, ActivityKind.Consumer, parentContext))
+            using (var activity = ActivitySource.StartActivity(activityName, ActivityKind.Consumer, parentContext.ActivityContext))
             {
                 try
                 {
