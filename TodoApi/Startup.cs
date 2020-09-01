@@ -49,7 +49,9 @@ namespace TodoApi
                 jaeger.ServiceName = "dotnet-distrubuted-otel-appd.TodoApi";
                 jaeger.AgentHost = "host.docker.internal";
                 jaeger.AgentPort = 6831;
-            }));
+            })
+            .SetSampler(new AlwaysOnSampler())
+            );
 
             // RabbitMqReceiver
             services.AddHostedService<RabbitMqReceiver>();

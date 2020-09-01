@@ -10,6 +10,7 @@ services:
     build:
       context: .
       dockerfile: TodoApi/docker/Dockerfile
+    restart: on-failure
     environment:
       # AppDynamics agent configs (defined in .env file)
       APPDYNAMICS_CONTROLLER_HOST_NAME: "$APPDYNAMICS_CONTROLLER_HOST_NAME"
@@ -23,6 +24,7 @@ services:
       APPDYNAMICS_AGENT_REUSE_NODE_NAME: "$APPDYNAMICS_AGENT_REUSE_NODE_NAME"
       #APPDYNAMICS_AGENT_NODE_NAME: "$APPDYNAMICS_AGENT_NODE_NAME"
       APPDYNAMICS_PREVIEW_FEATURE_ENABLED: "$APPDYNAMICS_PREVIEW_FEATURE_ENABLED"
+      #RABBITMQ_HOSTNAME: "rabbitmq"
     depends_on:
       - jaeger
       - rabbitmq
@@ -47,6 +49,7 @@ services:
       APPDYNAMICS_AGENT_REUSE_NODE_NAME: "$APPDYNAMICS_AGENT_REUSE_NODE_NAME"
       #APPDYNAMICS_AGENT_NODE_NAME: "$APPDYNAMICS_AGENT_NODE_NAME"
       APPDYNAMICS_PREVIEW_FEATURE_ENABLED: "$APPDYNAMICS_PREVIEW_FEATURE_ENABLED"
+      #RABBITMQ_HOSTNAME: "rabbitmq"
     depends_on:
       - jaeger
       - rabbitmq
@@ -63,3 +66,9 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
+    healthcheck:
+      test: ["CMD", "wget", "localhost:15672"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+

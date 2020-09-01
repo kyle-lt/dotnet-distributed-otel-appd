@@ -25,7 +25,7 @@ namespace Utils.Messaging
                 UserName = Environment.GetEnvironmentVariable("RABBITMQ_DEFAULT_USER") ?? "guest",
                 Password = Environment.GetEnvironmentVariable("RABBITMQ_DEFAULT_PASS") ?? "guest",
                 Port = 5672,
-                RequestedConnectionTimeout = TimeSpan.FromMilliseconds(3000),
+                RequestedConnectionTimeout = TimeSpan.FromMilliseconds(10000),
             };
 
             return connectionFactory.CreateConnection();

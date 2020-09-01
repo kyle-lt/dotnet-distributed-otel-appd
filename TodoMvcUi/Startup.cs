@@ -16,6 +16,8 @@ using OpenTelemetry.Trace;
 // Messaging Utils
 using Utils.Messaging;
 
+using TodoMvcUi.Controllers;
+
 namespace TodoMvcUi
 {
     public class Startup
@@ -37,7 +39,7 @@ namespace TodoMvcUi
 
             // Add OpenTelemetry Console Exporter & Jaeger Exporter
             services.AddOpenTelemetryTracerProvider((builder) => builder
-                .AddSource(nameof(MessageSender), "ArbitraryManualSpans")
+                .AddSource(nameof(MessageSender), nameof(HomeController))
                 .AddAspNetCoreInstrumentation()
                 .AddHttpClientInstrumentation()
                 .AddConsoleExporter()
@@ -51,7 +53,9 @@ namespace TodoMvcUi
                     //jaeger.ServiceName = Environment.GetEnvironmentVariable("JAEGER_HOSTNAME") ?? "localhost";
                     jaeger.AgentHost = "host.docker.internal";
                     jaeger.AgentPort = 6831;
-                }));
+                })
+                .SetSampler(new AlwaysOnSampler())
+                );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
