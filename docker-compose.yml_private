@@ -7,9 +7,9 @@ services:
     image: kjtully/dotnet-distributed-otel-appd-todoapi:${TAG:-latest}
     ports:
       - "5000:5000"
-    #build:
-    #  context: .
-    #  dockerfile: TodoApi/docker/Dockerfile
+    build:
+      context: .
+      dockerfile: TodoApi/docker/Dockerfile
     restart: on-failure
     environment:
       # AppDynamics agent configs (defined in .env file)
@@ -33,9 +33,9 @@ services:
     image: kjtully/dotnet-distributed-otel-appd-todomvcui:${TAG:-latest}
     ports:
       - "60000:60000"
-    #build:
-    #  context: .
-    #  dockerfile: TodoMvcUi/docker/Dockerfile
+    build:
+      context: .
+      dockerfile: TodoMvcUi/docker/Dockerfile
     environment:
       # AppDynamics agent configs (defined in .env file)
       APPDYNAMICS_CONTROLLER_HOST_NAME: "$APPDYNAMICS_CONTROLLER_HOST_NAME"
