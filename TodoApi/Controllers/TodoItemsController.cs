@@ -29,7 +29,6 @@ namespace TodoApi.Controllers
         {
             _context = context;
             _logger = logger;
-
         }
 
         // GET: api/TodoItems

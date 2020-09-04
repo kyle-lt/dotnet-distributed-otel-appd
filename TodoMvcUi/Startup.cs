@@ -50,8 +50,8 @@ namespace TodoMvcUi
                     //jaeger.AgentPort = this.Configuration.GetValue<int>("Jaeger:Port");
                     jaeger.ServiceName = "dotnet-distrubuted-otel-appd.TodoMvcUi";
                     // When I move to env vars, it'll look something like this:
-                    //jaeger.ServiceName = Environment.GetEnvironmentVariable("JAEGER_HOSTNAME") ?? "localhost";
-                    jaeger.AgentHost = "host.docker.internal";
+                    //jaeger.AgentHost = Environment.GetEnvironmentVariable("JAEGER_HOSTNAME") ?? "localhost";
+                    jaeger.AgentHost = Environment.GetEnvironmentVariable("JAEGER_HOSTNAME") ?? "host.docker.internal";
                     jaeger.AgentPort = 6831;
                 })
                 .SetSampler(new AlwaysOnSampler())

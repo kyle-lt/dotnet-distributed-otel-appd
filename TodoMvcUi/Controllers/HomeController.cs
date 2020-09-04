@@ -26,6 +26,9 @@ namespace TodoMvcUi.Controllers
 
         private readonly MessageSender _messageSender;
 
+        private static String _rabbitMqEndpoint;
+        private static String _todoApiEndpoint;
+
         private static readonly HttpClient client = new HttpClient();
 
         // Create ActivitySource to capture my arbitrary manual Spans - this ActivitySource is Added to the OpenTelemetry
@@ -36,6 +39,8 @@ namespace TodoMvcUi.Controllers
         {
             _logger = logger;
             _messageSender = messageSender;
+            _rabbitMqEndpoint = Environment.GetEnvironmentVariable("RABBITMQ_HOSTNAME") ?? "host.docker.internal";
+            _todoApiEndpoint = Environment.GetEnvironmentVariable("TODOAPI_HOSTNAME") ?? "host.docker.internal";
         }
 
         public IActionResult Index()
@@ -52,7 +57,8 @@ namespace TodoMvcUi.Controllers
         {
 
             // Grab the ToDoItems from the API and write JSON to Console Log as it comes (minified, and all lower-case)
-            var stringTask = client.GetStringAsync("http://host.docker.internal:5000/api/TodoItems");
+            var uri = "http://" + _todoApiEndpoint + ":5000/api/TodoItems";
+            var stringTask = client.GetStringAsync(uri);
             var msg = await stringTask;
             _logger.LogDebug("Incoming JSON from API: " + msg);
 
@@ -92,11 +98,12 @@ namespace TodoMvcUi.Controllers
             var jsonTodoItem = JsonSerializer.Serialize(todoItemDTO);
             _logger.LogDebug($"Serialized JSON for API POST = {jsonTodoItem}");
             var httpContent = new StringContent(jsonTodoItem, Encoding.UTF8, "application/json");
-            var postResponse = client.PostAsync("http://host.docker.internal:5000/api/TodoItems", httpContent).Result;
+            var uri = "http://" + _todoApiEndpoint + ":5000/api/TodoItems";
+            var postResponse = client.PostAsync(uri, httpContent).Result;
             _logger.LogDebug($"postResponse = {postResponse.Content.ReadAsStringAsync().Result}");
 
             // Grab the latest list of TodoItems - I don't need this anymore b/c of my redirect, but keep it, who cares?!? :)
-            var stringTask = client.GetStringAsync("http://host.docker.internal:5000/api/TodoItems");
+            var stringTask = client.GetStringAsync(uri);
             var msg = await stringTask;
             var options = new JsonSerializerOptions
             {

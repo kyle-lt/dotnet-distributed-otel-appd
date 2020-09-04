@@ -72,7 +72,7 @@ By default, accessible on `http://$DOCKER_HOSTNAME:60000`.
 ### todoapi
 ASP.NET Web API using in-memory database. 
 
-By default, accessible on `http://$DOCKER_HOSTNAME:5000/api`.
+By default, accessible on `http://$DOCKER_HOSTNAME:5000/api/TodoItems`.
 
 ### rabbitmq
 RabbitMQ Alpine image, pulled from [`rabbitmq:3-management-alpine`](https://hub.docker.com/_/rabbitmq).

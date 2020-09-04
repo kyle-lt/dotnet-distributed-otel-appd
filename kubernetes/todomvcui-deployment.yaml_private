@@ -16,11 +16,17 @@ spec:
     spec:
       containers:
       - name: todomvcui
-        image: kjtully/dotnet-distributed-otel-appd-todomvcui:${TAG:-latest}
+        image: kjtully/dotnet-distributed-otel-appd-todomvcui:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 60000
         env:
+        - name: TODOAPI_HOSTNAME
+          value: 'todoapi'
+        - name: RABBITMQ_HOSTNAME
+          value: 'rabbitmq'
+        - name: JAEGER_HOSTNAME
+          value: 'jaeger-agent'
         - name: APPDYNAMICS_CONTROLLER_HOST_NAME
           value: '192.168.86.40'
         - name: APPDYNAMICS_CONTROLLER_PORT
@@ -55,6 +61,8 @@ spec:
               fieldPath: status.hostIP
         - name: APPDYNAMICS_NETVIZ_AGENT_PORT
           value: '3892'
+        - name: APPDYNAMICS_PREVIEW_FEATURE_ENABLED
+          value: 'true'
         resources:
           requests:
             memory: "512Mi"

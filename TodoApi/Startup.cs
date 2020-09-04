@@ -47,7 +47,8 @@ namespace TodoApi
             .AddJaegerExporter(jaeger =>
             {
                 jaeger.ServiceName = "dotnet-distrubuted-otel-appd.TodoApi";
-                jaeger.AgentHost = "host.docker.internal";
+                //jaeger.AgentHost = "host.docker.internal";
+                jaeger.AgentHost = Environment.GetEnvironmentVariable("JAEGER_HOSTNAME") ?? "host.docker.internal";
                 jaeger.AgentPort = 6831;
             })
             .SetSampler(new AlwaysOnSampler())

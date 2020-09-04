@@ -17,15 +17,22 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
 
+# Install AppD Install Script Dependencies
+RUN apt-get update
+RUN apt-get install -y jq
+RUN apt-get install -y unzip
+
 # Copy AppD agent binaries
 #RUN mkdir -p /opt/AppDynamics/dotnet
+COPY downloadDotNetLinuxAgentLatest.sh .
+RUN ./downloadDotNetLinuxAgentLatest.sh
 #ADD libappdprofiler.so /opt/AppDynamics/dotnet/libappdprofiler.so
 #ADD AppDynamics.Agent.netstandard.dll /opt/AppDynamics/dotnet/AppDynamics.Agent.netstandard.dll
 
 # set profiler environment variables
-#ENV CORECLR_PROFILER={57e1aa68-2229-41aa-9931-a6e93bbc64d8}
-#ENV CORECLR_ENABLE_PROFILING=1
-#ENV CORECLR_PROFILER_PATH=/opt/AppDynamics/dotnet/libappdprofiler.so
+ENV CORECLR_PROFILER={57e1aa68-2229-41aa-9931-a6e93bbc64d8}
+ENV CORECLR_ENABLE_PROFILING=1
+ENV CORECLR_PROFILER_PATH=/app/libappdprofiler.so
 
 # Set Hosting Environment to Development
 ENV ASPNETCORE_ENVIRONMENT=Development
