@@ -62,9 +62,13 @@ namespace TodoApi
 
             services.AddControllers();
 
-            // Database Context
+            // Database Context for In-Memory DB
+            //services.AddDbContext<TodoContext>(opt =>
+            //   opt.UseInMemoryDatabase("TodoList"));
+
+            // Database Context for SQLite DB
             services.AddDbContext<TodoContext>(opt =>
-               opt.UseInMemoryDatabase("TodoList"));
+               opt.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -16,6 +16,8 @@ RUN dotnet publish --no-restore -c Release -o /app
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
+# Copy over existing SQLite DB
+COPY --from=build /src/TodoApi/TodoDb.db .
 
 # Install AppD Install Script Dependencies
 RUN apt-get update

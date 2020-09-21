@@ -8,7 +8,7 @@ It's not necessary to build this project.  All images can be pulled from Docker 
 
 Once up and running, assuming you are running on your local machine, access the Home Page at `http://localhost:60000`.
 
-![Home Page](/README_Images/GarageSale_Home_Page.png)
+![Home Page](/README_Images/Todo_TodoMvcUi_Home.png)
 
 ## Quick Start with Docker Compose
 ### Prerequisites
