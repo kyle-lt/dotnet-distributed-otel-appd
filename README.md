@@ -216,8 +216,8 @@ APPDYNAMICS_CONTROLLER_SSL_ENABLED=<true_or_false>
 ```
 > __Tip:__  Documentation on these configuration properties can be found in the [AppDynamics .NET Agent for Linux Configuration Documentation](https://docs.appdynamics.com/display/PRO45/.NET+Agent+for+Linux+Environment+Variables)
 
-#### AppDynamics Browser EUM Configuration
-> __Note:__  You must create a Browser Application in AppDynamics (E.g., GarageSale-Web), and then copy the App Key into the configuration property below.  The remaining default configurations below can be left alone if using __SaaS__, but need to be provided for __on-prem__ deployments of the AppD EUM Collector.
+#### AppDynamics Browser EUM Configuration // TODO - Implement!
+> __Note:__  You must create a Browser Application in AppDynamics (E.g., Todo-Web), and then copy the App Key into the configuration property below.  The remaining default configurations below can be left alone if using __SaaS__, but need to be provided for __on-prem__ deployments of the AppD EUM Collector.
 ```bash
 # AppD Browser EUM
 APPDYNAMICS_BROWSER_EUM_APPKEY=AA-AAA-AAA-AAA
