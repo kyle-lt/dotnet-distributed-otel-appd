@@ -86,44 +86,118 @@ Accessible on `http://$DOCKER_HOSTNAME:16686`
 ### Project File Structure
 Abbreviated tree output (only relevant files & paths shown)
 ```bash
-$ GarageSale
+$ tree -L 3
+.
 ├── LICENSE.txt
 ├── README.md
-├── docker-compose.yml
-├── .env
-├── item-api
-│   ├── buildForDocker.sh
+├── README_Images
+│   └── Todo_TodoMvcUi_Home.png
+├── TodoApi
+│   ├── Controllers
+│   │   ├── TodoItemsController.cs
+│   │   └── WeatherForecastController.cs
+│   ├── Helpers
+│   │   └── RabbitMqReceiver.cs
+│   ├── Migrations
+│   │   ├── 20200904122958_InitialCreate.Designer.cs
+│   │   ├── 20200904122958_InitialCreate.cs
+│   │   └── TodoContextModelSnapshot.cs
+│   ├── Models
+│   │   ├── TodoContext.cs
+│   │   └── TodoItem.cs
+│   ├── Program.cs
+│   ├── Properties
+│   │   └── launchSettings.json
+│   ├── Startup.cs
+│   ├── TodoApi.csproj
+│   ├── TodoDb.db
+│   ├── WeatherForecast.cs
+│   ├── appsettings.Development.json
+│   ├── appsettings.json
+│   ├── bin
+│   │   └── Debug
 │   ├── docker
-│   │   ├── Dockerfile
-│   │   ├── downloadJavaAgentLatest.sh
-│   ├── imageBuildAndRunTailLog.sh
-│   ├── pom.xml
-│   ├── runWithBuild.sh
-│   ├── src
-│   │   ├── main
-│   │   └── test
+│   │   └── Dockerfile
+│   └── obj
+│       ├── Debug
+│       ├── TodoApi.csproj.EntityFrameworkCore.targets
+│       ├── TodoApi.csproj.codegeneration.targets
+│       ├── TodoApi.csproj.nuget.dgspec.json
+│       ├── TodoApi.csproj.nuget.g.props
+│       ├── TodoApi.csproj.nuget.g.targets
+│       ├── project.assets.json
+│       └── project.nuget.cache
+├── TodoMvcUi
+│   ├── Controllers
+│   │   └── HomeController.cs
+│   ├── Models
+│   │   ├── ErrorViewModel.cs
+│   │   ├── TodoItem.cs
+│   │   ├── TodoItemDTO.cs
+│   │   └── TodoItemList.cs
+│   ├── Program.cs
+│   ├── Properties
+│   │   └── launchSettings.json
+│   ├── Startup.cs
+│   ├── TodoMvcUi.csproj
+│   ├── Views
+│   │   ├── Home
+│   │   ├── Shared
+│   │   ├── _ViewImports.cshtml
+│   │   └── _ViewStart.cshtml
+│   ├── appsettings.Development.json
+│   ├── appsettings.json
+│   ├── bin
+│   │   └── Debug
+│   ├── docker
+│   │   └── Dockerfile
+│   ├── obj
+│   │   ├── Debug
+│   │   ├── TodoMvcUi.csproj.nuget.dgspec.json
+│   │   ├── TodoMvcUi.csproj.nuget.g.props
+│   │   ├── TodoMvcUi.csproj.nuget.g.targets
+│   │   ├── project.assets.json
+│   │   └── project.nuget.cache
+│   └── wwwroot
+│       ├── css
+│       ├── favicon.ico
+│       ├── js
+│       └── lib
+├── Utils
+│   ├── Messaging
+│   │   ├── MessageReceiver.cs
+│   │   ├── MessageSender.cs
+│   │   └── RabbitMqHelper.cs
+│   ├── Utils.csproj
+│   ├── bin
+│   │   └── Debug
+│   └── obj
+│       ├── Debug
+│       ├── Utils.csproj.nuget.dgspec.json
+│       ├── Utils.csproj.nuget.g.props
+│       ├── Utils.csproj.nuget.g.targets
+│       ├── project.assets.json
+│       └── project.nuget.cache
+├── docker-compose.yml
+├── docker-compose.yml_private
+├── downloadDotNetLinuxAgentLatest.sh
 ├── kubernetes
-│   ├── item-api-deployment.yaml
 │   ├── jaeger-list.yaml
-│   ├── ui-deployment.yaml
-└── ui
-    ├── buildForDocker.sh
-    ├── docker
-    │   ├── Dockerfile
-    │   ├── downloadJavaAgentLatest.sh
-    │   ├── images
-    ├── imageBuildAndRunTailLog.sh
-    ├── pom.xml
-    ├── runWithBuild.sh
-    ├── src
-    │   ├── main
-    │   └── test
+│   ├── rabbitmq.yml
+│   ├── todoapi-deployment.yaml
+│   ├── todoapi-deployment.yaml_private
+│   ├── todomvcui-deployment.yaml
+│   └── todomvcui-deployment.yaml_private
+├── make-private.sh
+└── make-public.sh
 ```
 ### Application Code
-The app code is housed in `ui` and `item-api` directories.  Each directory contains source code and a `docker` directory.  The `docker` directory contains:
+The app code is housed in `TodoMvcUi` and `TodoApi` directories.  Each directory contains source code and a `docker` directory.  The `docker` directory contains:
 - `Dockerfile`
-- `downloadJavaAgentLatest.sh`
-   - A script to download the latest AppDynamics Java Agent.
+
+### AppD Agent
+- The root project directory contains `downloadDotNetLinuxAgentLatest.sh`
+   - This script is used during Docker image build to download the latest AppDynamics .NET Linux Agent and "bake" into the image.
 
 ### docker-compose.yml
 This file is located in the project root and manages building and running the Docker containers. It uses the `.env` file to populate environment variables for the project to work properly.
@@ -133,14 +207,14 @@ This file contains all of the environment variables that need to be populated in
 
 #### AppDynamics Controller Configuration
 ```bash
-# AppD Java Agent
+# APPD
 APPDYNAMICS_AGENT_ACCOUNT_ACCESS_KEY=<Access_Key>
 APPDYNAMICS_AGENT_ACCOUNT_NAME=<Account_Name>
 APPDYNAMICS_CONTROLLER_HOST_NAME=<Controller_Host>
 APPDYNAMICS_CONTROLLER_PORT=<Controller_Port>
 APPDYNAMICS_CONTROLLER_SSL_ENABLED=<true_or_false>
 ```
-> __Tip:__  Documentation on these configuration properties can be found in the [AppDynamics Java Agent Configuration Documentation](https://docs.appdynamics.com/display/PRO45/Java+Agent+Configuration+Properties)
+> __Tip:__  Documentation on these configuration properties can be found in the [AppDynamics .NET Agent for Linux Configuration Documentation](https://docs.appdynamics.com/display/PRO45/.NET+Agent+for+Linux+Environment+Variables)
 
 #### AppDynamics Browser EUM Configuration
 > __Note:__  You must create a Browser Application in AppDynamics (E.g., GarageSale-Web), and then copy the App Key into the configuration property below.  The remaining default configurations below can be left alone if using __SaaS__, but need to be provided for __on-prem__ deployments of the AppD EUM Collector.
@@ -158,10 +232,10 @@ APPDYNAMICS_BROWSER_EUM_BEACON_HTTPS=https://col.eum-appdynamics.com
 
 ## Kubernetes
 This repo contains a few Kubernetes specs to deploy the app components and Jaeger as Kubernetes resources. They are located in the [kubernetes](/kubernetes) directory.
-- `ui-deployment.yaml`
-  - This spec contains a single-replica Deployment and Service (using NodePort by default) for the GarageSale UI.
-- `item-api-deployment.yaml`
-  - This spec contains a single-replica Deployment and Service (using NodePort by default) for the GarageSale Item API.
+- `todomvuui-deployment.yaml`
+  - This spec contains a single-replica Deployment and Service (using NodePort by default) for the Todo MVC UI.
+- `todoapi-deployment.yaml`
+  - This spec contains a single-replica Deployment and Service (using NodePort by default) for the Todo API.
 - `jaeger-list.yaml`
   - This spec is a list containing a single-replica Deployment and a few Services (using NodePort and ClusterIP) for the Jaeger all-in-one components.
 
