@@ -29,6 +29,8 @@ namespace TodoMvcUi.Controllers
         private static String _rabbitMqEndpoint;
         private static String _todoApiEndpoint;
 
+        private static String _appdBrowserEumAppKey;
+
         private static readonly HttpClient client = new HttpClient();
 
         // Create ActivitySource to capture my arbitrary manual Spans - this ActivitySource is Added to the OpenTelemetry
@@ -41,6 +43,7 @@ namespace TodoMvcUi.Controllers
             _messageSender = messageSender;
             _rabbitMqEndpoint = Environment.GetEnvironmentVariable("RABBITMQ_HOSTNAME") ?? "host.docker.internal";
             _todoApiEndpoint = Environment.GetEnvironmentVariable("TODOAPI_HOSTNAME") ?? "host.docker.internal";
+            _appdBrowserEumAppKey = Environment.GetEnvironmentVariable("APPDYNAMICS_BROWSER_EUM_APPKEY");
         }
 
         public IActionResult Index()
@@ -81,6 +84,8 @@ namespace TodoMvcUi.Controllers
             // Create Arbitrary Child Span - it will automatically detect Activity.Current as its parent
             //createArbitraryChildSpan();
             
+            ViewData["appdBrowserEumAppKey"] = _appdBrowserEumAppKey;
+        
             // Return View with TodoItems
             ViewData["TodoItems"] = modelJson;
             return View(todoItems);
