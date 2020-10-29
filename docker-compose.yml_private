@@ -1,16 +1,27 @@
 version: '3.4'
 
-# Run docker-compose run start-db first!!  The DB must be running for the app image to build
+networks:
+  monitoring:
+    external: true
+
+# logging section
+x-logging: 
+  &loki-logging
+  driver: loki
+  options:
+    loki-url: http://host.docker.internal:3100/loki/api/v1/push
+    # Note that you cannot point to a docker container hostname - you must point 
+    # to the Docker bridge network or the Docker Host Hostname (kjt-m-3bad.lan in my case)
 
 services:
   todoapi:
     image: kjtully/dotnet-distributed-otel-appd-todoapi:${TAG:-latest}
+    container_name: todoapi
     ports:
       - "5000:5000"
     build:
       context: .
       dockerfile: TodoApi/docker/Dockerfile
-    restart: on-failure
     environment:
       # AppDynamics agent configs (defined in .env file)
       APPDYNAMICS_CONTROLLER_HOST_NAME: "$APPDYNAMICS_CONTROLLER_HOST_NAME"
@@ -27,11 +38,15 @@ services:
       RABBITMQ_HOSTNAME: "$RABBITMQ_HOSTNAME"
       JAEGER_HOSTNAME: "$JAEGER_HOSTNAME"
     depends_on:
-      - jaeger
       - rabbitmq
+    networks:
+      - monitoring
+      - default
+    logging: *loki-logging
 
   todomvcui:
     image: kjtully/dotnet-distributed-otel-appd-todomvcui:${TAG:-latest}
+    container_name: todomvcui
     ports:
       - "60000:60000"
     build:
@@ -55,24 +70,30 @@ services:
       RABBITMQ_HOSTNAME: "$RABBITMQ_HOSTNAME"
       JAEGER_HOSTNAME: "$JAEGER_HOSTNAME"
     depends_on:
-      - jaeger
       - rabbitmq
-
-  jaeger:
-    image: jaegertracing/all-in-one:latest
-    ports:
-      - "6831:6831/udp"
-      - "16686:16686"
-      - "14250:14250"
+    networks:
+      - monitoring
+      - default
+    logging: *loki-logging
 
   rabbitmq:
     image: rabbitmq:3-management-alpine
+    container_name: rabbitmq
     ports:
       - "5672:5672"
       - "15672:15672"
+    networks:
+      - default
     healthcheck:
       test: ["CMD", "wget", "localhost:15672"]
       interval: 10s
       timeout: 5s
       retries: 5
 
+  # JAEGER - MOVED TO ~/Local_Projects/monitoring
+  #jaeger:
+    #image: jaegertracing/all-in-one:latest
+    #ports:
+      #- "6831:6831/udp"
+      #- "16686:16686"
+      #- "14250:14250"

@@ -48,4 +48,3 @@
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoMvcUi/bin/Debug/netcoreapp3.1/Microsoft.Extensions.Logging.Abstractions.dll
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoMvcUi/bin/Debug/netcoreapp3.1/Utils.dll
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoMvcUi/bin/Debug/netcoreapp3.1/Utils.pdb
-/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoMvcUi/bin/Debug/netcoreapp3.1/System.Runtime.CompilerServices.Unsafe.dll

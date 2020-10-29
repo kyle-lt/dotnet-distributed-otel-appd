@@ -54,12 +54,6 @@ namespace TodoApi
             .SetSampler(new AlwaysOnSampler())
             );
 
-            // RabbitMqReceiver
-            services.AddHostedService<RabbitMqReceiver>();
-
-            // Add instance of Messaging Utils' MessageReceiver
-            services.AddSingleton<MessageReceiver>();
-
             services.AddControllers();
 
             // Database Context for In-Memory DB
@@ -69,6 +63,12 @@ namespace TodoApi
             // Database Context for SQLite DB
             services.AddDbContext<TodoContext>(opt =>
                opt.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+
+            // Add instance of Messaging Utils' MessageReceiver
+            services.AddSingleton<MessageReceiver>();
+
+            // RabbitMqReceiver
+            services.AddHostedService<RabbitMqReceiver>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

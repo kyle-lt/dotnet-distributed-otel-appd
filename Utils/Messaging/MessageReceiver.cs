@@ -27,10 +27,10 @@ namespace Utils.Messaging
         {
             this.logger = logger;
             
-            this.logger.LogInformation("Waiting 5 seconds for RabbitMQ to boot...");
+            this.logger.LogInformation("Waiting 20 seconds for RabbitMQ to boot...");
             //Task.Delay(5000).Wait();
-            Thread.Sleep(5000);
-            this.logger.LogInformation("5 seconds elapsed, initializing RabbitMqReceiver!");
+            Thread.Sleep(20000);
+            this.logger.LogInformation("20 seconds elapsed, initializing RabbitMqReceiver!");
 
             this.connection = RabbitMqHelper.CreateConnection();
             this.channel = RabbitMqHelper.CreateModelAndDeclareTestQueue(this.connection);
@@ -44,6 +44,10 @@ namespace Utils.Messaging
 
         public void StartConsumer()
         {
+            this.logger.LogInformation("Waiting ANOTHER 5 seconds for RabbitMQ to boot...");
+            Thread.Sleep(5000);
+            this.logger.LogInformation("5 seconds elapsed, calling StartConsumer!");
+
             RabbitMqHelper.StartConsumer(this.channel, this.ReceiveMessage);
         }
 

@@ -24,12 +24,12 @@
     ".NETCoreApp,Version=v3.1": {
       "TodoMvcUi/1.0.0": {
         "dependencies": {
-          "OpenTelemetry": "0.5.0-beta.2",
-          "OpenTelemetry.Exporter.Console": "0.5.0-beta.2",
-          "OpenTelemetry.Exporter.Jaeger": "0.5.0-beta.2",
+          "OpenTelemetry": "0.7.0-beta.1",
+          "OpenTelemetry.Exporter.Console": "0.7.0-beta.1",
+          "OpenTelemetry.Exporter.Jaeger": "0.7.0-beta.1",
           "OpenTelemetry.Extensions.Hosting": "0.5.0-beta.2",
           "OpenTelemetry.Instrumentation.AspNetCore": "0.5.0-beta.2",
-          "OpenTelemetry.Instrumentation.Http": "0.5.0-beta.2",
+          "OpenTelemetry.Instrumentation.Http": "0.7.0-beta.1",
           "RabbitMQ.Client": "6.2.0",
           "Utils": "1.0.0",
           "Microsoft.AspNetCore.Antiforgery": "3.1.0.0",
@@ -113,9 +113,9 @@
           "Microsoft.Extensions.Caching.Abstractions": "3.1.0.0",
           "Microsoft.Extensions.Caching.Memory": "3.1.0.0",
           "Microsoft.Extensions.Configuration.Abstractions.Reference": "3.1.0.0",
-          "Microsoft.Extensions.Configuration.Binder": "3.1.0.0",
+          "Microsoft.Extensions.Configuration.Binder.Reference": "3.1.0.0",
           "Microsoft.Extensions.Configuration.CommandLine": "3.1.0.0",
-          "Microsoft.Extensions.Configuration": "3.1.0.0",
+          "Microsoft.Extensions.Configuration.Reference": "3.1.0.0",
           "Microsoft.Extensions.Configuration.EnvironmentVariables": "3.1.0.0",
           "Microsoft.Extensions.Configuration.FileExtensions": "3.1.0.0",
           "Microsoft.Extensions.Configuration.Ini": "3.1.0.0",
@@ -139,17 +139,17 @@
           "Microsoft.Extensions.Identity.Stores": "3.1.0.0",
           "Microsoft.Extensions.Localization.Abstractions": "3.1.0.0",
           "Microsoft.Extensions.Localization": "3.1.0.0",
-          "Microsoft.Extensions.Logging.Configuration": "3.1.0.0",
+          "Microsoft.Extensions.Logging.Configuration.Reference": "3.1.0.0",
           "Microsoft.Extensions.Logging.Console": "3.1.0.0",
           "Microsoft.Extensions.Logging.Debug": "3.1.0.0",
-          "Microsoft.Extensions.Logging": "3.1.0.0",
+          "Microsoft.Extensions.Logging.Reference": "3.1.0.0",
           "Microsoft.Extensions.Logging.EventLog": "3.1.0.0",
           "Microsoft.Extensions.Logging.EventSource": "3.1.0.0",
           "Microsoft.Extensions.Logging.TraceSource": "3.1.0.0",
           "Microsoft.Extensions.ObjectPool": "3.1.0.0",
-          "Microsoft.Extensions.Options.ConfigurationExtensions": "3.1.0.0",
+          "Microsoft.Extensions.Options.ConfigurationExtensions.Reference": "3.1.0.0",
           "Microsoft.Extensions.Options.DataAnnotations": "3.1.0.0",
-          "Microsoft.Extensions.Options": "3.1.0.0",
+          "Microsoft.Extensions.Options.Reference": "3.1.0.0",
           "Microsoft.Extensions.Primitives.Reference": "3.1.0.0",
           "Microsoft.Extensions.WebEncoders": "3.1.0.0",
           "Microsoft.JSInterop": "3.1.0.0",
@@ -247,6 +247,7 @@
           "System.Resources.Reader": "4.1.2.0",
           "System.Resources.ResourceManager": "4.1.2.0",
           "System.Resources.Writer": "4.1.2.0",
+          "System.Runtime.CompilerServices.Unsafe.Reference": "4.0.6.0",
           "System.Runtime.CompilerServices.VisualC": "4.1.2.0",
           "System.Runtime": "4.2.2.0",
           "System.Runtime.Extensions": "4.2.2.0",
@@ -329,9 +330,19 @@
           "Microsoft.Extensions.Primitives": "2.1.1"
         }
       },
+      "Microsoft.Extensions.Configuration/2.1.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "2.1.0"
+        }
+      },
       "Microsoft.Extensions.Configuration.Abstractions/2.1.0": {
         "dependencies": {
           "Microsoft.Extensions.Primitives": "2.1.1"
+        }
+      },
+      "Microsoft.Extensions.Configuration.Binder/2.1.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Configuration": "2.1.0"
         }
       },
       "Microsoft.Extensions.DependencyInjection.Abstractions/2.1.0": {},
@@ -348,6 +359,14 @@
           "Microsoft.Extensions.Logging.Abstractions": "3.1.6"
         }
       },
+      "Microsoft.Extensions.Logging/2.1.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Binder": "2.1.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.1.0",
+          "Microsoft.Extensions.Logging.Abstractions": "3.1.6",
+          "Microsoft.Extensions.Options": "2.1.0"
+        }
+      },
       "Microsoft.Extensions.Logging.Abstractions/3.1.6": {
         "runtime": {
           "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll": {
@@ -359,65 +378,88 @@
           "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll": {}
         }
       },
+      "Microsoft.Extensions.Logging.Configuration/2.1.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Logging": "2.1.0",
+          "Microsoft.Extensions.Options.ConfigurationExtensions": "2.1.0"
+        }
+      },
+      "Microsoft.Extensions.Options/2.1.0": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.1.0",
+          "Microsoft.Extensions.Primitives": "2.1.1"
+        }
+      },
+      "Microsoft.Extensions.Options.ConfigurationExtensions/2.1.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.Abstractions": "2.1.0",
+          "Microsoft.Extensions.Configuration.Binder": "2.1.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.1.0",
+          "Microsoft.Extensions.Options": "2.1.0"
+        }
+      },
       "Microsoft.Extensions.Primitives/2.1.1": {
         "dependencies": {
           "System.Memory": "4.5.4",
-          "System.Runtime.CompilerServices.Unsafe": "5.0.0-preview.8.20407.11"
+          "System.Runtime.CompilerServices.Unsafe": "4.5.1"
         }
       },
-      "OpenTelemetry/0.5.0-beta.2": {
+      "OpenTelemetry/0.7.0-beta.1": {
         "dependencies": {
-          "OpenTelemetry.Api": "0.5.0-beta.2",
+          "Microsoft.Extensions.Logging": "2.1.0",
+          "Microsoft.Extensions.Logging.Configuration": "2.1.0",
+          "OpenTelemetry.Api": "0.7.0-beta.1",
           "System.Collections.Immutable": "1.4.0",
           "System.Reflection.Emit.Lightweight": "4.7.0"
         },
         "runtime": {
           "lib/netstandard2.0/OpenTelemetry.dll": {
-            "assemblyVersion": "0.5.0.2",
-            "fileVersion": "0.5.0.2"
+            "assemblyVersion": "0.7.0.1",
+            "fileVersion": "0.7.0.1"
           }
         },
         "compile": {
           "lib/netstandard2.0/OpenTelemetry.dll": {}
         }
       },
-      "OpenTelemetry.Api/0.5.0-beta.2": {
+      "OpenTelemetry.Api/0.7.0-beta.1": {
         "dependencies": {
-          "System.Diagnostics.DiagnosticSource": "5.0.0-preview.8.20407.11"
+          "System.Diagnostics.DiagnosticSource": "5.0.0-rc.2.20475.5",
+          "System.Reflection.Emit.Lightweight": "4.7.0"
         },
         "runtime": {
           "lib/netstandard2.0/OpenTelemetry.Api.dll": {
-            "assemblyVersion": "0.5.0.2",
-            "fileVersion": "0.5.0.2"
+            "assemblyVersion": "0.7.0.1",
+            "fileVersion": "0.7.0.1"
           }
         },
         "compile": {
           "lib/netstandard2.0/OpenTelemetry.Api.dll": {}
         }
       },
-      "OpenTelemetry.Exporter.Console/0.5.0-beta.2": {
+      "OpenTelemetry.Exporter.Console/0.7.0-beta.1": {
         "dependencies": {
-          "OpenTelemetry": "0.5.0-beta.2",
+          "OpenTelemetry": "0.7.0-beta.1",
           "System.Text.Json": "4.7.0"
         },
         "runtime": {
           "lib/netstandard2.0/OpenTelemetry.Exporter.Console.dll": {
-            "assemblyVersion": "0.5.0.2",
-            "fileVersion": "0.5.0.2"
+            "assemblyVersion": "0.7.0.1",
+            "fileVersion": "0.7.0.1"
           }
         },
         "compile": {
           "lib/netstandard2.0/OpenTelemetry.Exporter.Console.dll": {}
         }
       },
-      "OpenTelemetry.Exporter.Jaeger/0.5.0-beta.2": {
+      "OpenTelemetry.Exporter.Jaeger/0.7.0-beta.1": {
         "dependencies": {
-          "OpenTelemetry": "0.5.0-beta.2"
+          "OpenTelemetry": "0.7.0-beta.1"
         },
         "runtime": {
           "lib/netstandard2.1/OpenTelemetry.Exporter.Jaeger.dll": {
-            "assemblyVersion": "0.5.0.2",
-            "fileVersion": "0.5.0.2"
+            "assemblyVersion": "0.7.0.1",
+            "fileVersion": "0.7.0.1"
           }
         },
         "compile": {
@@ -427,7 +469,7 @@
       "OpenTelemetry.Extensions.Hosting/0.5.0-beta.2": {
         "dependencies": {
           "Microsoft.Extensions.Hosting.Abstractions": "2.1.0",
-          "OpenTelemetry": "0.5.0-beta.2"
+          "OpenTelemetry": "0.7.0-beta.1"
         },
         "runtime": {
           "lib/netstandard2.0/OpenTelemetry.Extensions.Hosting.dll": {
@@ -443,7 +485,7 @@
         "dependencies": {
           "Microsoft.AspNetCore.Http.Abstractions": "2.1.1",
           "Microsoft.AspNetCore.Http.Features": "2.1.1",
-          "OpenTelemetry": "0.5.0-beta.2"
+          "OpenTelemetry": "0.7.0-beta.1"
         },
         "runtime": {
           "lib/netstandard2.0/OpenTelemetry.Instrumentation.AspNetCore.dll": {
@@ -455,14 +497,14 @@
           "lib/netstandard2.0/OpenTelemetry.Instrumentation.AspNetCore.dll": {}
         }
       },
-      "OpenTelemetry.Instrumentation.Http/0.5.0-beta.2": {
+      "OpenTelemetry.Instrumentation.Http/0.7.0-beta.1": {
         "dependencies": {
-          "OpenTelemetry": "0.5.0-beta.2"
+          "OpenTelemetry": "0.7.0-beta.1"
         },
         "runtime": {
           "lib/netstandard2.0/OpenTelemetry.Instrumentation.Http.dll": {
-            "assemblyVersion": "0.5.0.2",
-            "fileVersion": "0.5.0.2"
+            "assemblyVersion": "0.7.0.1",
+            "fileVersion": "0.7.0.1"
           }
         },
         "compile": {
@@ -485,14 +527,11 @@
         }
       },
       "System.Collections.Immutable/1.4.0": {},
-      "System.Diagnostics.DiagnosticSource/5.0.0-preview.8.20407.11": {
-        "dependencies": {
-          "System.Runtime.CompilerServices.Unsafe": "5.0.0-preview.8.20407.11"
-        },
+      "System.Diagnostics.DiagnosticSource/5.0.0-rc.2.20475.5": {
         "runtime": {
           "lib/netstandard1.3/System.Diagnostics.DiagnosticSource.dll": {
             "assemblyVersion": "5.0.0.0",
-            "fileVersion": "5.0.20.40711"
+            "fileVersion": "5.0.20.47505"
           }
         },
         "compile": {
@@ -501,17 +540,7 @@
       },
       "System.Memory/4.5.4": {},
       "System.Reflection.Emit.Lightweight/4.7.0": {},
-      "System.Runtime.CompilerServices.Unsafe/5.0.0-preview.8.20407.11": {
-        "runtime": {
-          "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll": {
-            "assemblyVersion": "5.0.0.0",
-            "fileVersion": "5.0.0.0"
-          }
-        },
-        "compile": {
-          "ref/netstandard2.1/System.Runtime.CompilerServices.Unsafe.dll": {}
-        }
-      },
+      "System.Runtime.CompilerServices.Unsafe/4.5.1": {},
       "System.Text.Encodings.Web/4.5.0": {},
       "System.Text.Json/4.7.0": {
         "compile": {
@@ -532,10 +561,10 @@
       "Utils/1.0.0": {
         "dependencies": {
           "Microsoft.Extensions.Logging.Abstractions": "3.1.6",
-          "OpenTelemetry": "0.5.0-beta.2",
-          "OpenTelemetry.Api": "0.5.0-beta.2",
-          "OpenTelemetry.Exporter.Console": "0.5.0-beta.2",
-          "OpenTelemetry.Exporter.Jaeger": "0.5.0-beta.2",
+          "OpenTelemetry": "0.7.0-beta.1",
+          "OpenTelemetry.Api": "0.7.0-beta.1",
+          "OpenTelemetry.Exporter.Console": "0.7.0-beta.1",
+          "OpenTelemetry.Exporter.Jaeger": "0.7.0-beta.1",
           "RabbitMQ.Client": "6.2.0"
         },
         "runtime": {
@@ -1031,7 +1060,7 @@
         },
         "compileOnly": true
       },
-      "Microsoft.Extensions.Configuration.Binder/3.1.0.0": {
+      "Microsoft.Extensions.Configuration.Binder.Reference/3.1.0.0": {
         "compile": {
           "Microsoft.Extensions.Configuration.Binder.dll": {}
         },
@@ -1043,7 +1072,7 @@
         },
         "compileOnly": true
       },
-      "Microsoft.Extensions.Configuration/3.1.0.0": {
+      "Microsoft.Extensions.Configuration.Reference/3.1.0.0": {
         "compile": {
           "Microsoft.Extensions.Configuration.dll": {}
         },
@@ -1187,7 +1216,7 @@
         },
         "compileOnly": true
       },
-      "Microsoft.Extensions.Logging.Configuration/3.1.0.0": {
+      "Microsoft.Extensions.Logging.Configuration.Reference/3.1.0.0": {
         "compile": {
           "Microsoft.Extensions.Logging.Configuration.dll": {}
         },
@@ -1205,7 +1234,7 @@
         },
         "compileOnly": true
       },
-      "Microsoft.Extensions.Logging/3.1.0.0": {
+      "Microsoft.Extensions.Logging.Reference/3.1.0.0": {
         "compile": {
           "Microsoft.Extensions.Logging.dll": {}
         },
@@ -1235,7 +1264,7 @@
         },
         "compileOnly": true
       },
-      "Microsoft.Extensions.Options.ConfigurationExtensions/3.1.0.0": {
+      "Microsoft.Extensions.Options.ConfigurationExtensions.Reference/3.1.0.0": {
         "compile": {
           "Microsoft.Extensions.Options.ConfigurationExtensions.dll": {}
         },
@@ -1247,7 +1276,7 @@
         },
         "compileOnly": true
       },
-      "Microsoft.Extensions.Options/3.1.0.0": {
+      "Microsoft.Extensions.Options.Reference/3.1.0.0": {
         "compile": {
           "Microsoft.Extensions.Options.dll": {}
         },
@@ -1835,6 +1864,12 @@
         },
         "compileOnly": true
       },
+      "System.Runtime.CompilerServices.Unsafe.Reference/4.0.6.0": {
+        "compile": {
+          "System.Runtime.CompilerServices.Unsafe.dll": {}
+        },
+        "compileOnly": true
+      },
       "System.Runtime.CompilerServices.VisualC/4.1.2.0": {
         "compile": {
           "System.Runtime.CompilerServices.VisualC.dll": {}
@@ -2235,12 +2270,26 @@
       "path": "microsoft.aspnetcore.http.features/2.1.1",
       "hashPath": "microsoft.aspnetcore.http.features.2.1.1.nupkg.sha512"
     },
+    "Microsoft.Extensions.Configuration/2.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-SS8ce1GYQTkZoOq5bskqQ+m7xiXQjnKRiGfVNZkkX2SX0HpXNRsKnSUaywRRuCje3v2KT9xeacsM3J9/G2exsQ==",
+      "path": "microsoft.extensions.configuration/2.1.0",
+      "hashPath": "microsoft.extensions.configuration.2.1.0.nupkg.sha512"
+    },
     "Microsoft.Extensions.Configuration.Abstractions/2.1.0": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-lMmUjAKvY9r6QmxCS15iSb6ulhwnh0zp44NtnVJ+HIDLFmu4iej41U+dU58On8NRezmlgRXiQtLnBeZSzYNKQg==",
       "path": "microsoft.extensions.configuration.abstractions/2.1.0",
       "hashPath": "microsoft.extensions.configuration.abstractions.2.1.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Configuration.Binder/2.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Fls0O54Ielz1DiVYpcmiUpeizN1iKGGI5yAWAoShfmUvMcQ8jAGOK1a+DaflHA5hN9IOKvmSos0yewDYAIY0ZA==",
+      "path": "microsoft.extensions.configuration.binder/2.1.0",
+      "hashPath": "microsoft.extensions.configuration.binder.2.1.0.nupkg.sha512"
     },
     "Microsoft.Extensions.DependencyInjection.Abstractions/2.1.0": {
       "type": "package",
@@ -2263,12 +2312,40 @@
       "path": "microsoft.extensions.hosting.abstractions/2.1.0",
       "hashPath": "microsoft.extensions.hosting.abstractions.2.1.0.nupkg.sha512"
     },
+    "Microsoft.Extensions.Logging/2.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-kuZbZMMHb7ibzhLdn9/R1+PAAFKntlF10tOw4loB8VuQkHvSrBE6IzW1rhBLsEdmLXOgi2zFbwcXFrxzSM6ybA==",
+      "path": "microsoft.extensions.logging/2.1.0",
+      "hashPath": "microsoft.extensions.logging.2.1.0.nupkg.sha512"
+    },
     "Microsoft.Extensions.Logging.Abstractions/3.1.6": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-o2XYIjF9UugupEPvFsc9N8SjevixoRznS0V6EtjUZcGV4EjXXWKUXlKKsIWmD3i4dSiGo82aNcyqfQTsF/8h8g==",
       "path": "microsoft.extensions.logging.abstractions/3.1.6",
       "hashPath": "microsoft.extensions.logging.abstractions.3.1.6.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Logging.Configuration/2.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-nMAcTACzW37zc3f7n5fIYsRDXtjjQA2U/kiE4xmuSLn7coCIeDfFTpUhJ+wG/3vwb5f1lFWNpyXGyQdlUCIXUw==",
+      "path": "microsoft.extensions.logging.configuration/2.1.0",
+      "hashPath": "microsoft.extensions.logging.configuration.2.1.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Options/2.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-VOM1pPMi9+7/4Vc9aPLU8btHOBQy1+AvpqxLxFI2OVtqGv+1klPaV59g9R6aSt2U7ijfB3TjvAO4Tc/cn9/hxA==",
+      "path": "microsoft.extensions.options/2.1.0",
+      "hashPath": "microsoft.extensions.options.2.1.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Options.ConfigurationExtensions/2.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-w/MP147fSqlIcCymaNpLbjdJsFVkSJM9Sz+jbWMr1gKMDVxoOS8AuFjJkVyKU/eydYxHIR/K1Hn3wisJBW5gSg==",
+      "path": "microsoft.extensions.options.configurationextensions/2.1.0",
+      "hashPath": "microsoft.extensions.options.configurationextensions.2.1.0.nupkg.sha512"
     },
     "Microsoft.Extensions.Primitives/2.1.1": {
       "type": "package",
@@ -2277,33 +2354,33 @@
       "path": "microsoft.extensions.primitives/2.1.1",
       "hashPath": "microsoft.extensions.primitives.2.1.1.nupkg.sha512"
     },
-    "OpenTelemetry/0.5.0-beta.2": {
+    "OpenTelemetry/0.7.0-beta.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-vAQ9V8hjBZSyHe3WakMZJDExD8rmOAySGgurPQ+p/vvdam6HE4g5Zi1LtLj+QIZXsdiX6UzKuLjTIY9KJB4RcQ==",
-      "path": "opentelemetry/0.5.0-beta.2",
-      "hashPath": "opentelemetry.0.5.0-beta.2.nupkg.sha512"
+      "sha512": "sha512-Eu11hECdEskbxoePkaEvooZVuh5LC4SRsAYX9prBFSjojvotVkZogFrHkhiz8EaSsaNXRGy2HWITQBphe9cupg==",
+      "path": "opentelemetry/0.7.0-beta.1",
+      "hashPath": "opentelemetry.0.7.0-beta.1.nupkg.sha512"
     },
-    "OpenTelemetry.Api/0.5.0-beta.2": {
+    "OpenTelemetry.Api/0.7.0-beta.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-t88PLdzVYUbUzvTBuLhHUyLZvTBo45eCGHV9/Q2mxhsyZwRc8rLDe6+YUXc6SOZrDwveUREzMJSb70CEjHwGSA==",
-      "path": "opentelemetry.api/0.5.0-beta.2",
-      "hashPath": "opentelemetry.api.0.5.0-beta.2.nupkg.sha512"
+      "sha512": "sha512-ncnZBbX+D3xcZb6xMQXtOnrbV+iQDvPq68wYYZLuQHcbx8gCPE24xl1MaC5vLCEXtqhFEtN+Auj0GPolgRzIEQ==",
+      "path": "opentelemetry.api/0.7.0-beta.1",
+      "hashPath": "opentelemetry.api.0.7.0-beta.1.nupkg.sha512"
     },
-    "OpenTelemetry.Exporter.Console/0.5.0-beta.2": {
+    "OpenTelemetry.Exporter.Console/0.7.0-beta.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-yj/1I+jpO2N9vwSyfcakIkTjadKslMW3hcONfaL4pbadgFhSvhMnkqPb3yDq/wBh8cWYQxK9K/jh+JRCLamQoQ==",
-      "path": "opentelemetry.exporter.console/0.5.0-beta.2",
-      "hashPath": "opentelemetry.exporter.console.0.5.0-beta.2.nupkg.sha512"
+      "sha512": "sha512-8pICG140CFDybYNJFgK7HvSmzdd8vm2aZ+dZINjAAdoxHFVOLZpv7Q2AK4Jg39ylNjE1lV/0wqruCOsM1GwbRQ==",
+      "path": "opentelemetry.exporter.console/0.7.0-beta.1",
+      "hashPath": "opentelemetry.exporter.console.0.7.0-beta.1.nupkg.sha512"
     },
-    "OpenTelemetry.Exporter.Jaeger/0.5.0-beta.2": {
+    "OpenTelemetry.Exporter.Jaeger/0.7.0-beta.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-pMr8UUBApBveW89VXi6w3AJlEfNkEV1JCeauqVfxhwIqvv3PLOx/jv92ClaigoOrJ7XQYKdZ3oEPVOUPoW5L8Q==",
-      "path": "opentelemetry.exporter.jaeger/0.5.0-beta.2",
-      "hashPath": "opentelemetry.exporter.jaeger.0.5.0-beta.2.nupkg.sha512"
+      "sha512": "sha512-oYqrQmjedfW7k3h7oUZrCeqs+SSf+p3MbSLOSBQhlj7zjIKHwgsQzKf288+HaF5ng4T/JUU4hn5xb3uODz+A9g==",
+      "path": "opentelemetry.exporter.jaeger/0.7.0-beta.1",
+      "hashPath": "opentelemetry.exporter.jaeger.0.7.0-beta.1.nupkg.sha512"
     },
     "OpenTelemetry.Extensions.Hosting/0.5.0-beta.2": {
       "type": "package",
@@ -2319,12 +2396,12 @@
       "path": "opentelemetry.instrumentation.aspnetcore/0.5.0-beta.2",
       "hashPath": "opentelemetry.instrumentation.aspnetcore.0.5.0-beta.2.nupkg.sha512"
     },
-    "OpenTelemetry.Instrumentation.Http/0.5.0-beta.2": {
+    "OpenTelemetry.Instrumentation.Http/0.7.0-beta.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-cLdOsKJewMSUnspDOuOrhFJHvas4nBOqQNrfjCoeofes2CqbArSqIyBRlbxvzaIjiQ/Ta4Kqz3WEy31EnHk02A==",
-      "path": "opentelemetry.instrumentation.http/0.5.0-beta.2",
-      "hashPath": "opentelemetry.instrumentation.http.0.5.0-beta.2.nupkg.sha512"
+      "sha512": "sha512-OfD78yKJDDbTEtYgEAmsXWtjAhsb15IlfspzmBc/o/TJX7pxNAp6RnzasWUsw2Y3Y87u7jtXFNPOgIqU1+xY/A==",
+      "path": "opentelemetry.instrumentation.http/0.7.0-beta.1",
+      "hashPath": "opentelemetry.instrumentation.http.0.7.0-beta.1.nupkg.sha512"
     },
     "RabbitMQ.Client/6.2.0": {
       "type": "package",
@@ -2340,12 +2417,12 @@
       "path": "system.collections.immutable/1.4.0",
       "hashPath": "system.collections.immutable.1.4.0.nupkg.sha512"
     },
-    "System.Diagnostics.DiagnosticSource/5.0.0-preview.8.20407.11": {
+    "System.Diagnostics.DiagnosticSource/5.0.0-rc.2.20475.5": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-d+b4LlOj2AkqhV8LzTkhJKB3SWd5Ueya9At1nLuTlS/jgBkVcTCkNclL9f6l5v2SJ+SLVW43ADT9qX7L76Dthw==",
-      "path": "system.diagnostics.diagnosticsource/5.0.0-preview.8.20407.11",
-      "hashPath": "system.diagnostics.diagnosticsource.5.0.0-preview.8.20407.11.nupkg.sha512"
+      "sha512": "sha512-Ya6Fu/JamWHwPdN+qK4YQs1jyXOYmEveq4WhdB+x/t7l5PSjpinx91OGjmi9iiUtzCQKHgRrWhXxvA2IDtvc/A==",
+      "path": "system.diagnostics.diagnosticsource/5.0.0-rc.2.20475.5",
+      "hashPath": "system.diagnostics.diagnosticsource.5.0.0-rc.2.20475.5.nupkg.sha512"
     },
     "System.Memory/4.5.4": {
       "type": "package",
@@ -2361,12 +2438,12 @@
       "path": "system.reflection.emit.lightweight/4.7.0",
       "hashPath": "system.reflection.emit.lightweight.4.7.0.nupkg.sha512"
     },
-    "System.Runtime.CompilerServices.Unsafe/5.0.0-preview.8.20407.11": {
+    "System.Runtime.CompilerServices.Unsafe/4.5.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-8aAEu1T6IQnzwcDwdPaaTha5lBBI2yefJqaThcmMl74829S+ZB3eFkEX7dTeZKZ/k3Lftr8AdprqI34gHPTm2w==",
-      "path": "system.runtime.compilerservices.unsafe/5.0.0-preview.8.20407.11",
-      "hashPath": "system.runtime.compilerservices.unsafe.5.0.0-preview.8.20407.11.nupkg.sha512"
+      "sha512": "sha512-Zh8t8oqolRaFa9vmOZfdQm/qKejdqz0J9kr7o2Fu0vPeoH3BL1EOXipKWwkWtLT1JPzjByrF19fGuFlNbmPpiw==",
+      "path": "system.runtime.compilerservices.unsafe/4.5.1",
+      "hashPath": "system.runtime.compilerservices.unsafe.4.5.1.nupkg.sha512"
     },
     "System.Text.Encodings.Web/4.5.0": {
       "type": "package",
@@ -2799,7 +2876,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Microsoft.Extensions.Configuration.Binder/3.1.0.0": {
+    "Microsoft.Extensions.Configuration.Binder.Reference/3.1.0.0": {
       "type": "referenceassembly",
       "serviceable": false,
       "sha512": ""
@@ -2809,7 +2886,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Microsoft.Extensions.Configuration/3.1.0.0": {
+    "Microsoft.Extensions.Configuration.Reference/3.1.0.0": {
       "type": "referenceassembly",
       "serviceable": false,
       "sha512": ""
@@ -2929,7 +3006,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Microsoft.Extensions.Logging.Configuration/3.1.0.0": {
+    "Microsoft.Extensions.Logging.Configuration.Reference/3.1.0.0": {
       "type": "referenceassembly",
       "serviceable": false,
       "sha512": ""
@@ -2944,7 +3021,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Microsoft.Extensions.Logging/3.1.0.0": {
+    "Microsoft.Extensions.Logging.Reference/3.1.0.0": {
       "type": "referenceassembly",
       "serviceable": false,
       "sha512": ""
@@ -2969,7 +3046,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Microsoft.Extensions.Options.ConfigurationExtensions/3.1.0.0": {
+    "Microsoft.Extensions.Options.ConfigurationExtensions.Reference/3.1.0.0": {
       "type": "referenceassembly",
       "serviceable": false,
       "sha512": ""
@@ -2979,7 +3056,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Microsoft.Extensions.Options/3.1.0.0": {
+    "Microsoft.Extensions.Options.Reference/3.1.0.0": {
       "type": "referenceassembly",
       "serviceable": false,
       "sha512": ""
@@ -3465,6 +3542,11 @@
       "sha512": ""
     },
     "System.Resources.Writer/4.1.2.0": {
+      "type": "referenceassembly",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "System.Runtime.CompilerServices.Unsafe.Reference/4.0.6.0": {
       "type": "referenceassembly",
       "serviceable": false,
       "sha512": ""
