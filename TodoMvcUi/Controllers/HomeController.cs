@@ -91,6 +91,19 @@ namespace TodoMvcUi.Controllers
             return View(todoItems);
         }
 
+        public async Task<IActionResult> Delete(int id) 
+        {
+            _logger.LogDebug("Attempting to Delete Item id = " + id);
+            // Execute the HTTP method DELETE for the supplied id
+            var uri = "http://" + _todoApiEndpoint + ":5000/api/TodoItems/" + id;
+            var deleteTask = client.DeleteAsync(uri);
+            var msg = await deleteTask;
+            _logger.LogDebug("Response from API: " + msg);
+            
+            // Reload the page now that the item was deleted (hopefully it worked!)
+            return LocalRedirect("/Home/ToDo");
+        }
+
         public async Task<IActionResult> ToDoPost(string name, bool isComplete)
         {
             _logger.LogDebug($"Name from Form Post = {name}");
