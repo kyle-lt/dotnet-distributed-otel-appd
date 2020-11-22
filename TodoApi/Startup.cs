@@ -19,6 +19,7 @@ using TodoApi.Controllers;
 
 // OpenTelemetry Refs
 using OpenTelemetry;
+using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 
 // Messaging Utils
@@ -38,6 +39,7 @@ namespace TodoApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
             // Add OpenTelemetry Console Exporter & Jaeger Exporter
             services.AddOpenTelemetryTracerProvider((builder) => builder
             .AddSource(nameof(MessageReceiver), nameof(TodoItemsController))
@@ -53,7 +55,23 @@ namespace TodoApi
             })
             .SetSampler(new AlwaysOnSampler())
             );
-
+            
+            /*
+            // Add OpenTelemetry Console Exporter & Jaeger Exporter - 1.0.0-rc1.1
+            services.AddOpenTelemetryTracing((builder) => builder
+                .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("dotnet-distrubuted-otel-appd.TodoApi"))
+                .AddAspNetCoreInstrumentation()
+                .AddHttpClientInstrumentation()
+                .AddConsoleExporter()
+                .AddJaegerExporter(jaeger =>
+                {
+                    jaeger.AgentHost = Environment.GetEnvironmentVariable("JAEGER_HOSTNAME") ?? "host.docker.internal";
+                    jaeger.AgentPort = 6831;
+                })
+                .SetSampler(new AlwaysOnSampler())
+                );
+            */
+            
             services.AddControllers();
 
             // Database Context for In-Memory DB

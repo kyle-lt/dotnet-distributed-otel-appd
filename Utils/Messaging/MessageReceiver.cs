@@ -19,6 +19,12 @@ namespace Utils.Messaging
         private static readonly IPropagator Propagator = new TextMapPropagator();
         //private static readonly ITextFormat TextFormat = new TraceContextFormat();
 
+        // 0.8.0-beta.1 & 1.0.0-rc1.1 is supposed to change IPropagator to TraceContextPropagator...not working.
+        // This should work, it doesn't - https://github.com/open-telemetry/opentelemetry-dotnet/blob/master/src/OpenTelemetry.Api/Context/Propagation/Propagators.cs
+        //private static readonly TextMapPropagator Propagator = Propagators.DefaultTextMapPropagator;
+        // This should also work, it doesn't: https://github.com/open-telemetry/opentelemetry-dotnet/blob/master/src/OpenTelemetry.Api/Context/Propagation/TraceContextPropagator.cs
+        //private static readonly TextMapPropagator Propagator = new TraceContextPropagator();
+
         private readonly ILogger<MessageReceiver> logger;
         private readonly IConnection connection;
         private readonly IModel channel;
@@ -80,14 +86,11 @@ namespace Utils.Messaging
 
                     this.logger.LogInformation($"Message received: [{message}]");
 
-                    if (activity != null)
-                    {
-                        activity.AddTag("message", message);
+                    activity?.AddTag("message", message);
 
-                        // The OpenTelemetry messaging specification defines a number of attributes. These attributes are added here.
-                        RabbitMqHelper.AddMessagingTags(activity);
-                    }
-
+                    // The OpenTelemetry messaging specification defines a number of attributes. These attributes are added here.
+                    RabbitMqHelper.AddMessagingTags(activity);
+                    
                     // Simulate some work
                     Thread.Sleep(1000);
                 }
@@ -102,10 +105,18 @@ namespace Utils.Messaging
         {
             try
             {
+                this.logger.LogInformation("Extracting Context using Queue IBasicProperties");
                 if (props.Headers.TryGetValue(key, out var value))
                 {
+                    this.logger.LogInformation("Key Found!");
+                    this.logger.LogInformation("key = " + key);
                     var bytes = value as byte[];
+                    var valueString = Encoding.UTF8.GetString(bytes);
+                    this.logger.LogInformation("value = " + valueString);
                     return new[] { Encoding.UTF8.GetString(bytes) };
+                }
+                else {
+                    this.logger.LogInformation("Key Not Found!");
                 }
             }
             catch (Exception ex)

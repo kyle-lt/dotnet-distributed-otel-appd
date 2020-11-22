@@ -1,6 +1,5 @@
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp3.1/appsettings.Development.json
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp3.1/appsettings.json
-/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp3.1/Properties/launchSettings.json
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp3.1/TodoApi.deps.json
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp3.1/TodoApi.runtimeconfig.json
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp3.1/TodoApi.runtimeconfig.dev.json
@@ -122,7 +121,6 @@
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp3.1/System.Threading.Channels.dll
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp3.1/Utils.dll
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp3.1/Utils.pdb
-/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp3.1/System.Runtime.CompilerServices.Unsafe.dll
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp3.1/Microsoft.Data.Sqlite.dll
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp3.1/Microsoft.DotNet.PlatformAbstractions.dll
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp3.1/Microsoft.EntityFrameworkCore.Sqlite.dll
@@ -144,3 +142,4 @@
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp3.1/runtimes/win-arm64/native/e_sqlite3.dll
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp3.1/runtimes/win-x64/native/e_sqlite3.dll
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp3.1/runtimes/win-x86/native/e_sqlite3.dll
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/obj/Debug/netcoreapp3.1/scopedcss/bundle/TodoApi.styles.css

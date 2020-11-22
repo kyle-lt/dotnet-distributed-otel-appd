@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 
 // OpenTelemetry Refs
 using OpenTelemetry;
+using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 
 // Messaging Utils
@@ -37,7 +38,7 @@ namespace TodoMvcUi
             // Add instance of Messaging Utils' MessageSender
             services.AddSingleton<MessageSender>();
 
-            // Add OpenTelemetry Console Exporter & Jaeger Exporter
+            // Add OpenTelemetry Console Exporter & Jaeger Exporter - 0.7.0-beta
             services.AddOpenTelemetryTracerProvider((builder) => builder
                 .AddSource(nameof(MessageSender), nameof(HomeController))
                 .AddAspNetCoreInstrumentation()
@@ -56,6 +57,22 @@ namespace TodoMvcUi
                 })
                 .SetSampler(new AlwaysOnSampler())
                 );
+            
+            /*
+            // Add OpenTelemetry Console Exporter & Jaeger Exporter - 1.0.0-rc1.1
+            services.AddOpenTelemetryTracing((builder) => builder
+                .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("dotnet-distrubuted-otel-appd.TodoMvcUi"))
+                .AddAspNetCoreInstrumentation()
+                .AddHttpClientInstrumentation()
+                .AddConsoleExporter()
+                .AddJaegerExporter(jaeger =>
+                {
+                    jaeger.AgentHost = Environment.GetEnvironmentVariable("JAEGER_HOSTNAME") ?? "host.docker.internal";
+                    jaeger.AgentPort = 6831;
+                })
+                .SetSampler(new AlwaysOnSampler())
+                );
+            */
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

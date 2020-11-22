@@ -10,10 +10,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <!-- OTEL 0.5.0-beta.2 -->
+    
     <PackageReference Include="OpenTelemetry" Version="0.5.0-beta.2" />
     <PackageReference Include="OpenTelemetry.Api" Version="0.5.0-beta.2" />
     <PackageReference Include="OpenTelemetry.Exporter.Console" Version="0.5.0-beta.2" />
     <PackageReference Include="OpenTelemetry.Exporter.Jaeger" Version="0.5.0-beta.2" />
+    
+    
+    <!-- OTEL 1.0.0-rc1.1  -->
+    <!--
+    <PackageReference Include="OpenTelemetry" Version="1.0.0-rc1.1" />
+    <PackageReference Include="OpenTelemetry.Api" Version="1.0.0-rc1.1" />
+    <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.0.0-rc1.1" />
+    <PackageReference Include="OpenTelemetry.Exporter.Jaeger" Version="1.0.0-rc1.1" />
+    -->
   </ItemGroup>
 
 </Project>
