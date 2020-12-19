@@ -1,2 +1,4 @@
 .env_private
 docker-compose.yml_private
+kubernetes/todoapi-deployment.yaml_private
+kubernetes/todomvcui-deployment.yaml_private
