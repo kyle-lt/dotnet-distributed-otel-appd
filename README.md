@@ -41,22 +41,22 @@ If you'd like to build the project locally, you'll need:
 
 ### Steps to Build
 1. Clone this repository to your local machine.
-2. For each `ui` and `item-api`, run build script.
+2. Build using docker-compose
 ```bash
-# Move into app directory
-$ cd ui
-# Run the maven build and place runnable jar in docker directory
-$ ./buildForDocker.sh
+$ docker-compose build
 ```
 3. Configure the `.env` file in the root project directory.
 
    > __IMPORTANT:__ Detailed information regarding `.env` file can be found [below](###-.env-File).  This __MUST__ be done for this project to work!
-4. Uncomment the build directives for the `ui` and `item-api` services in `docker-compose.yml`.
+4. Uncomment the build directives for the `todomvcui` and `todoapi` services in `docker-compose.yml`.
 ```bash
-build: ./ui/docker
+    build:
+      context: .
+      dockerfile: TodoApi/docker/Dockerfile
 ...
-build: ./item-api/docker
-
+    build:
+      context: .
+      dockerfile: TodoMvcUi/docker/Dockerfile
 ```
 5. Use Docker Compose to start (or use [Kubernetes](#kubernetes))
 ```bash
@@ -239,9 +239,3 @@ This repo contains a few Kubernetes specs to deploy the app components and Jaege
 - `jaeger-list.yaml`
   - This spec is a list containing a single-replica Deployment and a few Services (using NodePort and ClusterIP) for the Jaeger all-in-one components.
 
-## Development/Testing
-This repo contains some artifacts to ease re-builds for testing.
-- `runWithBuild.sh`
-   - This script builds a runnable jar and runs it locally (no container)
-- `imageBuildAndRunTailLog.sh`
-   - This script builds a runnable jar, builds the app image, creates (or re-creates) the container, and tails the container logs - very useful for debugging a recent code change
