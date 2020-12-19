@@ -50,13 +50,17 @@ $ docker-compose build
    > __IMPORTANT:__ Detailed information regarding `.env` file can be found [below](###-.env-File).  This __MUST__ be done for this project to work!
 4. Uncomment the build directives for the `todomvcui` and `todoapi` services in `docker-compose.yml`.
 ```bash
-    build:
-      context: .
-      dockerfile: TodoApi/docker/Dockerfile
+todoapi:
+  ...
+  build:
+    context: .
+    dockerfile: TodoApi/docker/Dockerfile
 ...
-    build:
-      context: .
-      dockerfile: TodoMvcUi/docker/Dockerfile
+todomvcui:
+  ...
+  build:
+    context: .
+    dockerfile: TodoMvcUi/docker/Dockerfile
 ```
 5. Use Docker Compose to start (or use [Kubernetes](#kubernetes))
 ```bash
