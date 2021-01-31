@@ -1,8 +1,32 @@
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS base
+#FROM mcr.microsoft.com/dotnet/aspnet:3.1 AS base
+FROM mcr.microsoft.com/dotnet/aspnet:5.0-focal AS base
 
 WORKDIR /app
 
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
+#FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
+FROM mcr.microsoft.com/dotnet/sdk:5.0-focal AS build
+
+# Putting relatively static layers up top
+# Install AppD Install Script Dependencies
+RUN apt-get update
+RUN apt-get clean
+RUN apt-get install -y jq
+RUN apt-get install -y unzip
+RUN apt-get install -y curl
+
+# Copy AppD agent binaries
+#RUN mkdir -p /opt/AppDynamics/dotnet
+COPY downloadDotNetLinuxAgentLatest.sh .
+RUN ./downloadDotNetLinuxAgentLatest.sh 
+#ADD libappdprofiler.so /opt/AppDynamics/dotnet/libappdprofiler.so
+#ADD AppDynamics.Agent.netstandard.dll /opt/AppDynamics/dotnet/AppDynamics.Agent.netstandard.dll
+
+# set profiler environment variables
+ENV CORECLR_PROFILER={57e1aa68-2229-41aa-9931-a6e93bbc64d8}
+ENV CORECLR_ENABLE_PROFILING=1
+ENV CORECLR_PROFILER_PATH=/app/libappdprofiler.so
+
+# Here is where code change layers occur, i.e., can't used cached layers
 WORKDIR /src
 COPY . .
 
@@ -16,23 +40,6 @@ RUN dotnet publish --no-restore -c Release -o /app
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
-
-# Install AppD Install Script Dependencies
-RUN apt-get update
-RUN apt-get install -y jq
-RUN apt-get install -y unzip
-
-# Copy AppD agent binaries
-#RUN mkdir -p /opt/AppDynamics/dotnet
-COPY downloadDotNetLinuxAgentLatest.sh .
-RUN ./downloadDotNetLinuxAgentLatest.sh 
-#ADD libappdprofiler.so /opt/AppDynamics/dotnet/libappdprofiler.so
-#ADD AppDynamics.Agent.netstandard.dll /opt/AppDynamics/dotnet/AppDynamics.Agent.netstandard.dll
-
-# set profiler environment variables
-ENV CORECLR_PROFILER={57e1aa68-2229-41aa-9931-a6e93bbc64d8}
-ENV CORECLR_ENABLE_PROFILING=1
-ENV CORECLR_PROFILER_PATH=/app/libappdprofiler.so
 
 # Set Hosting Environment to Development
 ENV ASPNETCORE_ENVIRONMENT=Development

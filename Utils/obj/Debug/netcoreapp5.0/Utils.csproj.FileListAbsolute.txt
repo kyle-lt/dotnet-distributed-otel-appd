@@ -1,0 +1,12 @@
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/Utils/bin/Debug/netcoreapp5.0/Utils.deps.json
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/Utils/bin/Debug/netcoreapp5.0/Utils.dll
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/Utils/bin/Debug/netcoreapp5.0/ref/Utils.dll
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/Utils/bin/Debug/netcoreapp5.0/Utils.pdb
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/Utils/obj/Debug/netcoreapp5.0/Utils.csprojAssemblyReference.cache
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/Utils/obj/Debug/netcoreapp5.0/Utils.GeneratedMSBuildEditorConfig.editorconfig
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/Utils/obj/Debug/netcoreapp5.0/Utils.AssemblyInfoInputs.cache
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/Utils/obj/Debug/netcoreapp5.0/Utils.AssemblyInfo.cs
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/Utils/obj/Debug/netcoreapp5.0/Utils.csproj.CoreCompileInputs.cache
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/Utils/obj/Debug/netcoreapp5.0/Utils.dll
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/Utils/obj/Debug/netcoreapp5.0/ref/Utils.dll
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/Utils/obj/Debug/netcoreapp5.0/Utils.pdb

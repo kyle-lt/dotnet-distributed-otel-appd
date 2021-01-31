@@ -19,9 +19,9 @@ namespace TodoMvcUi
     public class Program
     {
 
-        // Create Otel Activity Source
-        static readonly ActivitySource activitySource = new ActivitySource(
-        "dotnet-distributed-otel-appd.TodoMvcUi");
+        // Create Otel Activity Source - REMOVING THIS FOR TEST - it is not required/used
+        //static readonly ActivitySource activitySource = new ActivitySource(
+        //"dotnet-distributed-otel-appd.TodoMvcUi");
 
         public static void Main(string[] args)
         {
@@ -40,6 +40,8 @@ namespace TodoMvcUi
                     logging.ClearProviders();
                     // For granular logging to the console for Otel o/p
                     logging.AddConsole((options) => { options.IncludeScopes = true; });
+                    //logging.AddConsole();
+                    //logging.AddConsoleFormatter((options) => { options.IncludeScopes = true; });
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {

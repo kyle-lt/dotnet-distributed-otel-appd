@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using Microsoft.Extensions.Logging;
+using OpenTelemetry;
 using OpenTelemetry.Context.Propagation;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
@@ -15,9 +16,12 @@ namespace Utils.Messaging
     {
         private static readonly ActivitySource ActivitySource = new ActivitySource(nameof(MessageReceiver));
         
+        
         // Changed from ITextFormat to IPropagator for 0.4.0-beta2 to 0.5.0-beta2
-        private static readonly IPropagator Propagator = new TextMapPropagator();
+        //private static readonly IPropagator Propagator = new TextMapPropagator();
         //private static readonly ITextFormat TextFormat = new TraceContextFormat();
+        // 1.0.0-rc1.1
+        private static readonly TextMapPropagator Propagator = new TraceContextPropagator();
 
         // 0.8.0-beta.1 & 1.0.0-rc1.1 is supposed to change IPropagator to TraceContextPropagator...not working.
         // This should work, it doesn't - https://github.com/open-telemetry/opentelemetry-dotnet/blob/master/src/OpenTelemetry.Api/Context/Propagation/Propagators.cs
@@ -62,6 +66,7 @@ namespace Utils.Messaging
             // Extract the ActivityContext of the upstream parent from the message headers.
             //var parentContext = TextFormat.Extract(default, ea.BasicProperties, this.ExtractTraceContextFromBasicProperties);
             var parentContext = Propagator.Extract(default, ea.BasicProperties, this.ExtractTraceContextFromBasicProperties);
+            Baggage.Current = parentContext.Baggage;
             /* ktully
                 * The code below is a back-port to support nuget 0.4.0-beta2
                 * The above code is the way to do it for the current release (0.5.0-beta2)!!

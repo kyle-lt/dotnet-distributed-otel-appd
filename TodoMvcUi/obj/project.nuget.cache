@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "FJvWcjHpb+6To/8zhRT3t6bFLacCjErB/F0N/dZCFUveIXkUCP35oV7KXj09XsbzXU8h9Dg6Qpe8R2ATvKkM9Q==",
+  "dgSpecHash": "P95m39Ox2Jhug/tfMZaAlYxWaGGgCuNXlSNF1ypsl8tfqs+MZ0pRqjFIyqYjBD05ZlkMncEG2bJQwXaXXndKRw==",
   "success": true,
   "projectFilePath": "/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoMvcUi/TodoMvcUi.csproj",
   "expectedPackageFiles": [
@@ -32,8 +32,7 @@
     "/Users/kjt/.nuget/packages/system.reflection.emit.lightweight/4.7.0/system.reflection.emit.lightweight.4.7.0.nupkg.sha512",
     "/Users/kjt/.nuget/packages/system.runtime.compilerservices.unsafe/4.5.1/system.runtime.compilerservices.unsafe.4.5.1.nupkg.sha512",
     "/Users/kjt/.nuget/packages/system.text.encodings.web/4.5.0/system.text.encodings.web.4.5.0.nupkg.sha512",
-    "/Users/kjt/.nuget/packages/system.threading.channels/4.7.1/system.threading.channels.4.7.1.nupkg.sha512",
-    "/Users/kjt/.nuget/packages/microsoft.aspnetcore.app.ref/3.1.8/microsoft.aspnetcore.app.ref.3.1.8.nupkg.sha512"
+    "/Users/kjt/.nuget/packages/system.threading.channels/4.7.1/system.threading.channels.4.7.1.nupkg.sha512"
   ],
   "logs": []
 }

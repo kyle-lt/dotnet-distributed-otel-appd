@@ -39,7 +39,10 @@ namespace TodoMvcUi
             services.AddSingleton<MessageSender>();
 
             // Add OpenTelemetry Console Exporter & Jaeger Exporter - 0.7.0-beta
-            services.AddOpenTelemetryTracerProvider((builder) => builder
+            //services.AddOpenTelemetryTracerProvider((builder) => builder
+            // 1.0.0-rc1.1
+            services.AddOpenTelemetryTracing((builder) => builder
+                .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("dotnet-distrubuted-otel-appd.TodoMvcUi"))
                 .AddSource(nameof(MessageSender), nameof(HomeController))
                 .AddAspNetCoreInstrumentation()
                 .AddHttpClientInstrumentation()
@@ -49,7 +52,7 @@ namespace TodoMvcUi
                     //jaeger.ServiceName = this.Configuration.GetValue<string>("Jaeger:ServiceName");
                     //jaeger.AgentHost = this.Configuration.GetValue<string>("Jaeger:Host");
                     //jaeger.AgentPort = this.Configuration.GetValue<int>("Jaeger:Port");
-                    jaeger.ServiceName = "dotnet-distrubuted-otel-appd.TodoMvcUi";
+                    //jaeger.ServiceName = "dotnet-distrubuted-otel-appd.TodoMvcUi";
                     // When I move to env vars, it'll look something like this:
                     //jaeger.AgentHost = Environment.GetEnvironmentVariable("JAEGER_HOSTNAME") ?? "localhost";
                     jaeger.AgentHost = Environment.GetEnvironmentVariable("JAEGER_HOSTNAME") ?? "host.docker.internal";

@@ -41,20 +41,23 @@ namespace TodoApi
         {
             
             // Add OpenTelemetry Console Exporter & Jaeger Exporter
-            services.AddOpenTelemetryTracerProvider((builder) => builder
-            .AddSource(nameof(MessageReceiver), nameof(TodoItemsController))
-            .AddAspNetCoreInstrumentation()
-            .AddHttpClientInstrumentation()
-            .AddConsoleExporter()
-            .AddJaegerExporter(jaeger =>
-            {
-                jaeger.ServiceName = "dotnet-distrubuted-otel-appd.TodoApi";
-                //jaeger.AgentHost = "host.docker.internal";
-                jaeger.AgentHost = Environment.GetEnvironmentVariable("JAEGER_HOSTNAME") ?? "host.docker.internal";
-                jaeger.AgentPort = 6831;
-            })
-            .SetSampler(new AlwaysOnSampler())
-            );
+            //services.AddOpenTelemetryTracerProvider((builder) => builder
+            // 1.0.0-rc1.1
+            services.AddOpenTelemetryTracing((builder) => builder
+                .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("dotnet-distrubuted-otel-appd.TodoApi"))
+                .AddSource(nameof(MessageReceiver), nameof(TodoItemsController))
+                .AddAspNetCoreInstrumentation()
+                .AddHttpClientInstrumentation()
+                .AddConsoleExporter()
+                .AddJaegerExporter(jaeger =>
+                {
+                    //jaeger.ServiceName = "dotnet-distrubuted-otel-appd.TodoApi";
+                    //jaeger.AgentHost = "host.docker.internal";
+                    jaeger.AgentHost = Environment.GetEnvironmentVariable("JAEGER_HOSTNAME") ?? "host.docker.internal";
+                    jaeger.AgentPort = 6831;
+                })
+                .SetSampler(new AlwaysOnSampler())
+                );
             
             /*
             // Add OpenTelemetry Console Exporter & Jaeger Exporter - 1.0.0-rc1.1

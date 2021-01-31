@@ -1,14 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>netcoreapp5.0</TargetFramework>
   </PropertyGroup>
 
   <!--OpenTelemetry-->
   <ItemGroup>
 
     <!-- OTEL 0.7.0-beta.1 -->
-    
+    <!-- NOTE: 0.5 used in a few places!
     <PackageReference Include="OpenTelemetry" Version="0.7.0-beta.1" />
     <PackageReference Include="OpenTelemetry.Api" Version="0.7.0-beta.1" />
     <PackageReference Include="OpenTelemetry.Exporter.Console" Version="0.7.0-beta.1" />
@@ -16,21 +16,9 @@
     <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="0.5.0-beta.2" />
     <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="0.5.0-beta.2" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="0.7.0-beta.1" />
-    
-
-    <!-- OTEL 0.8.0-beta.1 -->
-    <!--
-    <PackageReference Include="OpenTelemetry" Version="0.8.0-beta.1" />
-    <PackageReference Include="OpenTelemetry.Api" Version="0.8.0-beta.1" />
-    <PackageReference Include="OpenTelemetry.Exporter.Console" Version="0.8.0-beta.1" />
-    <PackageReference Include="OpenTelemetry.Exporter.Jaeger" Version="0.8.0-beta.1" />
-    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="0.8.0-beta.1" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="0.8.0-beta.1" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="0.8.0-beta.1" />
     -->
-
     <!-- OTEL 1.0.0-rc1.1  -->
-    <!--
+    
     <PackageReference Include="OpenTelemetry" Version="1.0.0-rc1.1" />
     <PackageReference Include="OpenTelemetry.Api" Version="1.0.0-rc1.1" />
     <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.0.0-rc1.1" />
@@ -38,7 +26,7 @@
     <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.0.0-rc1.1" />
     <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.0.0-rc1.1" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.0.0-rc1.1" />
-    -->
+    
   </ItemGroup>
 
   <!--RabbitMQ-->

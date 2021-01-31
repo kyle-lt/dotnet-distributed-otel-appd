@@ -14,8 +14,11 @@ namespace Utils.Messaging
         private static readonly ActivitySource ActivitySource = new ActivitySource(nameof(MessageSender));
         
         // Changed from ITextFormat to IPropagator for 0.4.0-beta2 to 0.5.0-beta2
-        private static readonly IPropagator Propagator = new TextMapPropagator();
+        //private static readonly IPropagator Propagator = new TextMapPropagator();
         //private static readonly ITextFormat TextFormat = new TraceContextFormat();
+        // 1.0.0-rc1.1
+        private static readonly TextMapPropagator Propagator = Propagators.DefaultTextMapPropagator;
+
         
         // 0.8.0-beta.1 & 1.0.0-rc1.1 is supposed to change IPropagator to TraceContextPropagator...not working.
         // This should work, it doesn't - https://github.com/open-telemetry/opentelemetry-dotnet/blob/master/src/OpenTelemetry.Api/Context/Propagation/Propagators.cs
@@ -80,8 +83,6 @@ namespace Utils.Messaging
                 
                     // The OpenTelemetry messaging specification defines a number of attributes. These attributes are added here.
                     RabbitMqHelper.AddMessagingTags(activity);
-                    
-
                     var body = $"Published message: DateTime.Now = {DateTime.Now}.";
 
                     this.channel.BasicPublish(
