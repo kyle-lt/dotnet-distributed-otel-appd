@@ -9,10 +9,10 @@
       "Utils/1.0.0": {
         "dependencies": {
           "Microsoft.Extensions.Logging.Abstractions": "3.1.6",
-          "OpenTelemetry": "1.0.0-rc1.1",
-          "OpenTelemetry.Api": "1.0.0-rc1.1",
-          "OpenTelemetry.Exporter.Console": "1.0.0-rc1.1",
-          "OpenTelemetry.Exporter.Jaeger": "1.0.0-rc1.1",
+          "OpenTelemetry": "1.0.0-rc2",
+          "OpenTelemetry.Api": "1.0.0-rc2",
+          "OpenTelemetry.Exporter.Console": "1.0.0-rc2",
+          "OpenTelemetry.Exporter.Jaeger": "1.0.0-rc2",
           "RabbitMQ.Client": "6.2.0"
         },
         "runtime": {
@@ -132,52 +132,52 @@
           }
         }
       },
-      "OpenTelemetry/1.0.0-rc1.1": {
+      "OpenTelemetry/1.0.0-rc2": {
         "dependencies": {
           "Microsoft.Extensions.Logging": "2.1.0",
           "Microsoft.Extensions.Logging.Configuration": "2.1.0",
-          "OpenTelemetry.Api": "1.0.0-rc1.1",
+          "OpenTelemetry.Api": "1.0.0-rc2",
           "System.Collections.Immutable": "1.4.0",
           "System.Reflection.Emit.Lightweight": "4.7.0"
         },
         "runtime": {
           "lib/netstandard2.0/OpenTelemetry.dll": {
-            "assemblyVersion": "1.0.0.1",
-            "fileVersion": "1.0.0.1"
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
           }
         }
       },
-      "OpenTelemetry.Api/1.0.0-rc1.1": {
+      "OpenTelemetry.Api/1.0.0-rc2": {
         "dependencies": {
           "System.Diagnostics.DiagnosticSource": "5.0.0",
           "System.Reflection.Emit.Lightweight": "4.7.0"
         },
         "runtime": {
           "lib/netstandard2.0/OpenTelemetry.Api.dll": {
-            "assemblyVersion": "1.0.0.1",
-            "fileVersion": "1.0.0.1"
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
           }
         }
       },
-      "OpenTelemetry.Exporter.Console/1.0.0-rc1.1": {
+      "OpenTelemetry.Exporter.Console/1.0.0-rc2": {
         "dependencies": {
-          "OpenTelemetry": "1.0.0-rc1.1"
+          "OpenTelemetry": "1.0.0-rc2"
         },
         "runtime": {
           "lib/netstandard2.0/OpenTelemetry.Exporter.Console.dll": {
-            "assemblyVersion": "1.0.0.1",
-            "fileVersion": "1.0.0.1"
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
           }
         }
       },
-      "OpenTelemetry.Exporter.Jaeger/1.0.0-rc1.1": {
+      "OpenTelemetry.Exporter.Jaeger/1.0.0-rc2": {
         "dependencies": {
-          "OpenTelemetry": "1.0.0-rc1.1"
+          "OpenTelemetry": "1.0.0-rc2"
         },
         "runtime": {
           "lib/netstandard2.1/OpenTelemetry.Exporter.Jaeger.dll": {
-            "assemblyVersion": "1.0.0.1",
-            "fileVersion": "1.0.0.1"
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
           }
         }
       },
@@ -277,33 +277,33 @@
       "path": "microsoft.extensions.primitives/2.1.0",
       "hashPath": "microsoft.extensions.primitives.2.1.0.nupkg.sha512"
     },
-    "OpenTelemetry/1.0.0-rc1.1": {
+    "OpenTelemetry/1.0.0-rc2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-5q7dczSuOG3YMuAW7aH4CNIbIfboJjtwQ1W2oIZ82TpuObjc+m514qwlsWsMPPOANTnFhte1p+Q72CVfw6JyzA==",
-      "path": "opentelemetry/1.0.0-rc1.1",
-      "hashPath": "opentelemetry.1.0.0-rc1.1.nupkg.sha512"
+      "sha512": "sha512-r37eRcSfwpspnEGm3OghP0L05bXlo76RB4MBDYZWJkMym3wdiwRte+heWwNF6Ekohel7ywJPzdEC4eHj9IBO2g==",
+      "path": "opentelemetry/1.0.0-rc2",
+      "hashPath": "opentelemetry.1.0.0-rc2.nupkg.sha512"
     },
-    "OpenTelemetry.Api/1.0.0-rc1.1": {
+    "OpenTelemetry.Api/1.0.0-rc2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Ek/MplwFLeZHdwlqg2P9vj+J8AbkgUuGkGfTvfEsSiRJkIHgTmtzprXA/rbsNaZcQQOZurm4YE0zq6zO6ovmAA==",
-      "path": "opentelemetry.api/1.0.0-rc1.1",
-      "hashPath": "opentelemetry.api.1.0.0-rc1.1.nupkg.sha512"
+      "sha512": "sha512-OmAqW9oPq8Pv8ClpP6jgVv/RV8AE8BlbD9Jye/9pEPXlDkSM1mdhabDYvkX4JUrDcFTm9NEu1Z5XJrzUu2we2A==",
+      "path": "opentelemetry.api/1.0.0-rc2",
+      "hashPath": "opentelemetry.api.1.0.0-rc2.nupkg.sha512"
     },
-    "OpenTelemetry.Exporter.Console/1.0.0-rc1.1": {
+    "OpenTelemetry.Exporter.Console/1.0.0-rc2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-hBsPvE7HmTpQJMzLw3izwO75alWOoGEN5F/zt+vufeBOVlxtqZJe9JMy4pd75xCwqymHSUL7h/ipMXE0qIfJvw==",
-      "path": "opentelemetry.exporter.console/1.0.0-rc1.1",
-      "hashPath": "opentelemetry.exporter.console.1.0.0-rc1.1.nupkg.sha512"
+      "sha512": "sha512-Nx3kVQZc65tmNPLZS+w71FJbEiSmfTMdgGJLz5g6CJlrQoQQH/SsTJs5KkDhbTm7fnI+T2WOFbnAVpOXUIliLA==",
+      "path": "opentelemetry.exporter.console/1.0.0-rc2",
+      "hashPath": "opentelemetry.exporter.console.1.0.0-rc2.nupkg.sha512"
     },
-    "OpenTelemetry.Exporter.Jaeger/1.0.0-rc1.1": {
+    "OpenTelemetry.Exporter.Jaeger/1.0.0-rc2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-H/i7mhfr++I5VWw112kZrQts8caugcDz8MD45AuprwXggHZfo16r62a3oBzpC8YmL8954WGq+Nj8AFSuAtRzTA==",
-      "path": "opentelemetry.exporter.jaeger/1.0.0-rc1.1",
-      "hashPath": "opentelemetry.exporter.jaeger.1.0.0-rc1.1.nupkg.sha512"
+      "sha512": "sha512-9ZGG5EsdSpMImOICCEDECagX+st5vIR3YEa11UQRLEMBifFKUZ7yfeHyxGC4P40K2DMUF54D41NFKOjCruSeSQ==",
+      "path": "opentelemetry.exporter.jaeger/1.0.0-rc2",
+      "hashPath": "opentelemetry.exporter.jaeger.1.0.0-rc2.nupkg.sha512"
     },
     "RabbitMQ.Client/6.2.0": {
       "type": "package",

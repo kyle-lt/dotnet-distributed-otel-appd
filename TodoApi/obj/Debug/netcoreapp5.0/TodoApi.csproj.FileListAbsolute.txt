@@ -6,6 +6,10 @@
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp5.0/TodoApi.dll
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp5.0/ref/TodoApi.dll
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp5.0/TodoApi.pdb
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp5.0/Google.Protobuf.dll
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp5.0/Grpc.Core.Api.dll
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp5.0/Grpc.Net.Client.dll
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp5.0/Grpc.Net.Common.dll
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp5.0/Microsoft.AspNetCore.Razor.Language.dll
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp5.0/Microsoft.Bcl.AsyncInterfaces.dll
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp5.0/Microsoft.Bcl.HashCode.dll
@@ -37,6 +41,7 @@
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp5.0/OpenTelemetry.Api.dll
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp5.0/OpenTelemetry.Exporter.Console.dll
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp5.0/OpenTelemetry.Exporter.Jaeger.dll
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp5.0/OpenTelemetry.Exporter.OpenTelemetryProtocol.dll
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp5.0/OpenTelemetry.Extensions.Hosting.dll
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp5.0/OpenTelemetry.Instrumentation.AspNetCore.dll
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp5.0/OpenTelemetry.Instrumentation.Http.dll

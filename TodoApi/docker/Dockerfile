@@ -6,7 +6,22 @@ WORKDIR /app
 #FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
 FROM mcr.microsoft.com/dotnet/sdk:5.0-focal AS build
 
-# Putting relatively static layers up top
+WORKDIR /src
+COPY . .
+
+WORKDIR /src/TodoApi
+RUN dotnet restore
+RUN dotnet build --no-restore -c Release -o /app
+
+FROM build AS publish
+RUN dotnet publish --no-restore -c Release -o /app
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app .
+# Copy over existing SQLite DB
+COPY --from=build /src/TodoApi/TodoDb.db .
+
 # Install AppD Install Script Dependencies
 RUN apt-get update
 RUN apt-get clean
@@ -25,23 +40,6 @@ RUN ./downloadDotNetLinuxAgentLatest.sh
 ENV CORECLR_PROFILER={57e1aa68-2229-41aa-9931-a6e93bbc64d8}
 ENV CORECLR_ENABLE_PROFILING=1
 ENV CORECLR_PROFILER_PATH=/app/libappdprofiler.so
-
-# Here is where code change layers occur, i.e., can't used cached layers
-WORKDIR /src
-COPY . .
-
-WORKDIR /src/TodoApi
-RUN dotnet restore
-RUN dotnet build --no-restore -c Release -o /app
-
-FROM build AS publish
-RUN dotnet publish --no-restore -c Release -o /app
-
-FROM base AS final
-WORKDIR /app
-COPY --from=publish /app .
-# Copy over existing SQLite DB
-COPY --from=build /src/TodoApi/TodoDb.db .
 
 # Set Hosting Environment to Development
 ENV ASPNETCORE_ENVIRONMENT=Development

@@ -44,19 +44,19 @@
             },
             "OpenTelemetry": {
               "target": "Package",
-              "version": "[1.0.0-rc1.1, )"
+              "version": "[1.0.0-rc2, )"
             },
             "OpenTelemetry.Api": {
               "target": "Package",
-              "version": "[1.0.0-rc1.1, )"
+              "version": "[1.0.0-rc2, )"
             },
             "OpenTelemetry.Exporter.Console": {
               "target": "Package",
-              "version": "[1.0.0-rc1.1, )"
+              "version": "[1.0.0-rc2, )"
             },
             "OpenTelemetry.Exporter.Jaeger": {
               "target": "Package",
-              "version": "[1.0.0-rc1.1, )"
+              "version": "[1.0.0-rc2, )"
             },
             "RabbitMQ.Client": {
               "target": "Package",

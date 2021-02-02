@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ZrJmXY6DTah4koKheYP8sSoqs5zojoQ0jai2FUjQMsyYIMZyA65xtqHduFv88FHpGef/Hs2rJwIKgZmlvhHBOw==",
+  "dgSpecHash": "8cXh+OquXpVNpO6A61C/1z0kDUBv2X8/zg4pzeOoIqIatLcVO2SNa5tTzfn69PJO0fNk3S6FJWzC5qLgjCJObA==",
   "success": true,
   "projectFilePath": "/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/Utils/Utils.csproj",
   "expectedPackageFiles": [
@@ -14,10 +14,10 @@
     "/Users/kjt/.nuget/packages/microsoft.extensions.options/2.1.0/microsoft.extensions.options.2.1.0.nupkg.sha512",
     "/Users/kjt/.nuget/packages/microsoft.extensions.options.configurationextensions/2.1.0/microsoft.extensions.options.configurationextensions.2.1.0.nupkg.sha512",
     "/Users/kjt/.nuget/packages/microsoft.extensions.primitives/2.1.0/microsoft.extensions.primitives.2.1.0.nupkg.sha512",
-    "/Users/kjt/.nuget/packages/opentelemetry/1.0.0-rc1.1/opentelemetry.1.0.0-rc1.1.nupkg.sha512",
-    "/Users/kjt/.nuget/packages/opentelemetry.api/1.0.0-rc1.1/opentelemetry.api.1.0.0-rc1.1.nupkg.sha512",
-    "/Users/kjt/.nuget/packages/opentelemetry.exporter.console/1.0.0-rc1.1/opentelemetry.exporter.console.1.0.0-rc1.1.nupkg.sha512",
-    "/Users/kjt/.nuget/packages/opentelemetry.exporter.jaeger/1.0.0-rc1.1/opentelemetry.exporter.jaeger.1.0.0-rc1.1.nupkg.sha512",
+    "/Users/kjt/.nuget/packages/opentelemetry/1.0.0-rc2/opentelemetry.1.0.0-rc2.nupkg.sha512",
+    "/Users/kjt/.nuget/packages/opentelemetry.api/1.0.0-rc2/opentelemetry.api.1.0.0-rc2.nupkg.sha512",
+    "/Users/kjt/.nuget/packages/opentelemetry.exporter.console/1.0.0-rc2/opentelemetry.exporter.console.1.0.0-rc2.nupkg.sha512",
+    "/Users/kjt/.nuget/packages/opentelemetry.exporter.jaeger/1.0.0-rc2/opentelemetry.exporter.jaeger.1.0.0-rc2.nupkg.sha512",
     "/Users/kjt/.nuget/packages/rabbitmq.client/6.2.0/rabbitmq.client.6.2.0.nupkg.sha512",
     "/Users/kjt/.nuget/packages/system.collections.immutable/1.4.0/system.collections.immutable.1.4.0.nupkg.sha512",
     "/Users/kjt/.nuget/packages/system.diagnostics.diagnosticsource/5.0.0/system.diagnostics.diagnosticsource.5.0.0.nupkg.sha512",

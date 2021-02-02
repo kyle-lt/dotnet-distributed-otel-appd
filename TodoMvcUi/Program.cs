@@ -19,9 +19,8 @@ namespace TodoMvcUi
     public class Program
     {
 
-        // Create Otel Activity Source - REMOVING THIS FOR TEST - it is not required/used
-        //static readonly ActivitySource activitySource = new ActivitySource(
-        //"dotnet-distributed-otel-appd.TodoMvcUi");
+        // Create Otel Activity Source - required to catch incoming trace propagation?
+        static readonly ActivitySource activitySource = new ActivitySource("TodoMvcUi","kjt-Otel-ToDo");
 
         public static void Main(string[] args)
         {

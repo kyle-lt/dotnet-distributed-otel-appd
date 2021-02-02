@@ -39,41 +39,35 @@ namespace TodoApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            // Updated to use OTLP, otel-collector
+            // Adding the OtlpExporter creates a GrpcChannel.
+            // This switch must be set before creating a GrpcChannel/HttpClient when calling an insecure gRPC service.
+            // See: https://docs.microsoft.com/aspnet/core/grpc/troubleshoot#call-insecure-grpc-services-with-net-core-client
+            AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
             
             // Add OpenTelemetry Console Exporter & Jaeger Exporter
             //services.AddOpenTelemetryTracerProvider((builder) => builder
             // 1.0.0-rc1.1
             services.AddOpenTelemetryTracing((builder) => builder
-                .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("dotnet-distrubuted-otel-appd.TodoApi"))
+                .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("TodoApi","kjt-Otel-ToDo"))
                 .AddSource(nameof(MessageReceiver), nameof(TodoItemsController))
                 .AddAspNetCoreInstrumentation()
                 .AddHttpClientInstrumentation()
                 .AddConsoleExporter()
-                .AddJaegerExporter(jaeger =>
-                {
+                //.AddJaegerExporter(jaeger =>
+                //{
                     //jaeger.ServiceName = "dotnet-distrubuted-otel-appd.TodoApi";
                     //jaeger.AgentHost = "host.docker.internal";
-                    jaeger.AgentHost = Environment.GetEnvironmentVariable("JAEGER_HOSTNAME") ?? "host.docker.internal";
-                    jaeger.AgentPort = 6831;
-                })
-                .SetSampler(new AlwaysOnSampler())
-                );
-            
-            /*
-            // Add OpenTelemetry Console Exporter & Jaeger Exporter - 1.0.0-rc1.1
-            services.AddOpenTelemetryTracing((builder) => builder
-                .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("dotnet-distrubuted-otel-appd.TodoApi"))
-                .AddAspNetCoreInstrumentation()
-                .AddHttpClientInstrumentation()
-                .AddConsoleExporter()
-                .AddJaegerExporter(jaeger =>
+                    //jaeger.AgentHost = Environment.GetEnvironmentVariable("JAEGER_HOSTNAME") ?? "host.docker.internal";
+                    //jaeger.AgentPort = 6831;
+                //})
+                .AddOtlpExporter(options =>
                 {
-                    jaeger.AgentHost = Environment.GetEnvironmentVariable("JAEGER_HOSTNAME") ?? "host.docker.internal";
-                    jaeger.AgentPort = 6831;
+                    options.Endpoint = new Uri("http://host.docker.internal:4317");
                 })
                 .SetSampler(new AlwaysOnSampler())
                 );
-            */
             
             services.AddControllers();
 

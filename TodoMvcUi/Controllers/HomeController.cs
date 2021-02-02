@@ -59,6 +59,19 @@ namespace TodoMvcUi.Controllers
         public async Task<IActionResult> ToDo()
         {
 
+            // Debug Logging
+            _logger.LogInformation("*** traceparent doesn't seem to be ending up here for the /distribute call... ***");
+            _logger.LogInformation("*** let's see if we see it the headers ***");
+            Request.Headers.TryGetValue("traceparent", out var myTraceParent);
+            _logger.LogInformation($"myTraceParent = {myTraceParent}");
+            Request.Headers.TryGetValue("singularityheader", out var mySingularityHeader);
+            _logger.LogInformation($"mySingularityHeader = {mySingularityHeader}");
+            _logger.LogInformation("----- Begin logging Existing (Parent) Activity Props -----");
+            _logger.LogInformation($"Activity.Current.TraceId = {Activity.Current.TraceId}");
+            _logger.LogInformation($"Activity.Current.SpanId = {Activity.Current.SpanId}");
+            _logger.LogInformation($"Activity.Current.ParentId = {Activity.Current.ParentId}");
+            _logger.LogInformation("----- Done Logging Existing (Parent) Activity Props -----");
+
             // Grab the ToDoItems from the API and write JSON to Console Log as it comes (minified, and all lower-case)
             var uri = "http://" + _todoApiEndpoint + ":5000/api/TodoItems";
             var stringTask = client.GetStringAsync(uri);
