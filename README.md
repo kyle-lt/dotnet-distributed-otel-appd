@@ -1,4 +1,4 @@
-# Todo
+# dotnet-distributed-otel-appd (a ToDo app)
 ## Overview
 This project was developed in order to get hands-on experience instrumenting a .NET Core application using the OpenTelemetry instrumentation libraries (notably Hosting, HTTP), as well as instrumenting with an Enterprise-class APM Platform (AppDynamics).
 
