@@ -1,6 +1,10 @@
 # Todo
 ## Overview
-This project was developed in order to get hands-on experience instrumenting a .NET Core application using the OpenTelemetry SDK by hand, as well as instrumenting with an Enterprise-class APM Platform (AppDynamics).
+This project was developed in order to get hands-on experience instrumenting a .NET Core application using the OpenTelemetry instrumentation libraries (notably Hosting, HTTP), as well as instrumenting with an Enterprise-class APM Platform (AppDynamics).
+
+This project keeps up-to-date pretty well with the [OTel Releases](https://github.com/open-telemetry/opentelemetry-dotnet/releases), and is currently using 1.0.0-rc2.
+
+This project has been updated recently to utilize the OpenTelemetry Collector, and is currently configured to export traces using the Jaeger Exporter, Logging Exporter, and AppDynamics (via OTLPHTTP Exporter). 
 
 There is no guarantee that this application is built to any best practices or standards, and in certain cases is explicitly designed to __not__ be performant, and so from the angle of tracing and monitoring, it's all good.
 
@@ -15,8 +19,12 @@ Once up and running, assuming you are running on your local machine, access the 
 In order to run this project, you'll need:
 - Docker
 - Docker Compose
+- OpenTelemetry Collector Demo, reference the [Otel Collector Demo](https://github.com/open-telemetry/opentelemetry-collector/tree/main/examples/demo)
+- Jaeger All-In-One, pull from [`jaegertracing/all-in-one:latest`](https://hub.docker.com/r/jaegertracing/all-in-one)
 
    > __Note:__  The Docker versions must support Docker Compose File version 3.2+
+
+   > __Note:__  Also note that this was built/tested running on Docker for Mac
 
 ### Steps to Run
 1. Clone this repository to your local machine.
@@ -115,22 +123,12 @@ $ tree -L 3
 │   ├── Startup.cs
 │   ├── TodoApi.csproj
 │   ├── TodoDb.db
-│   ├── WeatherForecast.cs
 │   ├── appsettings.Development.json
 │   ├── appsettings.json
 │   ├── bin
 │   │   └── Debug
 │   ├── docker
 │   │   └── Dockerfile
-│   └── obj
-│       ├── Debug
-│       ├── TodoApi.csproj.EntityFrameworkCore.targets
-│       ├── TodoApi.csproj.codegeneration.targets
-│       ├── TodoApi.csproj.nuget.dgspec.json
-│       ├── TodoApi.csproj.nuget.g.props
-│       ├── TodoApi.csproj.nuget.g.targets
-│       ├── project.assets.json
-│       └── project.nuget.cache
 ├── TodoMvcUi
 │   ├── Controllers
 │   │   └── HomeController.cs
@@ -151,17 +149,8 @@ $ tree -L 3
 │   │   └── _ViewStart.cshtml
 │   ├── appsettings.Development.json
 │   ├── appsettings.json
-│   ├── bin
-│   │   └── Debug
 │   ├── docker
 │   │   └── Dockerfile
-│   ├── obj
-│   │   ├── Debug
-│   │   ├── TodoMvcUi.csproj.nuget.dgspec.json
-│   │   ├── TodoMvcUi.csproj.nuget.g.props
-│   │   ├── TodoMvcUi.csproj.nuget.g.targets
-│   │   ├── project.assets.json
-│   │   └── project.nuget.cache
 │   └── wwwroot
 │       ├── css
 │       ├── favicon.ico
@@ -173,15 +162,6 @@ $ tree -L 3
 │   │   ├── MessageSender.cs
 │   │   └── RabbitMqHelper.cs
 │   ├── Utils.csproj
-│   ├── bin
-│   │   └── Debug
-│   └── obj
-│       ├── Debug
-│       ├── Utils.csproj.nuget.dgspec.json
-│       ├── Utils.csproj.nuget.g.props
-│       ├── Utils.csproj.nuget.g.targets
-│       ├── project.assets.json
-│       └── project.nuget.cache
 ├── docker-compose.yml
 ├── docker-compose.yml_private
 ├── downloadDotNetLinuxAgentLatest.sh
