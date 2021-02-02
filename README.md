@@ -2,13 +2,17 @@
 ## Overview
 This project was developed in order to get hands-on experience instrumenting a .NET Core application using the OpenTelemetry instrumentation libraries (notably Hosting, HTTP), as well as instrumenting with an Enterprise-class APM Platform (AppDynamics).
 
-This project keeps up-to-date pretty well with the [OTel Releases](https://github.com/open-telemetry/opentelemetry-dotnet/releases), and is currently using 1.0.0-rc2.
+It keeps up-to-date pretty well with the [OTel Releases](https://github.com/open-telemetry/opentelemetry-dotnet/releases), and is currently using 1.0.0-rc2, using .NET Core 5.0.
 
-This project has been updated recently to utilize the OpenTelemetry Collector, and is currently configured to export traces using the Jaeger Exporter, Logging Exporter, and AppDynamics (via OTLPHTTP Exporter). 
+   > __Note:__  This project was built/tested only on Docker for Mac
+
+It uses the [OpenTelemetry Collector](https://github.com/open-telemetry/opentelemetry-collector), which is decoupled from this project and has to be setup separately.  The OOB configuration exports traces using the Jaeger Exporter, Logging Exporter, and AppDynamics (via OTLPHTTP Exporter). 
 
 There is no guarantee that this application is built to any best practices or standards, and in certain cases is explicitly designed to __not__ be performant, and so from the angle of tracing and monitoring, it's all good.
 
 It's not necessary to build this project.  All images can be pulled from Docker Hub when you run with [Docker Compose](#quick-start-with-docker-compose) or with [Kubernetes](#kubernetes).
+
+   > __Note:__  Standing up the OpenTelemetry Collector is still required, even if you use the project's images
 
 Once up and running, assuming you are running on your local machine, access the Home Page at `http://localhost:60000`.
 
@@ -21,11 +25,10 @@ In order to run this project, you'll need:
 - Docker Compose
 - OpenTelemetry Collector
   - Reference the [Otel Collector Demo](https://github.com/open-telemetry/opentelemetry-collector/tree/main/examples/demo)
-  - Also, an example in this [Local Monitoring Stack](https://github.com/kyle-lt/local-monitoring-stack) Repo
+  - Also, an example in this [Local Monitoring Stack](https://github.com/kyle-lt/local-monitoring-stack) Repo that uses a simple setup (no OpenTelemetry Collector Agent required)
+
 
    > __Note:__  The Docker versions must support Docker Compose File version 3.2+
-
-   > __Note:__  Also note that this was built/tested running on Docker for Mac
 
 ### Steps to Run
 1. Clone this repository to your local machine.
