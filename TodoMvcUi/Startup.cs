@@ -44,6 +44,13 @@ namespace TodoMvcUi
             // See: https://docs.microsoft.com/aspnet/core/grpc/troubleshoot#call-insecure-grpc-services-with-net-core-client
             AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
 
+            // TODO: Setup env vars for service.name, service.namespace, e.g.,
+            // var serviceName = Environment.GetEnvironmentVariable("OTEL_SERVICE_NAME") ?? "TodoMvcUi";
+            // var serviceNamespace = Environment.GetEnvironmentVariable("OTEL_SERVICE_NAMESPACE") ?? "kjt-Otel-ToDo";
+            // ...
+            //    .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(serviceName,serviceNamespace))
+            // ...
+
             // Add OpenTelemetry Console Exporter & Jaeger Exporter - 0.7.0-beta
             //services.AddOpenTelemetryTracerProvider((builder) => builder
             // 1.0.0-rc1.1
