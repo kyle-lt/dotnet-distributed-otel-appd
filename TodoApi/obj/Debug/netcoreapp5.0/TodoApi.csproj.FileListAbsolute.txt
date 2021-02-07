@@ -55,6 +55,7 @@
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp5.0/System.Composition.Hosting.dll
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp5.0/System.Composition.Runtime.dll
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp5.0/System.Composition.TypedParts.dll
+/Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp5.0/System.Diagnostics.DiagnosticSource.dll
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp5.0/cs/Microsoft.CodeAnalysis.resources.dll
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp5.0/de/Microsoft.CodeAnalysis.resources.dll
 /Users/kjt/Local_Projects/dotnet-distributed-otel-appd/TodoApi/bin/Debug/netcoreapp5.0/es/Microsoft.CodeAnalysis.resources.dll

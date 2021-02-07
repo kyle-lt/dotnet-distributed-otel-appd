@@ -2,7 +2,7 @@
 ## Overview
 This project was developed in order to get hands-on experience instrumenting a .NET Core application using the OpenTelemetry instrumentation libraries (notably Hosting, HTTP), as well as instrumenting with an Enterprise-class APM Platform (AppDynamics).
 
-It keeps up-to-date pretty well with the [OTel Releases](https://github.com/open-telemetry/opentelemetry-dotnet/releases), and is currently using 1.0.0-rc2, using .NET Core 5.0.
+It keeps up-to-date pretty well with the [OTel Releases](https://github.com/open-telemetry/opentelemetry-dotnet/releases), and is currently using 1.0.0-rc3 (where possible, otherwise 1.0.0-rc2), using .NET Core 5.0.
 
    > __Note:__  This project was built/tested only on Docker for Mac
 

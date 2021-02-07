@@ -25,11 +25,11 @@
     ".NETCoreApp,Version=v5.0": {
       "TodoMvcUi/1.0.0": {
         "dependencies": {
-          "OpenTelemetry": "1.0.0-rc2",
-          "OpenTelemetry.Api": "1.0.0-rc2",
-          "OpenTelemetry.Exporter.Console": "1.0.0-rc2",
-          "OpenTelemetry.Exporter.Jaeger": "1.0.0-rc2",
-          "OpenTelemetry.Exporter.OpenTelemetryProtocol": "1.0.0-rc2",
+          "OpenTelemetry": "1.0.0-rc3",
+          "OpenTelemetry.Api": "1.0.0-rc3",
+          "OpenTelemetry.Exporter.Console": "1.0.0-rc3",
+          "OpenTelemetry.Exporter.Jaeger": "1.0.0-rc3",
+          "OpenTelemetry.Exporter.OpenTelemetryProtocol": "1.0.0-rc3",
           "OpenTelemetry.Extensions.Hosting": "1.0.0-rc2",
           "OpenTelemetry.Instrumentation.AspNetCore": "1.0.0-rc2",
           "OpenTelemetry.Instrumentation.Http": "1.0.0-rc2",
@@ -185,7 +185,6 @@
           "System.Data": "4.0.0.0",
           "System.Diagnostics.Contracts": "5.0.0.0",
           "System.Diagnostics.Debug.Reference": "5.0.0.0",
-          "System.Diagnostics.DiagnosticSource.Reference": "5.0.0.0",
           "System.Diagnostics.EventLog": "5.0.0.0",
           "System.Diagnostics.FileVersionInfo": "5.0.0.0",
           "System.Diagnostics.Process": "5.0.0.0",
@@ -358,7 +357,7 @@
         "dependencies": {
           "Grpc.Net.Common": "2.32.0",
           "Microsoft.Extensions.Logging.Abstractions": "3.1.6",
-          "System.Diagnostics.DiagnosticSource": "5.0.0"
+          "System.Diagnostics.DiagnosticSource": "5.0.1"
         },
         "runtime": {
           "lib/net5.0/Grpc.Net.Client.dll": {
@@ -516,77 +515,77 @@
           "System.Xml.XDocument": "4.3.0"
         }
       },
-      "OpenTelemetry/1.0.0-rc2": {
+      "OpenTelemetry/1.0.0-rc3": {
         "dependencies": {
           "Microsoft.Extensions.Logging": "2.1.0",
           "Microsoft.Extensions.Logging.Configuration": "2.1.0",
-          "OpenTelemetry.Api": "1.0.0-rc2",
+          "OpenTelemetry.Api": "1.0.0-rc3",
           "System.Collections.Immutable": "1.4.0",
           "System.Reflection.Emit.Lightweight": "4.7.0"
         },
         "runtime": {
           "lib/netstandard2.0/OpenTelemetry.dll": {
             "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
+            "fileVersion": "1.0.0.3"
           }
         },
         "compile": {
           "lib/netstandard2.0/OpenTelemetry.dll": {}
         }
       },
-      "OpenTelemetry.Api/1.0.0-rc2": {
+      "OpenTelemetry.Api/1.0.0-rc3": {
         "dependencies": {
-          "System.Diagnostics.DiagnosticSource": "5.0.0",
+          "System.Diagnostics.DiagnosticSource": "5.0.1",
           "System.Reflection.Emit.Lightweight": "4.7.0"
         },
         "runtime": {
           "lib/netstandard2.0/OpenTelemetry.Api.dll": {
             "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
+            "fileVersion": "1.0.0.3"
           }
         },
         "compile": {
           "lib/netstandard2.0/OpenTelemetry.Api.dll": {}
         }
       },
-      "OpenTelemetry.Exporter.Console/1.0.0-rc2": {
+      "OpenTelemetry.Exporter.Console/1.0.0-rc3": {
         "dependencies": {
-          "OpenTelemetry": "1.0.0-rc2"
+          "OpenTelemetry": "1.0.0-rc3"
         },
         "runtime": {
           "lib/netstandard2.0/OpenTelemetry.Exporter.Console.dll": {
             "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
+            "fileVersion": "1.0.0.3"
           }
         },
         "compile": {
           "lib/netstandard2.0/OpenTelemetry.Exporter.Console.dll": {}
         }
       },
-      "OpenTelemetry.Exporter.Jaeger/1.0.0-rc2": {
+      "OpenTelemetry.Exporter.Jaeger/1.0.0-rc3": {
         "dependencies": {
-          "OpenTelemetry": "1.0.0-rc2"
+          "OpenTelemetry": "1.0.0-rc3"
         },
         "runtime": {
           "lib/netstandard2.1/OpenTelemetry.Exporter.Jaeger.dll": {
             "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
+            "fileVersion": "1.0.0.3"
           }
         },
         "compile": {
           "lib/netstandard2.1/OpenTelemetry.Exporter.Jaeger.dll": {}
         }
       },
-      "OpenTelemetry.Exporter.OpenTelemetryProtocol/1.0.0-rc2": {
+      "OpenTelemetry.Exporter.OpenTelemetryProtocol/1.0.0-rc3": {
         "dependencies": {
           "Google.Protobuf": "3.6.1",
           "Grpc.Net.Client": "2.32.0",
-          "OpenTelemetry": "1.0.0-rc2"
+          "OpenTelemetry": "1.0.0-rc3"
         },
         "runtime": {
           "lib/netstandard2.1/OpenTelemetry.Exporter.OpenTelemetryProtocol.dll": {
             "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
+            "fileVersion": "1.0.0.3"
           }
         },
         "compile": {
@@ -596,7 +595,7 @@
       "OpenTelemetry.Extensions.Hosting/1.0.0-rc2": {
         "dependencies": {
           "Microsoft.Extensions.Hosting.Abstractions": "2.1.0",
-          "OpenTelemetry": "1.0.0-rc2"
+          "OpenTelemetry": "1.0.0-rc3"
         },
         "runtime": {
           "lib/netstandard2.0/OpenTelemetry.Extensions.Hosting.dll": {
@@ -612,7 +611,7 @@
         "dependencies": {
           "Microsoft.AspNetCore.Http.Abstractions": "2.1.1",
           "Microsoft.AspNetCore.Http.Features": "2.1.1",
-          "OpenTelemetry": "1.0.0-rc2"
+          "OpenTelemetry": "1.0.0-rc3"
         },
         "runtime": {
           "lib/netstandard2.1/OpenTelemetry.Instrumentation.AspNetCore.dll": {
@@ -626,7 +625,7 @@
       },
       "OpenTelemetry.Instrumentation.Http/1.0.0-rc2": {
         "dependencies": {
-          "OpenTelemetry": "1.0.0-rc2"
+          "OpenTelemetry": "1.0.0-rc3"
         },
         "runtime": {
           "lib/netstandard2.0/OpenTelemetry.Instrumentation.Http.dll": {
@@ -753,7 +752,13 @@
           "System.Runtime": "4.3.0"
         }
       },
-      "System.Diagnostics.DiagnosticSource/5.0.0": {
+      "System.Diagnostics.DiagnosticSource/5.0.1": {
+        "runtime": {
+          "lib/net5.0/System.Diagnostics.DiagnosticSource.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.220.61120"
+          }
+        },
         "compile": {
           "lib/net5.0/System.Diagnostics.DiagnosticSource.dll": {}
         }
@@ -891,7 +896,7 @@
           "Microsoft.NETCore.Platforms": "1.1.0",
           "System.Collections": "4.3.0",
           "System.Diagnostics.Debug": "4.3.0",
-          "System.Diagnostics.DiagnosticSource": "5.0.0",
+          "System.Diagnostics.DiagnosticSource": "5.0.1",
           "System.Diagnostics.Tracing": "4.3.0",
           "System.Globalization": "4.3.0",
           "System.Globalization.Extensions": "4.3.0",
@@ -1259,10 +1264,10 @@
       "Utils/1.0.0": {
         "dependencies": {
           "Microsoft.Extensions.Logging.Abstractions": "3.1.6",
-          "OpenTelemetry": "1.0.0-rc2",
-          "OpenTelemetry.Api": "1.0.0-rc2",
-          "OpenTelemetry.Exporter.Console": "1.0.0-rc2",
-          "OpenTelemetry.Exporter.Jaeger": "1.0.0-rc2",
+          "OpenTelemetry": "1.0.0-rc3",
+          "OpenTelemetry.Api": "1.0.0-rc3",
+          "OpenTelemetry.Exporter.Console": "1.0.0-rc3",
+          "OpenTelemetry.Exporter.Jaeger": "1.0.0-rc3",
           "RabbitMQ.Client": "6.2.0"
         },
         "runtime": {
@@ -2169,12 +2174,6 @@
       "System.Diagnostics.Debug.Reference/5.0.0.0": {
         "compile": {
           "System.Diagnostics.Debug.dll": {}
-        },
-        "compileOnly": true
-      },
-      "System.Diagnostics.DiagnosticSource.Reference/5.0.0.0": {
-        "compile": {
-          "System.Diagnostics.DiagnosticSource.dll": {}
         },
         "compileOnly": true
       },
@@ -3132,40 +3131,40 @@
       "path": "netstandard.library/1.6.1",
       "hashPath": "netstandard.library.1.6.1.nupkg.sha512"
     },
-    "OpenTelemetry/1.0.0-rc2": {
+    "OpenTelemetry/1.0.0-rc3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-r37eRcSfwpspnEGm3OghP0L05bXlo76RB4MBDYZWJkMym3wdiwRte+heWwNF6Ekohel7ywJPzdEC4eHj9IBO2g==",
-      "path": "opentelemetry/1.0.0-rc2",
-      "hashPath": "opentelemetry.1.0.0-rc2.nupkg.sha512"
+      "sha512": "sha512-9wi6a7d/LdhWE4GRvbW6HyodJRhriWitDqgRvvc7ZQKlYSWPJXXuchli06xMegEf9wk89IDJCOZD47/RLHDdzA==",
+      "path": "opentelemetry/1.0.0-rc3",
+      "hashPath": "opentelemetry.1.0.0-rc3.nupkg.sha512"
     },
-    "OpenTelemetry.Api/1.0.0-rc2": {
+    "OpenTelemetry.Api/1.0.0-rc3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-OmAqW9oPq8Pv8ClpP6jgVv/RV8AE8BlbD9Jye/9pEPXlDkSM1mdhabDYvkX4JUrDcFTm9NEu1Z5XJrzUu2we2A==",
-      "path": "opentelemetry.api/1.0.0-rc2",
-      "hashPath": "opentelemetry.api.1.0.0-rc2.nupkg.sha512"
+      "sha512": "sha512-Xo0Pfiz+YJfi9zdDu+36idIZ44tAPCTfcFN4pS76vW8Kdo2MBcBX7s/MO69FYK2Q16SZfqFoBsiDqaDRmCq36A==",
+      "path": "opentelemetry.api/1.0.0-rc3",
+      "hashPath": "opentelemetry.api.1.0.0-rc3.nupkg.sha512"
     },
-    "OpenTelemetry.Exporter.Console/1.0.0-rc2": {
+    "OpenTelemetry.Exporter.Console/1.0.0-rc3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Nx3kVQZc65tmNPLZS+w71FJbEiSmfTMdgGJLz5g6CJlrQoQQH/SsTJs5KkDhbTm7fnI+T2WOFbnAVpOXUIliLA==",
-      "path": "opentelemetry.exporter.console/1.0.0-rc2",
-      "hashPath": "opentelemetry.exporter.console.1.0.0-rc2.nupkg.sha512"
+      "sha512": "sha512-Kr7Vt+9x8hMYc34cqCejwFVUYU/ogXKG9Ct54xOW8yoQj07n/Od4oMj788Tf8wUoaAYAtPzj3F5nJDVDEJ21xA==",
+      "path": "opentelemetry.exporter.console/1.0.0-rc3",
+      "hashPath": "opentelemetry.exporter.console.1.0.0-rc3.nupkg.sha512"
     },
-    "OpenTelemetry.Exporter.Jaeger/1.0.0-rc2": {
+    "OpenTelemetry.Exporter.Jaeger/1.0.0-rc3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-9ZGG5EsdSpMImOICCEDECagX+st5vIR3YEa11UQRLEMBifFKUZ7yfeHyxGC4P40K2DMUF54D41NFKOjCruSeSQ==",
-      "path": "opentelemetry.exporter.jaeger/1.0.0-rc2",
-      "hashPath": "opentelemetry.exporter.jaeger.1.0.0-rc2.nupkg.sha512"
+      "sha512": "sha512-TIeJVRiLqzOUZyqFq2gtny3eukfzAgSP9zYoVuff7aFIHh7639zEIEzlxRJn4KokCPxRbPITkivMx1tiofaLTg==",
+      "path": "opentelemetry.exporter.jaeger/1.0.0-rc3",
+      "hashPath": "opentelemetry.exporter.jaeger.1.0.0-rc3.nupkg.sha512"
     },
-    "OpenTelemetry.Exporter.OpenTelemetryProtocol/1.0.0-rc2": {
+    "OpenTelemetry.Exporter.OpenTelemetryProtocol/1.0.0-rc3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-o+Eg2ccL6c9saGzUD+3w94X1UdZ/IlMwTDxoe6TOBGIM+VVQhpPYu/vOoup+jsePW+L/kRCiduS3E3qjq6mV2g==",
-      "path": "opentelemetry.exporter.opentelemetryprotocol/1.0.0-rc2",
-      "hashPath": "opentelemetry.exporter.opentelemetryprotocol.1.0.0-rc2.nupkg.sha512"
+      "sha512": "sha512-MooW3fqS8YUYGvPgJAfGyNV3E30YVXSmdupIwdsAqH+y6YiZxezVK9dxTrxP2C6W9a4FefpdTAZXZgBSMcSgdg==",
+      "path": "opentelemetry.exporter.opentelemetryprotocol/1.0.0-rc3",
+      "hashPath": "opentelemetry.exporter.opentelemetryprotocol.1.0.0-rc3.nupkg.sha512"
     },
     "OpenTelemetry.Extensions.Hosting/1.0.0-rc2": {
       "type": "package",
@@ -3356,12 +3355,12 @@
       "path": "system.diagnostics.debug/4.3.0",
       "hashPath": "system.diagnostics.debug.4.3.0.nupkg.sha512"
     },
-    "System.Diagnostics.DiagnosticSource/5.0.0": {
+    "System.Diagnostics.DiagnosticSource/5.0.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-tCQTzPsGZh/A9LhhA6zrqCRV4hOHsK90/G7q3Khxmn6tnB1PuNU0cRaKANP2AWcF9bn0zsuOoZOSrHuJk6oNBA==",
-      "path": "system.diagnostics.diagnosticsource/5.0.0",
-      "hashPath": "system.diagnostics.diagnosticsource.5.0.0.nupkg.sha512"
+      "sha512": "sha512-uXQEYqav2V3zP6OwkOKtLv+qIi6z3m1hsGyKwXX7ZA7htT4shoVccGxnJ9kVRFPNAsi1ArZTq2oh7WOto6GbkQ==",
+      "path": "system.diagnostics.diagnosticsource/5.0.1",
+      "hashPath": "system.diagnostics.diagnosticsource.5.0.1.nupkg.sha512"
     },
     "System.Diagnostics.Tools/4.3.0": {
       "type": "package",
@@ -4464,11 +4463,6 @@
       "sha512": ""
     },
     "System.Diagnostics.Debug.Reference/5.0.0.0": {
-      "type": "referenceassembly",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "System.Diagnostics.DiagnosticSource.Reference/5.0.0.0": {
       "type": "referenceassembly",
       "serviceable": false,
       "sha512": ""

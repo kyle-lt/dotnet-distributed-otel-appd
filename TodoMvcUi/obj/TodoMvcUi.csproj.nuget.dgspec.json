@@ -44,23 +44,23 @@
           "dependencies": {
             "OpenTelemetry": {
               "target": "Package",
-              "version": "[1.0.0-rc2, )"
+              "version": "[1.0.0-rc3, )"
             },
             "OpenTelemetry.Api": {
               "target": "Package",
-              "version": "[1.0.0-rc2, )"
+              "version": "[1.0.0-rc3, )"
             },
             "OpenTelemetry.Exporter.Console": {
               "target": "Package",
-              "version": "[1.0.0-rc2, )"
+              "version": "[1.0.0-rc3, )"
             },
             "OpenTelemetry.Exporter.Jaeger": {
               "target": "Package",
-              "version": "[1.0.0-rc2, )"
+              "version": "[1.0.0-rc3, )"
             },
             "OpenTelemetry.Exporter.OpenTelemetryProtocol": {
               "target": "Package",
-              "version": "[1.0.0-rc2, )"
+              "version": "[1.0.0-rc3, )"
             },
             "OpenTelemetry.Extensions.Hosting": {
               "target": "Package",
@@ -141,19 +141,19 @@
             },
             "OpenTelemetry": {
               "target": "Package",
-              "version": "[1.0.0-rc2, )"
+              "version": "[1.0.0-rc3, )"
             },
             "OpenTelemetry.Api": {
               "target": "Package",
-              "version": "[1.0.0-rc2, )"
+              "version": "[1.0.0-rc3, )"
             },
             "OpenTelemetry.Exporter.Console": {
               "target": "Package",
-              "version": "[1.0.0-rc2, )"
+              "version": "[1.0.0-rc3, )"
             },
             "OpenTelemetry.Exporter.Jaeger": {
               "target": "Package",
-              "version": "[1.0.0-rc2, )"
+              "version": "[1.0.0-rc3, )"
             },
             "RabbitMQ.Client": {
               "target": "Package",

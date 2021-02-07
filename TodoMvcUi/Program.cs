@@ -34,14 +34,13 @@ namespace TodoMvcUi
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureLogging(logging =>
-                {
-                    logging.ClearProviders();
-                    // For granular logging to the console for Otel o/p
-                    logging.AddConsole((options) => { options.IncludeScopes = true; });
+                //.ConfigureLogging(logging =>
+                //{
+                    //logging.ClearProviders();
+                    // For granular logging to the console for Otel o/p - moved to appsettings.json
+                    //logging.AddConsole((options) => { options.IncludeScopes = true; });
                     //logging.AddConsole();
-                    //logging.AddConsoleFormatter((options) => { options.IncludeScopes = true; });
-                })
+                //})
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseUrls("http://*:60000");

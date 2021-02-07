@@ -17,13 +17,14 @@
     <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="0.5.0-beta.2" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="0.7.0-beta.1" />
     -->
-    <!-- OTEL 1.0.0-rc2  -->
-    
-    <PackageReference Include="OpenTelemetry" Version="1.0.0-rc2" />
-    <PackageReference Include="OpenTelemetry.Api" Version="1.0.0-rc2" />
-    <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.0.0-rc2" />
-    <PackageReference Include="OpenTelemetry.Exporter.Jaeger" Version="1.0.0-rc2" />
-    <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.0.0-rc2" />
+
+    <!-- OTEL 1.0.0-rc3  -->
+    <!-- NOTE: rc2 used in a few places! -->
+    <PackageReference Include="OpenTelemetry" Version="1.0.0-rc3" />
+    <PackageReference Include="OpenTelemetry.Api" Version="1.0.0-rc3" />
+    <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.0.0-rc3" />
+    <PackageReference Include="OpenTelemetry.Exporter.Jaeger" Version="1.0.0-rc3" />
+    <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.0.0-rc3" />
     <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.0.0-rc2" />
     <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.0.0-rc2" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.0.0-rc2" />
